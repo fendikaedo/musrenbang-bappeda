@@ -1,7 +1,7 @@
 <?php
 
 use App\Admin\Controllers\BidangController;
-use App\Admin\Controllers\DataController;
+use App\Admin\Controllers\KecamatanController;
 use App\Admin\Controllers\OpdController;
 use Illuminate\Routing\Router;
 Admin::favicon('');
@@ -17,5 +17,5 @@ Route::group([
     $router->get('/', 'HomeController@index')->name('home');
     $router->resource('bidang', BidangController::class);
     $router->resource('opd', OpdController::class);
-    $router->resource('data_usulan', DataController::class);
+    $router->resource('kecamatan', KecamatanController::class);
 });
