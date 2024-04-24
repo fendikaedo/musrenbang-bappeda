@@ -2,6 +2,7 @@
 
 namespace App\Admin\Controllers;
 
+use App\Models\Kabupaten;
 use App\Models\Kecamatan;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
@@ -28,7 +29,7 @@ class KecamatanController extends AdminController
 
         $grid->column('id', __('Id'));
         $grid->column('nama', __('Nama'));
-        $grid->column('kabupaten_id', __('Kabupaten id'));
+        $grid->column('kabupaten.nama', __('Kabupaten id'));
 
         return $grid;
     }
@@ -58,9 +59,10 @@ class KecamatanController extends AdminController
     protected function form()
     {
         $form = new Form(new Kecamatan());
+        $daftar_kabupaten = Kabupaten::all()->pluck('nama','id');
 
         $form->text('nama', __('Nama'));
-        $form->number('kabupaten_id', __('Kabupaten id'));
+        $form->select('kabupaten_id', __('Pilih Kabupaten'))->options($daftar_kabupaten);
 
         return $form;
     }
