@@ -27,7 +27,7 @@ class DataController extends AdminController
     {
         $grid = new Grid(new DataUsulan());
 
-        $grid->column('id', __('Id'));
+        $grid->column('id', __('No'));
         $grid->column('usulan', __('Usulan'));
         $grid->column('masalah', __('Masalah'));
         $grid->column('kecamatan', __('Kecamatan'));
@@ -48,13 +48,12 @@ class DataController extends AdminController
     {
         $show = new Show(DataUsulan::findOrFail($id));
 
-        $show->field('id', __('Id'));
+        $show->field('id', __('No'));
         $show->field('usulan', __('Usulan'));
         $show->field('masalah', __('Masalah'));
         $show->field('kecamatan', __('Kecamatan'));
         $show->field('kelurahan', __('Kelurahan'));
         $show->field('opd_id', __('Opd id'));
-
 
         return $show;
     }
