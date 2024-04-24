@@ -12,4 +12,9 @@ class Kecamatan extends Model
     protected $table = 'kecamatan';
 
     public $timestamps = false;
+
+    public function kabupaten()
+    {
+        return $this->belongsTo(Kabupaten::class,'kabupaten_id');
+    }
 }
