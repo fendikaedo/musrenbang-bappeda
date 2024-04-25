@@ -26,6 +26,9 @@ class KriteriaController extends AdminController
     {
         $grid = new Grid(new Kriteria());
 
+        $grid->column('id', __('No'));
+        $grid->column('nama', __('Nama'));
+        $grid->column('tahun', __('Tahun'));
 
 
         return $grid;
@@ -41,6 +44,9 @@ class KriteriaController extends AdminController
     {
         $show = new Show(Kriteria::findOrFail($id));
 
+        $show->field('id', __('Id'));
+        $show->field('nama', __('Nama'));
+        $show->field('tahun', __('Tahun'));
 
 
         return $show;
@@ -55,7 +61,8 @@ class KriteriaController extends AdminController
     {
         $form = new Form(new Kriteria());
 
-
+        $form->text('nama', __('Nama'));
+        $form->date('tahun', __('Tahun'));
 
         return $form;
     }

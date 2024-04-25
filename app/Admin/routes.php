@@ -4,7 +4,8 @@ use App\Admin\Controllers\BidangController;
 use App\Admin\Controllers\KecamatanController;
 use App\Admin\Controllers\OpdController;
 use App\Admin\Controllers\KabupatenController;
-
+use App\Admin\Controllers\KriteriaController;
+use App\Admin\Controllers\UsulanController;
 use Illuminate\Routing\Router;
 Admin::favicon('');
 Admin::routes();
@@ -19,6 +20,9 @@ Route::group([
     $router->get('/', 'HomeController@index')->name('home');
     $router->resource('bidang', BidangController::class);
     $router->resource('opd', OpdController::class);
-    $router->resource('kecamatan', KecamatanController::class);
     $router->resource('kabupaten', KabupatenController::class);
+    $router->resource('kecamatan', KecamatanController::class);
+    $router->resource('usulan', UsulanController::class);
+    $router->resource('kriteria', KriteriaController::class);
+
 });
