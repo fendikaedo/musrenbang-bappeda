@@ -4,6 +4,7 @@ use App\Admin\Controllers\BidangController;
 use App\Admin\Controllers\KecamatanController;
 use App\Admin\Controllers\OpdController;
 use App\Admin\Controllers\KabupatenController;
+use App\Admin\Controllers\KriteriaController;
 
 use Illuminate\Routing\Router;
 Admin::favicon('');
@@ -21,4 +22,7 @@ Route::group([
     $router->resource('opd', OpdController::class);
     $router->resource('kecamatan', KecamatanController::class);
     $router->resource('kabupaten', KabupatenController::class);
+    $router->resource('kriteria', KriteriaController::class); 
+    $router->resource('status', StatusController::class);
+
 });
