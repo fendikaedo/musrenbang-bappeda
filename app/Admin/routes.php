@@ -7,6 +7,7 @@ use App\Admin\Controllers\KabupatenController;
 use App\Admin\Controllers\KriteriaController;
 use App\Admin\Controllers\StatusController;
 use App\Admin\Controllers\UsulanController;
+use App\Admin\Controllers\PenilaianController;
 use Illuminate\Routing\Router;
 Admin::favicon('');
 Admin::routes();
@@ -28,5 +29,5 @@ Route::group([
     $router->resource('usulan', UsulanController::class);
     $router->resource('kriteria', KriteriaController::class);
     $router->resource('kelurahan', KelurahanController::class);
-
+    $router->resource('penilaian', PenilaianController::class);
 });
