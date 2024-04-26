@@ -23,13 +23,10 @@ class Usulan extends Model
         return $this->belongsTo(Kecamatan::class,'kabupaten_id');
     }
 
-    //public function kelurahan()
-    //{
-    //    return $this->belongsTo(kelurahan::class,'kabupaten_id');
-    //}
     public function opd()
     {
-        return $this->belongsTo(Opd::class, 'opd_awal_id');
+        return $this->join('opd', 'usulan.opd_id_akhir', '=', 'opd.nama')
+                    ->select('usulan.*', 'opd.nama  ');
     }
 
 }

@@ -2,6 +2,7 @@
 
 namespace App\Admin\Controllers;
 
+use App\Models\Kegiatan;
 use App\Models\Penilaian;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
