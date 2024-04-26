@@ -27,5 +27,6 @@ Route::group([
     $router->resource('kecamatan', KecamatanController::class);
     $router->resource('usulan', UsulanController::class);
     $router->resource('kriteria', KriteriaController::class);
+    $router->resource('kelurahan', KelurahanController::class);
 
 });
