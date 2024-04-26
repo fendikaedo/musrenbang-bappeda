@@ -25,7 +25,7 @@ class KriteriaController extends AdminController
     protected function grid()
     {
         $grid = new Grid(new Kriteria());
-        
+
         $grid->column('id',__('Id'));
         $grid->column('nama',__('Nama'));
         $grid->column('tahun',__('Tahun'));
@@ -61,7 +61,7 @@ class KriteriaController extends AdminController
         $form = new Form(new Kriteria());
 
         $form->text('nama',__('Nama'));
-        $form->text('tahun',__('Tahun'));
+        $form->date('tahun',__('Tahun'));
 
         return $form;
     }
