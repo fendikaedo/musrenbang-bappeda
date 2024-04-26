@@ -4,6 +4,7 @@ namespace App\Admin\Controllers;
 
 use App\Models\Kabupaten;
 use App\Models\Kecamatan;
+use App\Models\Kelurahan;
 use App\Models\Opd;
 use App\Models\Usulan;
 use Encore\Admin\Controllers\AdminController;
@@ -118,6 +119,7 @@ class UsulanController extends AdminController
 
         $kabupaten = Kabupaten::all()->pluck('nama','id');
         $kecamatan = Kecamatan::all()->pluck('nama','id');
+        $kelurahan = Kelurahan::all()->pluck('nama','id');
         $opd = Opd::all()->pluck('nama','id');
 
         $form->text('id_usulan', __('Id Usulan'));
@@ -129,7 +131,7 @@ class UsulanController extends AdminController
         $form->text('alamat', __('Alamat'));
         $form->select('kabupaten.nama', __('Pilih Kabupaten'))->options($kabupaten);
         $form->select('kecamatan.nama', __('Pilih Kecamatan'))->options($kecamatan);
-        $form->select('kelurahan_id', __('Pilih Kelurahan'));
+        $form->select('kelurahan.nama', __('Pilih Kelurahan'))->options($kelurahan);
         $form->decimal('latitude', __('Latitude'));
         $form->decimal('longitude', __('Longitude'));
         $form->text('usulan_ke', __('Usulan ke'));

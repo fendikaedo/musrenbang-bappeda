@@ -8,7 +8,10 @@ use App\Admin\Controllers\KriteriaController;
 use App\Admin\Controllers\StatusController;
 use App\Admin\Controllers\UsulanController;
 use App\Admin\Controllers\PenilaianController;
+use App\Admin\Controllers\KegiatanController;
+use App\Admin\Controllers\SkorController;
 use Illuminate\Routing\Router;
+
 Admin::favicon('');
 Admin::routes();
 
@@ -30,4 +33,6 @@ Route::group([
     $router->resource('kriteria', KriteriaController::class);
     $router->resource('kelurahan', KelurahanController::class);
     $router->resource('penilaian', PenilaianController::class);
+    $router->resource('kegiatan', KegiatanController::class);
+    $router->resource('skor', SkorController::class);
 });
