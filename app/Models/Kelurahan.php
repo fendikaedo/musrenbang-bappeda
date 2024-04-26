@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Kelurahan extends Model
 {
     use HasFactory;
+    
+    
+    protected $table = 'kelurahan';
+
+    public $timestamps = false;
+
+    public function kecamatan()
+    {
+        return $this->belongsTo(Kecamatan::class,'kecamatan_id');
+    }
 }
