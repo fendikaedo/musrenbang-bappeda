@@ -29,7 +29,7 @@ class KelurahanController extends AdminController
 
         $grid->column('id', __('Id'));
         $grid->column('nama', __('Nama'));
-        $grid->column('kecamatan.nama', __('Kecamatan_id'));
+        $grid->column('kecamatan.nama', __('Kecamatan'));
 
 
         return $grid;
@@ -47,7 +47,7 @@ class KelurahanController extends AdminController
 
         $show->field('id', __('Id'));
         $show->field('nama', __('Nama'));
-        $show->field('kecamatan_id', __('Kecamatan_id'));
+        $show->field('kecamatan_id', __('Kecamatan'));
 
 
 

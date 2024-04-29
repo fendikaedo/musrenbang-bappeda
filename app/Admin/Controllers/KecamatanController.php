@@ -29,7 +29,7 @@ class KecamatanController extends AdminController
 
         $grid->column('id', __('Id'));
         $grid->column('nama', __('Nama'));
-        $grid->column('kabupaten.nama', __('Kabupaten id'));
+        $grid->column('kabupaten.nama', __('Kabupaten'));
 
         return $grid;
     }
@@ -46,7 +46,7 @@ class KecamatanController extends AdminController
 
         $show->field('id', __('Id'));
         $show->field('nama', __('Nama'));
-        $show->field('kabupaten_id', __('Kabupaten id'));
+        $show->field('kabupaten_id', __('Kabupaten'));
 
         return $show;
     }

@@ -61,7 +61,7 @@ class KriteriaController extends AdminController
         $form = new Form(new Kriteria());
 
         $form->text('nama',__('Nama'));
-        $form->date('tahun',__('Tahun'));
+        $form->number('tahun',__('Tahun'));
 
         return $form;
     }
