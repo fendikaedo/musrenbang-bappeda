@@ -11,6 +11,7 @@ use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
+use Illuminate\Support\Facades\DB;
 
 class UsulanController extends AdminController
 {
@@ -117,10 +118,18 @@ class UsulanController extends AdminController
     {
         $form = new Form(new Usulan());
 
-        $kabupaten = Kabupaten::all()->pluck('nama','id');
-        $kecamatan = Kecamatan::all()->pluck('nama','id');
-        $kelurahan = Kelurahan::all()->pluck('nama','id');
-        $opd = Opd::all()->pluck('nama','id');
+        $kabupaten = Kabupaten::all()->pluck('nama', 'id');
+        $kecamatan = Kecamatan::all()->pluck('nama', 'id');
+        $kelurahan = Kelurahan::all()->pluck('nama', 'id');
+        $opd = "SELECT * FROM usulan INNER JOIN opd ON usulan.id = opd.id INNER JOIN bidang
+        ON opd.id = bidang.id";
+
+        $hasil_opd = Opd::all()->pluck('nama','id');
+
+        $pilihan_opd = [];
+        foreach ($hasil_opd as $id => $nama) {
+            $pilihan_opd[$id] = $nama;
+        }
 
         $form->text('id_usulan', __('Id Usulan'));
         $form->date('tanggal_usul', __('Tanggal Usul'))->default(date('Y-m-d'));
@@ -135,8 +144,8 @@ class UsulanController extends AdminController
         $form->decimal('latitude', __('Latitude'));
         $form->decimal('longitude', __('Longitude'));
         $form->text('usulan_ke', __('Usulan ke'));
-        $form->select('opd_id_awal.opd.nama', __('OPD Tujuan Awal'))->options($opd);
-        $form->select('opd_id_akhir.opd.nama', __('OPD Tujuan Akhir'))->options($opd);
+        $form->select('opd_id_awal', __('OPD Tujuan Awal'))->options($pilihan_opd);
+        $form->select('opd_id_akhir', __('OPD Tujuan Akhir'))->options($pilihan_opd);
         $form->select('status_id', __('Status'));
         $form->text('catatan', __('Catatan'));
         $form->text('rekomendasi_mitra', __('Rekomendasi Mitra'));

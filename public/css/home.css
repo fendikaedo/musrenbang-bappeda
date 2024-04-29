@@ -23,8 +23,8 @@ button{
 }
 
 .navbar{
-    height: 90px;
-    background-color: #1a1a1a;
+    height: 70px;
+    background-color: rgb(13, 13, 34);
     padding: 20px 40px;
     display: flex;
     justify-content: space-between;
