@@ -8,6 +8,7 @@ use App\Admin\Controllers\KelurahanController;
 use App\Admin\Controllers\KriteriaController;
 use App\Admin\Controllers\StatusController;
 use App\Admin\Controllers\UsulanController;
+use App\Admin\Controllers\SkoringUsulanController;
 use App\Admin\Controllers\PenilaianController;
 use App\Admin\Controllers\KegiatanController;
 use App\Admin\Controllers\SkorController;
@@ -31,6 +32,7 @@ Route::group([
     $router->resource('status', StatusController::class);
     $router->resource('kecamatan', KecamatanController::class);
     $router->resource('usulan', UsulanController::class);
+    $router->resource('skorusulan', SkoringUsulanController::class);
     $router->resource('kriteria', KriteriaController::class);
     $router->resource('kelurahan', KelurahanController::class);
     $router->resource('penilaian', PenilaianController::class);
