@@ -35,7 +35,7 @@
                 </a>
 
                 <div class="nav__toggle" id="nav-toggle">
-                    <i class="ri-menu-line nav__burger"></i>
+                    <i class="fa-solid fa-bars nav__burger"></i>
                     <i class="ri-close-line nav__close"></i>
                 </div>
             </div>
@@ -70,13 +70,10 @@
         </nav>
     </header>
 
-    <!--=============== MAIN JS ===============-->
-    <script src="{{ asset('../js/home.js') }}"></script>
-
     <main class="main">
         <div class="px-2 text-center">
             <img class="d-block mx-auto mb-4 animate__animated animate__fadeInUp"
-                src="{{ asset('../img/kab-pacitan.png') }}" alt="" width="72" height="80">
+                src="{{ asset('../img/kab-pacitan.png') }}" alt="" width="80" height="88">
             <h1 class="display-5 fw-bold animate__animated animate__fadeIn">MUSRENBANG</h1>
             <h2 class="display-5 fw-bold animate__animated animate__fadeIn">Musyawarah Rencana Pembangunan</h2>
             <div class="col-lg-6 mx-auto animate__animated animate__fadeIn">
@@ -101,5 +98,24 @@
     </footer>
 
 </body>
+
+<script>
+    /*=============== SHOW MENU ===============*/
+const showMenu = (toggleId, navId) =>{
+    const toggle = document.getElementById(toggleId),
+          nav = document.getElementById(navId)
+
+    toggle.addEventListener('click', () =>{
+        // Add show-menu class to nav menu
+        nav.classList.toggle('show-menu')
+
+        // Add show-icon to show and hide the menu icon
+        toggle.classList.toggle('show-icon')
+    })
+ }
+
+ showMenu('nav-toggle','nav-menu')
+
+</script>
 
 </html>
