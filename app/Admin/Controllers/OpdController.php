@@ -27,6 +27,15 @@ class OpdController extends AdminController
     {
         $grid = new Grid(new Opd());
 
+        $grid->filter(function ($filter) {
+            $filter->disableIdFilter();
+
+            $nama_bidang = Opd::join('bidang', 'opd.bidang_id', '=', 'bidang.id')
+                ->pluck('bidang.nama', 'bidang.id');
+
+            $filter->equal('bidang_id', 'Bidang')->select($nama_bidang);
+        });
+
         $grid->column('id', __('No'));
         $grid->column('nama', __('Nama'));
         $grid->column('bidang.nama', __('Bidang'));

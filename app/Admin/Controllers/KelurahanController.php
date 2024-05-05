@@ -4,6 +4,7 @@ namespace App\Admin\Controllers;
 
 use App\Models\Kelurahan;
 use App\Models\Kecamatan;
+use App\Models\Usulan;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
@@ -26,6 +27,14 @@ class KelurahanController extends AdminController
     protected function grid()
     {
         $grid = new Grid(new Kelurahan());
+        $grid->filter(function ($filter) {
+            $filter->disableIdFilter();
+
+            $nama_kecamatan = Kecamatan::join('kelurahan', 'kecamatan.id', '=', 'kelurahan.kecamatan_id')
+                ->pluck('kecamatan.nama', 'kecamatan.id');
+
+            $filter->equal('kecamatan.id', 'Kecamatan')->select($nama_kecamatan);
+        });
 
         $grid->column('id', __('Id'));
         $grid->column('nama', __('Nama'));

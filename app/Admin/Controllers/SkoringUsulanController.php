@@ -2,7 +2,6 @@
 
 namespace App\Admin\Controllers;
 
-use App\Models\Bidang;
 use App\Models\Kabupaten;
 use App\Models\Kecamatan;
 use App\Models\Kelurahan;
@@ -11,9 +10,8 @@ use App\Models\Usulan;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
-use Encore\Admin\Grid\Column\Filter;
 use Encore\Admin\Show;
-use Illuminate\Support\Facades\DB;
+
 
 class SkoringUsulanController extends AdminController
 {
@@ -22,7 +20,7 @@ class SkoringUsulanController extends AdminController
      *
      * @var string
      */
-    protected $title = 'Usulan';
+    protected $title = 'Skor Usulan';
 
     /**
      * Make a grid builder.
@@ -38,9 +36,11 @@ class SkoringUsulanController extends AdminController
         $grid->filter(function ($filter) {
             $filter->disableIdFilter();
 
-            $bidang = Bidang::all()->pluck('nama', 'id')->toArray();
+            $bidang = Usulan::join('opd', 'usulan.opd_id_akhir', '=', 'opd.id')
+                ->join('bidang', 'opd.bidang_id', '=', 'bidang.id')
+                ->pluck('bidang.nama', 'bidang.id');
 
-            $filter->equal('bidang')->select($bidang);
+            $filter->equal('bidang.id', 'Bidang')->select($bidang);
         });
 
 
@@ -51,36 +51,15 @@ class SkoringUsulanController extends AdminController
         $grid->column('kelurahan.nama', __('Kelurahan'));
         $grid->column('opd.nama', __('OPD Tujuan Akhir'));
 
-        $grid->column('Bidang')->display(function ($skor) {
-            // // Memeriksa apakah $skor tidak null
-            // if ($skor) {
-            //     // Menggunakan nilai dari $skor untuk mendapatkan nama bidang yang sesuai
-            //     $usulan = Usulan::join('opd', 'usulan.opd_id_akhir', '=', 'opd.id')
-            //         ->join('bidang', 'opd.bidang_id', '=', 'bidang.id')
-            //         ->where('usulan.id', $skor->id) // Menyaring berdasarkan id Usulan yang sedang diproses
-            //         ->select('bidang.nama as nama_bidang')
-            //         ->first(); // Mengambil hanya satu hasil, karena kita hanya ingin satu nama bidang
+        $grid->column('Bidang')->display(function () {
 
-            //     // Mengembalikan nama bidang jika $usulan tidak null, jika null maka kembalikan string kosong
-            //     return optional($usulan)->nama_bidang ?? '';
-            // } else {
-            //     return ''; // Jika $skor null, kembalikan string kosong
-            // }
-        // $bidang = Usulan::join('opd','opd.id','=','usulan.opd_id_akhir')
-        //             ->join('bidang','bidang.id','=','opd.bidang_id')
-        //             ->select('bidang.nama')
-        //             ->get();
+            //$id_usulan = Usulan::all()->pluck('id')->first();
+            $nama_bidang = Usulan::join('opd', 'usulan.opd_id_akhir', '=', 'opd.id')
+                ->join('bidang', 'opd.bidang_id', '=', 'bidang.id')
+                ->pluck('bidang.nama')
+                ->first();
 
-        // return $bidang;
-        $usulans = DB::table('usulan')
-            ->join('opd', 'usulan.opd_id_akhir', '=', 'opd.id')
-            ->join('bidang', 'opd.bidang_id', '=', 'bidang.id')
-            ->select('bidang.nama as nama_bidang')
-            ->distinct()
-            ->get();
-
-        return $usulans;
-
+            return $nama_bidang;
         });
 
 
