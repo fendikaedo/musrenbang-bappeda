@@ -39,7 +39,6 @@
                     <i class="ri-close-line nav__close"></i>
                 </div>
             </div>
-
             <!--=============== NAV MENU ===============-->
             <div class="nav__menu" id="nav-menu">
                 <ul class="nav__list">
@@ -70,25 +69,28 @@
         </nav>
     </header>
 
+    <!--=============== HERO ===============-->
     <main class="main">
         <div class="px-2 text-center">
             <img class="d-block mx-auto mb-4 animate__animated animate__fadeInUp"
                 src="{{ asset('../img/kab-pacitan.png') }}" alt="" width="80" height="88">
-            <h1 class="display-5 fw-bold animate__animated animate__fadeIn">MUSRENBANG</h1>
+            <h1 class="display-5 fw-bold animate__animated animate__fadeIn">E-MUSRENBANG</h1>
             <h2 class="display-5 fw-bold animate__animated animate__fadeIn">Musyawarah Rencana Pembangunan</h2>
             <div class="col-lg-6 mx-auto animate__animated animate__fadeIn">
                 <p class="lead mb-4">Musrenbang adalah forum antarpelaku dalam rangka menyusun rencana pembangunan
                     Nasional dan rencana pembangunan Daerah.</p>
                 <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                    <button type="button"
-                        class="btn btn-primary btn-lg px-4 gap-3 animate__animated animate__fadeInUp">Start
-                        Score</button>
-                    {{-- <button type="button" class="btn px-4 gap-3 animate__animated animate__fadeInUp" role="button">Start Score</button> --}}
+                    <a href="/loginuser">
+                        <button type="button"
+                            class="btn btn-primary btn-lg px-4 gap-3 animate__animated animate__fadeInUp">Start
+                            Vote</button>
+                    </a>
                 </div>
             </div>
         </div>
     </main>
 
+    <!--=============== FOOTER ===============-->
     <footer class="bg-body-tertiary text-center text-lg-start">
         <!-- Copyright -->
         <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
@@ -101,21 +103,20 @@
 
 <script>
     /*=============== SHOW MENU ===============*/
-const showMenu = (toggleId, navId) =>{
-    const toggle = document.getElementById(toggleId),
-          nav = document.getElementById(navId)
+    const showMenu = (toggleId, navId) => {
+        const toggle = document.getElementById(toggleId),
+            nav = document.getElementById(navId)
 
-    toggle.addEventListener('click', () =>{
-        // Add show-menu class to nav menu
-        nav.classList.toggle('show-menu')
+        toggle.addEventListener('click', () => {
+            // Add show-menu class to nav menu
+            nav.classList.toggle('show-menu')
 
-        // Add show-icon to show and hide the menu icon
-        toggle.classList.toggle('show-icon')
-    })
- }
+            // Add show-icon to show and hide the menu icon
+            toggle.classList.toggle('show-icon')
+        })
+    }
 
- showMenu('nav-toggle','nav-menu')
-
+    showMenu('nav-toggle', 'nav-menu')
 </script>
 
 </html>

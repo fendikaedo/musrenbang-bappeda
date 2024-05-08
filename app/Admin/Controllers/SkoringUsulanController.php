@@ -11,7 +11,7 @@ use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
-
+use Illuminate\Support\Facades\DB;
 
 class SkoringUsulanController extends AdminController
 {
@@ -56,17 +56,34 @@ class SkoringUsulanController extends AdminController
             //$id_usulan = Usulan::all()->pluck('id')->first();
             $nama_bidang = Usulan::join('opd', 'usulan.opd_id_akhir', '=', 'opd.id')
                 ->join('bidang', 'opd.bidang_id', '=', 'bidang.id')
-                ->pluck('bidang.nama')
-                ->first();
+                ->pluck('bidang.nama', 'bidang.id');
 
             return $nama_bidang;
         });
 
 
         $grid->column('Skor')->display(function ($skor) {
+            // $hasilSkor = DB::table('skor')
+            //     ->select(DB::raw('SUM(skor) AS total_skor'))
+            //     ->groupBy('usulan')
+            //     ->first();
+
+            // // Cek apakah hasil kueri ada
+            // if ($hasilSkor) {
+            //     return $hasilSkor->total_skor;
+            // } else {
+            //     return 0;
+            // }
             return "100";
             //Lakukan query untuk menghitung skor (SUM GROUP BY)
 
+        });
+        $grid->column('approved')->display(function ($approved) {
+            if ($approved) {
+                return '<button class="btn btn-danger">Not Approved</button>';
+            } else {
+                return '<button class="btn btn-success">Approved</button>';
+            }
         });
 
         return $grid;

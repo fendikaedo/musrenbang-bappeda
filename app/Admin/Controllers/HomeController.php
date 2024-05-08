@@ -14,6 +14,7 @@ use Encore\Admin\Layout\Column;
 use Encore\Admin\Layout\Content;
 use Encore\Admin\Layout\Row;
 use Encore\Admin\Widgets\InfoBox;
+use Encore\Admin\Widgets\Table;
 
 class HomeController extends Controller
 {
@@ -33,7 +34,7 @@ class HomeController extends Controller
             ->title('<b>Dashboard<b>')
             ->description('Information')
             // ->row(Dashboard::title())
-            ->row(function (Row $row) use ($infoKecamatan,$infoKelurahan,$infoOpd,$infoUsulan) {
+            ->row(function (Row $row) use ($infoKecamatan, $infoKelurahan, $infoOpd, $infoUsulan) {
                 $row->column(3, function (Column $column) use ($infoKecamatan) {
                     $column->append($infoKecamatan->render());
                 });

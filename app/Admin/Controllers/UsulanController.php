@@ -8,6 +8,7 @@ use App\Models\Kelurahan;
 use App\Models\Opd;
 use App\Models\Usulan;
 use Encore\Admin\Controllers\AdminController;
+use Encore\Admin\Facades\Admin;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
@@ -36,41 +37,56 @@ class UsulanController extends AdminController
         $grid->filter(function ($filter) {
             $filter->disableIdFilter();
 
-            $kecamatan = Usulan::join('kecamatan', 'usulan.kecamatan_id', '=', 'kecamatan.id')
-                ->pluck('kecamatan.nama', 'kecamatan.id');
+            $kecamatan = Kecamatan::all()->pluck('nama', 'id');
+
+            // $kecamatan = Usulan::join('kecamatan', 'usulan.kecamatan_id', '=', 'kecamatan.id')
+            //     ->pluck('kecamatan.nama', 'kecamatan.id');
+
+            $kelurahan = Usulan::join('kelurahan', 'usulan.kelurahan_id', '=', 'kelurahan.id')
+                ->pluck('kelurahan.nama', 'kelurahan.id');
 
             $filter->equal('kecamatan_id', 'Kecamatan')->select($kecamatan);
+            $filter->equal('kelurahan_id', 'Kelurahan')->select($kelurahan);
         });
         //$grid->model()->where('status','<>', 'dibatalkan');
 
-        $grid->column('id', __('No'));
+        //$grid->column('id', __('No'));
         $grid->column('id_usulan', __('Id Usulan'));
-        $grid->column('tanggal_usul', __('Tanggal Usul'));
-        $grid->column('pengusul', __('Pengusul'));
-        $grid->column('profil', __('Profil'));
+        //$grid->column('tanggal_usul', __('Tanggal Usul'));
+        //$grid->column('pengusul', __('Pengusul'));
+        //$grid->column('profil', __('Profil'));
         $grid->column('usulan', __('Usulan'));
         $grid->column('masalah', __('Masalah'));
         $grid->column('alamat', __('Alamat'));
-        $grid->column('kabupaten.nama', __('Kabupaten'));
+        //$grid->column('kabupaten.nama', __('Kabupaten'));
         $grid->column('kecamatan.nama', __('Kecamatan'));
         $grid->column('kelurahan.nama', __('Kelurahan'));
         //$grid->column('latitude', __('Latitude'));
         //$grid->column('longitude', __('Longitude'));
-        $grid->column('usulan_ke', __('Usulan ke'));
-        $grid->column('opd.nama', __('OPD Tujuan Awal'));
+        //$grid->column('usulan_ke', __('Usulan ke'));
+        //$grid->column('opd.nama', __('OPD Tujuan Awal'));
         $grid->column('opd.nama', __('OPD Tujuan Akhir'));
-        $grid->column('status', __('Status'));
-        $grid->column('catatan', __('Catatan'));
-        $grid->column('rekomendasi_mitra', __('Rekomendasi Mitra'));
-        $grid->column('rekomendasi_kelurahan', __('Rekomendasi Kelurahan'));
-        $grid->column('rekomendasi_kecamatan', __('Rekomendasi Kecamatan'));
-        $grid->column('rekomendasi_skpd', __('Rekomendasi SKPD'));
-        $grid->column('rekomendasi_tapd', __('Rekomendasi TAPD'));
-        $grid->column('volume', __('Volume'));
-        $grid->column('satuan', __('Satuan'));
-        $grid->column('anggaran', __('Anggaran'));
-        $grid->column('jenis_belanja', __('Jenis Belanja'));
-        $grid->column('sub_kegiatan', __('Sub Kegiatan'));
+        //$grid->column('status', __('Status'));
+        //$grid->column('catatan', __('Catatan'));
+        //$grid->column('rekomendasi_mitra', __('Rekomendasi Mitra'));
+        //$grid->column('rekomendasi_kelurahan', __('Rekomendasi Kelurahan'));
+        //$grid->column('rekomendasi_kecamatan', __('Rekomendasi Kecamatan'));
+        //$grid->column('rekomendasi_skpd', __('Rekomendasi SKPD'));
+        //$grid->column('rekomendasi_tapd', __('Rekomendasi TAPD'));
+        //$grid->column('volume', __('Volume'));
+        //$grid->column('satuan', __('Satuan'));
+        //$grid->column('anggaran', __('Anggaran'));
+        //$grid->column('jenis_belanja', __('Jenis Belanja'));
+        //$grid->column('sub_kegiatan', __('Sub Kegiatan'));
+        // $states = [
+        //     'on' => ['text' => 'Diterima'],
+        //     'off' => ['text' => 'Tidak Diterima'],
+        // ];
+
+        // $grid->column('pilihan')->switchGroup([
+        //     'diterima' => 'diterima',
+        //     // 'tidak diterima' => 'tidak diterima'
+        // ], $states);
         $grid->column('pilihan', __('Pilihan'));
         $grid->column('tahun', __('Tahun'));
 
