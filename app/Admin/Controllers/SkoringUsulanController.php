@@ -6,6 +6,7 @@ use App\Models\Kabupaten;
 use App\Models\Kecamatan;
 use App\Models\Kelurahan;
 use App\Models\Opd;
+use App\Models\Skor;
 use App\Models\Usulan;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
@@ -51,41 +52,21 @@ class SkoringUsulanController extends AdminController
         $grid->column('kelurahan.nama', __('Kelurahan'));
         $grid->column('opd.nama', __('OPD Tujuan Akhir'));
 
-        $grid->column('Bidang')->display(function () {
-
-            //$id_usulan = Usulan::all()->pluck('id')->first();
-            $nama_bidang = Usulan::join('opd', 'usulan.opd_id_akhir', '=', 'opd.id')
-                ->join('bidang', 'opd.bidang_id', '=', 'bidang.id')
-                ->pluck('bidang.nama', 'bidang.id');
-
-            return $nama_bidang;
-        });
-
-
-        $grid->column('Skor')->display(function ($skor) {
-            // $hasilSkor = DB::table('skor')
-            //     ->select(DB::raw('SUM(skor) AS total_skor'))
-            //     ->groupBy('usulan')
-            //     ->first();
-
-            // // Cek apakah hasil kueri ada
-            // if ($hasilSkor) {
-            //     return $hasilSkor->total_skor;
-            // } else {
-            //     return 0;
-            // }
-            return "100";
-            //Lakukan query untuk menghitung skor (SUM GROUP BY)
-
-        });
-        $grid->column('approved')->display(function ($approved) {
-            if ($approved) {
-                return '<button class="btn btn-danger">Not Approved</button>';
+        $grid->column('opd_id_akhir')->display(function ($opd_id_akhir) {
+            $opd = Opd::find($opd_id_akhir);
+            if (is_null($opd)) {
+                return '';
             } else {
-                return '<button class="btn btn-success">Approved</button>';
+                return $opd->bidang->nama;
             }
         });
 
+        $grid->column('id')->display(function ($id) {
+            $skor = Skor::where('usulan_id','=',$id)->sum('skor');
+            return $skor;
+            //Lakukan query untuk menghitung skor (SUM GROUP BY)
+
+        })->sortable();
         return $grid;
     }
 

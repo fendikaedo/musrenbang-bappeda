@@ -34,13 +34,11 @@ class UsulanController extends AdminController
         $tahun = config('tahun');
         //auth roles bidang
         $grid->model()->where('tahun', '=', $tahun);
+        //$grid->model()->where('pilihan', '=', 1); Menu Pilihan diterima
         $grid->filter(function ($filter) {
             $filter->disableIdFilter();
 
             $kecamatan = Kecamatan::all()->pluck('nama', 'id');
-
-            // $kecamatan = Usulan::join('kecamatan', 'usulan.kecamatan_id', '=', 'kecamatan.id')
-            //     ->pluck('kecamatan.nama', 'kecamatan.id');
 
             $kelurahan = Usulan::join('kelurahan', 'usulan.kelurahan_id', '=', 'kelurahan.id')
                 ->pluck('kelurahan.nama', 'kelurahan.id');
@@ -87,7 +85,7 @@ class UsulanController extends AdminController
         //     'diterima' => 'diterima',
         //     // 'tidak diterima' => 'tidak diterima'
         // ], $states);
-        $grid->column('pilihan', __('Pilihan'));
+        $grid->column('pilihan', __('Pilihan'))->switch();
         $grid->column('tahun', __('Tahun'));
 
         return $grid;
