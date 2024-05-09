@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LoginUserController;
+use App\Http\Controllers\MenuBidangController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,3 +20,5 @@ Route::get('/', function () {
 });
 
 Route::get('/loginuser', [LoginUserController::class, 'index']);
+Route::get('/menubidang', [MenuBidangController::class, 'index']);
+

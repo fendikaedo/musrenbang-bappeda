@@ -12,6 +12,7 @@ use App\Admin\Controllers\SkoringUsulanController;
 use App\Admin\Controllers\PenilaianController;
 use App\Admin\Controllers\KegiatanController;
 use App\Admin\Controllers\SkorController;
+use App\Admin\Controllers\UsulanDiterimaController;
 use Illuminate\Routing\Router;
 
 Admin::favicon('');
@@ -38,4 +39,5 @@ Route::group([
     $router->resource('penilaian', PenilaianController::class);
     $router->resource('kegiatan', KegiatanController::class);
     $router->resource('skor', SkorController::class);
+    $router->resource('usulanditerima', UsulanDiterimaController::class);
 });

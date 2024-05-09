@@ -14,7 +14,7 @@ use Encore\Admin\Grid;
 use Encore\Admin\Show;
 use Illuminate\Support\Facades\DB;
 
-class UsulanController extends AdminController
+class UsulanDiterimaController extends AdminController
 {
     /**
      * Title for current resource.
@@ -34,7 +34,7 @@ class UsulanController extends AdminController
         $tahun = config('tahun');
         //auth roles bidang
         $grid->model()->where('tahun', '=', $tahun);
-        //$grid->model()->where('pilihan', '=', 1); Menu Pilihan diterima
+        $grid->model()->where('pilihan', '=', 1);
         $grid->filter(function ($filter) {
             $filter->disableIdFilter();
 
@@ -75,8 +75,7 @@ class UsulanController extends AdminController
         //$grid->column('satuan', __('Satuan'));
         //$grid->column('anggaran', __('Anggaran'));
         //$grid->column('jenis_belanja', __('Jenis Belanja'));
-        //$grid->column('sub_kegiatan', __('Sub Kegiatan'));
-        $grid->column('pilihan', __('Pilihan'))->switch();
+        $grid->column('pilihan', __('Kabupaten'));
         $grid->column('tahun', __('Tahun'));
 
         return $grid;
