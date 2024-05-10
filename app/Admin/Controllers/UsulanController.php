@@ -2,6 +2,7 @@
 
 namespace App\Admin\Controllers;
 
+use App\Admin\Actions\Post\ImportPost;
 use App\Models\Kabupaten;
 use App\Models\Kecamatan;
 use App\Models\Kelurahan;
@@ -46,11 +47,14 @@ class UsulanController extends AdminController
             $filter->equal('kecamatan_id', 'Kecamatan')->select($kecamatan);
             $filter->equal('kelurahan_id', 'Kelurahan')->select($kelurahan);
         });
+        $grid->tools(function ($tools) {
+            $tools->append(new ImportPost());
+        });
         //$grid->model()->where('status','<>', 'dibatalkan');
 
         //$grid->column('id', __('No'));
         $grid->column('id_usulan', __('Id Usulan'));
-        //$grid->column('tanggal_usul', __('Tanggal Usul'));
+        $grid->column('tanggal_usul', __('Tanggal Usul'));
         //$grid->column('pengusul', __('Pengusul'));
         //$grid->column('profil', __('Profil'));
         $grid->column('usulan', __('Usulan'));

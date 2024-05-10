@@ -21,7 +21,7 @@ class UsulanDiterimaController extends AdminController
      *
      * @var string
      */
-    protected $title = 'Usulan';
+    protected $title = 'Usulan Diterima';
 
     /**
      * Make a grid builder.

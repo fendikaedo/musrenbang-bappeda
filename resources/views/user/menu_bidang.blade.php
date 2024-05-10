@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Bidang</title>
+    <title>Menu Bidang</title>
 
     {{-- Bootstrap --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -38,22 +38,25 @@
         <div class="container h-100">
             <div class="row justify-content-sm-center h-100">
                 <div class="col-xxl-4 col-xl-5 col-lg-5 col-md-7 col-sm-9">
-                    <div class="my-4">
-                        <a href="/">
-                            <button type="button" class="btn btn-primary btn-sm px-4 gap-3">Back</button>
-                        </a>
+                    <div class="animate__animated animate__fadeInDown">
+                        <div class="my-4">
+                            <a href="/loginuser">
+                                <button type="button" class="btn btn-primary btn-sm px-4 gap-3">Back</button>
+                            </a>
+                        </div>
+                        <div class="text-center my-4">
+                            <img src="../../img/kab-pacitan.png" alt="logo" width="75">
+                        </div>
+                        <div class="text-center my-4">
+                            <h1>E-MUSRENBANG</h1>
+                        </div>
                     </div>
-                    <div class="text-center my-4">
-                        <img src="../../img/kab-pacitan.png" alt="logo" width="75">
-                    </div>
-                    <div class="text-center my-4">
-                        <h1>E-MUSRENBANG</h1>
-                    </div>
-                    <div class="content">
+
+                    <div class="content animate__animated animate__fadeInUp">
                         <div class="card shadow-lg mb-3">
                             <div class="card-body p-5">
                                 <h1 class="fs-4 card-title fw-bold mb-4 text-white">Bidang Infrastruktur</h1>
-                                <a href="/">
+                                <a href="/forminfrastruktur">
                                     <button type="button" class="btn btn-success btn-sm px-4 gap-3">Masuk</button>
                                 </a>
                             </div>
@@ -61,7 +64,7 @@
                         <div class="card shadow-lg mb-3">
                             <div class="card-body p-5">
                                 <h1 class="fs-4 card-title fw-bold mb-4 text-white">Bidang Ekonomi</h1>
-                                <a href="/">
+                                <a href="/formekonomi">
                                     <button type="button" class="btn btn-success btn-sm px-4 gap-3">Masuk</button>
                                 </a>
                             </div>
@@ -69,7 +72,7 @@
                         <div class="card shadow-lg mb-3">
                             <div class="card-body p-5">
                                 <h1 class="fs-4 card-title fw-bold mb-4 text-white">Bidang Sosial Budaya</h1>
-                                <a href="/">
+                                <a href="/formsosbud">
                                     <button type="button" class="btn btn-success btn-sm px-4 gap-3">Masuk</button>
                                 </a>
                             </div>

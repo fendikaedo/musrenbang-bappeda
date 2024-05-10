@@ -52,7 +52,7 @@ class SkoringUsulanController extends AdminController
         $grid->column('kelurahan.nama', __('Kelurahan'));
         $grid->column('opd.nama', __('OPD Tujuan Akhir'));
 
-        $grid->column('opd_id_akhir')->display(function ($opd_id_akhir) {
+        $grid->column('opd_id_akhir','Bidang')->display(function ($opd_id_akhir) {
             $opd = Opd::find($opd_id_akhir);
             if (is_null($opd)) {
                 return '';

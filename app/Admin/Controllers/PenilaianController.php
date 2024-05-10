@@ -8,6 +8,8 @@ use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Request as FacadesRequest;
 
 class PenilaianController extends AdminController
 {
@@ -68,7 +70,7 @@ class PenilaianController extends AdminController
     {
         $form = new Form(new Penilaian());
 
-        $daftar_kegiatan = Kegiatan::all()->pluck('nama','id');
+        $daftar_kegiatan = Kegiatan::all()->pluck('nama', 'id');
 
         $form->text('nama', __('Nama'));
         $form->select('nama_penilai', __('Nama'));
@@ -77,8 +79,6 @@ class PenilaianController extends AdminController
         $form->select('email_penilai', __('Email'));
         $form->select('tanggal', __('Tanggal'));
         $form->select('kegiatan_id', __('Pilih Kegiatan'))->options($daftar_kegiatan);
-
-
 
         return $form;
     }

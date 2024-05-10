@@ -34,7 +34,7 @@
                             </div>
                             <h1 class="fs-4 card-title mb-4 text-center animate__animated animate__fadeIn">Data Penilai
                                 Vote</h1>
-                            <form method="POST" class="needs-validation animate__animated animate__fadeIn"
+                            <form action="{{route('admin.penilaian.create')}}" method="POST" class="needs-validation animate__animated animate__fadeIn"
                                 novalidate="" autocomplete="off">
                                 <div class="mb-3">
                                     <label class="mb-2 text-muted" for="nama_penilai">Nama Lengkap</label>
