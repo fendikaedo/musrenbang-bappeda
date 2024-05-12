@@ -7,6 +7,7 @@ use App\Models\Kecamatan;
 use App\Models\Kelurahan;
 use App\Models\Opd;
 use App\Models\Usulan;
+use App\Models\Bidang;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Facades\Admin;
 use Encore\Admin\Form;
@@ -38,13 +39,14 @@ class UsulanDiterimaController extends AdminController
         $grid->filter(function ($filter) {
             $filter->disableIdFilter();
 
-            $kecamatan = Kecamatan::all()->pluck('nama', 'id');
+            //$kecamatan = Kecamatan::all()->pluck('nama', 'id');
 
-            $kelurahan = Usulan::join('kelurahan', 'usulan.kelurahan_id', '=', 'kelurahan.id')
-                ->pluck('kelurahan.nama', 'kelurahan.id');
+            $daftar_bidang = Usulan::join('opd', 'usulan.opd_id_akhir', '=', 'opd.id')
+                ->join('bidang', 'opd.id', '=', 'bidang.id')
+                ->pluck('bidang.nama', 'bidang.id');
 
-            $filter->equal('kecamatan_id', 'Kecamatan')->select($kecamatan);
-            $filter->equal('kelurahan_id', 'Kelurahan')->select($kelurahan);
+            //$filter->equal('kecamatan_id', 'Kecamatan')->select($kecamatan);
+            $filter->equal('opd_id_akhir','Bidang')->select($daftar_bidang);
         });
         //$grid->model()->where('status','<>', 'dibatalkan');
 

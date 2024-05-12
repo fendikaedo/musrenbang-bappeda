@@ -4,7 +4,7 @@ use App\Http\Controllers\FormInfrastrukturController;
 use App\Http\Controllers\FormEkonomiController;
 use App\Http\Controllers\FormSosbudController;
 use App\Http\Controllers\FormUsulanController;
-use App\Http\Controllers\LoginUserController;
+use App\Http\Controllers\LoginPenilaiController;
 use App\Http\Controllers\MenuBidangController;
 use Encore\Admin\Actions\Interactor\Form;
 use Illuminate\Support\Facades\Route;
@@ -24,7 +24,7 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/loginuser', [LoginUserController::class, 'index']);
+Route::resource('/loginpenilai', LoginPenilaiController::class);
 Route::get('/menubidang', [MenuBidangController::class, 'index']);
 Route::get('/formusulan', [FormUsulanController::class, 'index']);
 Route::get('/forminfrastruktur', [FormInfrastrukturController::class, 'index']);

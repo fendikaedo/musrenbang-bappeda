@@ -4,6 +4,7 @@ namespace App\Admin\Controllers;
 
 use App\Models\Kegiatan;
 use App\Models\Penilaian;
+use Doctrine\DBAL\Schema\Index;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
@@ -72,14 +73,25 @@ class PenilaianController extends AdminController
 
         $daftar_kegiatan = Kegiatan::all()->pluck('nama', 'id');
 
-        $form->text('nama', __('Nama'));
-        $form->select('nama_penilai', __('Nama'));
-        $form->select('alamat_penilai', __('Alamat'));
-        $form->select('tlp_penilai', __('Telepon'));
-        $form->select('email_penilai', __('Email'));
-        $form->select('tanggal', __('Tanggal'));
+        //$form->text('nama', __('Nama'));
+        $form->text('nama_penilai', __('Nama'));
+        $form->text('alamat_penilai', __('Alamat'));
+        $form->number('tlp_penilai', __('Telepon'));
+        $form->text('email_penilai', __('Email'));
+        $form->date('tanggal', __('Tanggal'));
         $form->select('kegiatan_id', __('Pilih Kegiatan'))->options($daftar_kegiatan);
 
         return $form;
     }
+//     /**
+//     * Menyimpan data baru ke dalam penyimpanan.
+//     *
+//     * @param  \Illuminate\Http\Request  $request
+//     * @return \Illuminate\Http\Response
+//     */
+//    public function store(Request $request)
+//    {
+
+//    }
+
 }

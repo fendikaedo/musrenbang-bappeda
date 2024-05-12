@@ -34,48 +34,56 @@
                             </div>
                             <h1 class="fs-4 card-title mb-4 text-center animate__animated animate__fadeIn">Data Penilai
                                 Vote</h1>
-                            <form action="{{route('admin.penilaian.create')}}" method="POST" class="needs-validation animate__animated animate__fadeIn"
-                                novalidate="" autocomplete="off">
+                            <form action="{{ route('admin.penilaian.store') }}" method="POST"
+                                class="needs-validation animate__animated animate__fadeIn" novalidate=""
+                                autocomplete="off">
+                                @csrf
                                 <div class="mb-3">
                                     <label class="mb-2 text-muted" for="nama_penilai">Nama Lengkap</label>
                                     <input id="nama_penilai" type="text" class="form-control" name="nama_penilai"
-                                        value="" required autofocus>
+                                        value="{{ old('nama_penilai') }}" required autofocus>
                                 </div>
 
                                 <div class="mb-3">
                                     <label class="mb-2 text-muted" for="alamat_penilai">Alamat</label>
                                     <input id="alamat_penilai" type="text" class="form-control" name="alamat_penilai"
-                                        value="" required autofocus>
+                                        value="{{ old('alamat_penilai') }}" required autofocus>
                                 </div>
 
                                 <div class="mb-3">
                                     <label class="mb-2 text-muted" for="tlp_penilai">No Telp</label>
                                     <input id="tlp_penilai" type="number" class="form-control" name="tlp_penilai"
-                                        value="" required autofocus>
+                                        value="{{ old('tlp_penilai') }}" required autofocus>
                                 </div>
 
                                 <div class="mb-3">
-                                    <label class="mb-2 text-muted" for="email">E-Mail </label>
-                                    <input id="email" type="email" class="form-control" name="email"
-                                        value="" required autofocus>
+                                    <label class="mb-2 text-muted" for="email_penilai">E-Mail </label>
+                                    <input id="email_penilai" type="email" class="form-control" name="email_penilai"
+                                        value="{{ old('email_penilai') }}" required autofocus>
                                 </div>
 
                                 <div class="mb-3">
                                     <label class="mb-2 text-muted" for="tanggal">Tanggal</label>
                                     <input id="tanggal" type="date" class="form-control" name="tanggal"
-                                        value="" required autofocus>
+                                        value="{{ old('tanggal') }}" required autofocus>
                                 </div>
 
-                                <div class="mb-3">
+                                <div class="mb-5">
                                     <label class="mb-2 text-muted" for="kegiatan_id">Token Kegiatan</label>
-                                    <input id="kegiatan_id" type="text" class="form-control" name="kegiatan_id"
-                                        value="" required autofocus>
+                                    <select class="form-select" name="kegiatan_id" id="kegiatan_id">
+                                        @foreach ($token_kegiatan as $token)
+                                            <option value="" disabled selected>Pilih Kegiatan</option>
+                                            <option value="{{ $token->id }}">{{ $token->nama }}</option>
+                                        @endforeach
+                                    </select>
+                                    {{-- <input id="kegiatan_id" type="text" class="form-control" name="kegiatan_id"
+                                        value="" required autofocus> --}}
                                 </div>
 
                                 <div class="d-flex align-items-center">
                                     <a href="/">
                                         <button type="button"
-                                            class="btn btn-primary btn-lg px-4 gap-3">Kembali</button>
+                                            class="btn btn-primary btn-lg">Kembali</button>
                                     </a>
                                     <button type="submit" class="btn btn-lg btn-success ms-auto">
                                         Selanjutnya

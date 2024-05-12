@@ -13,6 +13,9 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
 
+    {{-- Font Awesome Icons --}}
+    <script src="https://kit.fontawesome.com/17b39fa33f.js" crossorigin="anonymous"></script>
+
     {{-- Animated CSS --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
@@ -33,10 +36,9 @@
                 <a href="#" class="nav__logo">
                     <i class="ri-planet-line"></i> BAPPEDA LITBANG PACITAN
                 </a>
-
                 <div class="nav__toggle" id="nav-toggle">
                     <i class="fa-solid fa-bars nav__burger"></i>
-                    <i class="ri-close-line nav__close"></i>
+                    <i class="fa-solid fa-xmark nav__close"></i>
                 </div>
             </div>
             <!--=============== NAV MENU ===============-->
@@ -80,7 +82,7 @@
                 <p class="lead mb-4">Musrenbang adalah forum antarpelaku dalam rangka menyusun rencana pembangunan
                     Nasional dan rencana pembangunan Daerah.</p>
                 <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                    <a href="/loginuser">
+                    <a href="/loginpenilai">
                         <button type="button"
                             class="btn btn-primary btn-lg px-4 gap-3 animate__animated animate__fadeInUp">Start
                             Vote</button>
@@ -93,7 +95,7 @@
     <!--=============== FOOTER ===============-->
     <footer class="bg-body-tertiary text-center text-lg-start">
         <!-- Copyright -->
-        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
+        <div class="text-center p-3 bg-dark text-white">
             © 2024 BAPPEDA LITBANG Kab. Pacitan
         </div>
         <!-- Copyright -->

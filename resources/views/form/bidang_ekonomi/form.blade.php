@@ -4,6 +4,7 @@
     <form action="{{ route('admin.penilaian.store') }}" method="POST"
         class="needs-validation animate__animated animate__fadeIn" novalidate="" autocomplete="off">
         <div class="mb-3">
+            @csrf
             <label class="mb-2 text-muted" for="usulan_id">Usulan</label>
             <input id="" type="text" class="form-control" name="usulaan_id" value="" required autofocus>
         </div>

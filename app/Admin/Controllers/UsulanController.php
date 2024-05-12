@@ -35,7 +35,7 @@ class UsulanController extends AdminController
         $tahun = config('tahun');
         //auth roles bidang
         $grid->model()->where('tahun', '=', $tahun);
-        //$grid->model()->where('pilihan', '=', 1); Menu Pilihan diterima
+        $grid->model()->where('pilihan', '=', 0);
         $grid->filter(function ($filter) {
             $filter->disableIdFilter();
 
@@ -53,7 +53,7 @@ class UsulanController extends AdminController
         //$grid->model()->where('status','<>', 'dibatalkan');
 
         //$grid->column('id', __('No'));
-        $grid->column('id_usulan', __('Id Usulan'));
+        //$grid->column('id_usulan', __('Id Usulan'));
         $grid->column('tanggal_usul', __('Tanggal Usul'));
         //$grid->column('pengusul', __('Pengusul'));
         //$grid->column('profil', __('Profil'));
@@ -80,7 +80,11 @@ class UsulanController extends AdminController
         //$grid->column('anggaran', __('Anggaran'));
         //$grid->column('jenis_belanja', __('Jenis Belanja'));
         //$grid->column('sub_kegiatan', __('Sub Kegiatan'));
-        $grid->column('pilihan', __('Pilihan'))->switch();
+        $states = [
+            'on' => ['value' => 1, 'text' => 'Diterima', 'color' => 'primary'],
+            'off' => ['value' => 0, 'text' => 'Tidak', 'color' => 'default'],
+        ];
+        $grid->column('pilihan', __('Pilihan'))->switch($states);
         $grid->column('tahun', __('Tahun'));
 
         return $grid;

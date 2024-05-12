@@ -61,7 +61,7 @@ class SkoringUsulanController extends AdminController
             }
         });
 
-        $grid->column('id')->display(function ($id) {
+        $grid->column('id','Skor')->display(function ($id) {
             $skor = Skor::where('usulan_id','=',$id)->sum('skor');
             return $skor;
             //Lakukan query untuk menghitung skor (SUM GROUP BY)

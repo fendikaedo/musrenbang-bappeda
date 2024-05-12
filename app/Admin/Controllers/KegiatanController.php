@@ -32,7 +32,7 @@ class KegiatanController extends AdminController
         $grid->column('tanggal', __('Tanggal'));
         $grid->column('token', __('Token'));
         $grid->column('token_expired', __('Token expired'));
-
+        
         return $grid;
     }
 
