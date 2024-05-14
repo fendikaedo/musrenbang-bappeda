@@ -50,9 +50,13 @@ class HomeController extends Controller
                     $column->append($infoUsulan->render());
                 });
 
-                // $row->column(3, function (Column $column) use ($infoKecamatan) {
-                //     $column->append(view('admin.charts.bar'));
-                // });
+                $row->column(3, function (Column $column) use ($infoKecamatan) {
+                    $column->append(view('admin.charts.bar'));
+                });
+
+                $row->column(3, function (Column $column) use ($infoKecamatan) {
+                    $column->append(view('admin.charts.doughnut'));
+                });
             });
     }
 }

@@ -1,20 +1,30 @@
 @extends('layouts.formusulan')
 @section('judul', 'Bidang Ekonomi')
 @section('form')
-    <form action="{{ route('admin.penilaian.store') }}" method="POST"
-        class="needs-validation animate__animated animate__fadeIn" novalidate="" autocomplete="off">
+    <form action="{{ route('admin.skor.store') }}" method="POST" class="needs-validation p-2 animate__animated animate__fadeIn"
+        novalidate="" autocomplete="off">
+        @csrf
         <div class="mb-3">
-            @csrf
             <label class="mb-2 text-muted" for="usulan_id">Usulan</label>
-            <input id="" type="text" class="form-control" name="usulaan_id" value="" required autofocus>
+            <select class="form-select" name="usulan_id" id="usulan_id">
+                <option value="" disabled selected>Pilih Usulan</option>
+                @foreach ($usulan as $u)
+                    <option value="{{ $u->id }}">{{ $u->usulan }}</option>
+                @endforeach
+            </select>
+            {{-- <input id="" type="text" class="form-control" name="usulaan_id" value="" required autofocus> --}}
         </div>
 
         {{-- KRITERIA --}}
 
         <div class="mb-3">
             <label class="mb-2 text-muted" for="kriteria_id">Kriteria</label>
-            <input id="kriteria_id" type="text" class="form-control" name="kriteria_id" value="" required
-                autofocus>
+            <select class="form-select" name="kriteria_id" id="kriteria_id">
+                <option value="" disabled selected>Pilih Kriteria</option>
+                @foreach ($kriteria as $k)
+                    <option value="{{ $k->id }}">{{ $k->nama }}</option>
+                @endforeach
+            </select>
         </div>
 
         {{-- SKOR --}}
@@ -90,8 +100,14 @@
 
         <div class="mb-3">
             <label class="mb-2 text-muted" for="penilaiaan_id">Penilai </label>
-            <input id="Penilaian_id" type="Penilaian_id" class="form-control" name="Penilaian_id" value=""
-                required autofocus>
+            <select class="form-select" name="penilaian_id" id="penilaian_id">
+                <option value="" disabled selected>Pilih Nama</option>
+                @foreach ($nama_penilai as $penilai)
+                    <option value="{{ $penilai->id }}">{{ $penilai->nama_penilai }}</option>
+                @endforeach
+            </select>
+            {{-- <input id="Penilaian_id" type="Penilaian_id" class="form-control" name="Penilaian_id" value=""
+                required autofocus> --}}
         </div>
 
         {{-- BAWAH --}}

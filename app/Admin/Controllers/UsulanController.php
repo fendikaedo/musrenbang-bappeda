@@ -54,7 +54,7 @@ class UsulanController extends AdminController
 
         //$grid->column('id', __('No'));
         //$grid->column('id_usulan', __('Id Usulan'));
-        $grid->column('tanggal_usul', __('Tanggal Usul'));
+        //$grid->column('tanggal_usul', __('Tanggal Usul'));
         //$grid->column('pengusul', __('Pengusul'));
         //$grid->column('profil', __('Profil'));
         $grid->column('usulan', __('Usulan'));
@@ -81,11 +81,11 @@ class UsulanController extends AdminController
         //$grid->column('jenis_belanja', __('Jenis Belanja'));
         //$grid->column('sub_kegiatan', __('Sub Kegiatan'));
         $states = [
-            'on' => ['value' => 1, 'text' => 'Diterima', 'color' => 'primary'],
-            'off' => ['value' => 0, 'text' => 'Tidak', 'color' => 'default'],
+            'on' => ['value' => 1, 'text' => 'Diterima', 'color' => 'success'],
+            'off' => ['value' => 0, 'text' => 'Tidak', 'color' => 'danger'],
         ];
-        $grid->column('pilihan', __('Pilihan'))->switch($states);
-        $grid->column('tahun', __('Tahun'));
+        $grid->column('pilihan', __('Kabupaten'))->switch($states);
+        //$grid->column('tahun', __('Tahun'));
 
         return $grid;
     }

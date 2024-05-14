@@ -33,15 +33,17 @@ class SkoringUsulanController extends AdminController
         $grid = new Grid(new Usulan());
         $tahun = config('tahun');
         $grid->model()->where('tahun', '=', $tahun);
+        $grid->model()->where('pilihan', '=', 1);
+
 
         $grid->filter(function ($filter) {
             $filter->disableIdFilter();
 
-            $bidang = Usulan::join('opd', 'usulan.opd_id_akhir', '=', 'opd.id')
-                ->join('bidang', 'opd.bidang_id', '=', 'bidang.id')
+            $daftar_bidang = Usulan::join('opd', 'usulan.opd_id_akhir', '=', 'opd.id')
+                ->join('bidang', 'opd.id', '=', 'bidang.id')
                 ->pluck('bidang.nama', 'bidang.id');
 
-            $filter->equal('bidang.id', 'Bidang')->select($bidang);
+            $filter->equal('opd_id_akhir','Bidang')->select($daftar_bidang);
         });
 
 
@@ -64,8 +66,6 @@ class SkoringUsulanController extends AdminController
         $grid->column('id','Skor')->display(function ($id) {
             $skor = Skor::where('usulan_id','=',$id)->sum('skor');
             return $skor;
-            //Lakukan query untuk menghitung skor (SUM GROUP BY)
-
         })->sortable();
         return $grid;
     }

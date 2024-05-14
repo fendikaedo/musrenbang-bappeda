@@ -25,9 +25,9 @@ Route::get('/', function () {
 });
 
 Route::resource('/loginpenilai', LoginPenilaiController::class);
+Route::resource('/formekonomi', FormEkonomiController::class);
 Route::get('/menubidang', [MenuBidangController::class, 'index']);
 Route::get('/formusulan', [FormUsulanController::class, 'index']);
 Route::get('/forminfrastruktur', [FormInfrastrukturController::class, 'index']);
-Route::get('/formekonomi', [FormEkonomiController::class, 'index']);
 Route::get('/formsosbud', [FormSosbudController::class, 'index']);
 

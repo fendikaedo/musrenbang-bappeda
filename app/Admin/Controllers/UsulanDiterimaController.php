@@ -39,14 +39,11 @@ class UsulanDiterimaController extends AdminController
         $grid->filter(function ($filter) {
             $filter->disableIdFilter();
 
-            //$kecamatan = Kecamatan::all()->pluck('nama', 'id');
-
             $daftar_bidang = Usulan::join('opd', 'usulan.opd_id_akhir', '=', 'opd.id')
                 ->join('bidang', 'opd.id', '=', 'bidang.id')
                 ->pluck('bidang.nama', 'bidang.id');
 
-            //$filter->equal('kecamatan_id', 'Kecamatan')->select($kecamatan);
-            $filter->equal('opd_id_akhir','Bidang')->select($daftar_bidang);
+            $filter->equal('opd_id_akhir', 'Bidang')->select($daftar_bidang);
         });
         //$grid->model()->where('status','<>', 'dibatalkan');
 
@@ -77,8 +74,12 @@ class UsulanDiterimaController extends AdminController
         //$grid->column('satuan', __('Satuan'));
         //$grid->column('anggaran', __('Anggaran'));
         //$grid->column('jenis_belanja', __('Jenis Belanja'));
-        $grid->column('pilihan', __('Kabupaten'));
-        $grid->column('tahun', __('Tahun'));
+        $states = [
+            'on' => ['value' => 1, 'text' => 'Diterima', 'color' => 'success'],
+            'off' => ['value' => 0, 'text' => 'Tidak', 'color' => 'danger'],
+        ];
+        $grid->column('pilihan', __('Kabupaten'))->switch($states);
+        //$grid->column('tahun', __('Tahun'));
 
         return $grid;
     }

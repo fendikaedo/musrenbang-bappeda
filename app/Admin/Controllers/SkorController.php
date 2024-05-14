@@ -10,6 +10,7 @@ use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
+use Illuminate\Http\Request;
 
 class SkorController extends AdminController
 {
@@ -29,11 +30,11 @@ class SkorController extends AdminController
     {
         $grid = new Grid(new Skor());
 
-        $grid->column('id', __('Id'));
-        $grid->column('usulan_id', __('Usulan'));
-        $grid->column('kriteria_id', __('Kriteria id'));
+        $grid->column('id', __('No'));
+        $grid->column('usulan.usulan', __('Usulan'));
+        $grid->column('kriteria.nama', __('Kriteria'));
         $grid->column('skor', __('Skor'));
-        $grid->column('penilaian.nama', __('Penilaian id'));
+        $grid->column('penilaian.nama_penilai', __('Nama Penilai'));
 
         return $grid;
     }
@@ -49,10 +50,10 @@ class SkorController extends AdminController
         $show = new Show(Skor::findOrFail($id));
 
         $show->field('id', __('Id'));
-        $show->field('usulan_id', __('Usulan id'));
-        $show->field('kriteria_id', __('Kriteria id'));
+        $show->field('usulan.usulan', __('Usulan id'));
+        $show->field('kriteria.nama', __('Kriteria id'));
         $show->field('skor', __('Skor'));
-        $show->field('penilaian.nama', __('Penilaian id'));
+        $show->field('penilaian.nama_penilai', __('Penilaian id'));
 
         return $show;
     }
@@ -65,9 +66,9 @@ class SkorController extends AdminController
     protected function form()
     {
         $form = new Form(new Skor());
-        $usulan_diterima = Usulan::all()->pluck('usulan','id');
-        $daftar_kriteria = Kriteria::all()->pluck('nama','id');
-        $daftar_penilai = Penilaian::all()->pluck('nama_penilai','id');
+        $usulan_diterima = Usulan::all()->pluck('usulan', 'id');
+        $daftar_kriteria = Kriteria::all()->pluck('nama', 'id');
+        $daftar_penilai = Penilaian::all()->pluck('nama_penilai', 'id');
 
         $form->select('usulan_id', __('Usulan'))->options($usulan_diterima);
         $form->select('kriteria_id', __('Kriteria'))->options($daftar_kriteria);
@@ -76,4 +77,7 @@ class SkorController extends AdminController
 
         return $form;
     }
+    // public function store(){
+    //     return view('penilai.menu_bidang');
+    // }
 }

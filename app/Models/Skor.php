@@ -13,21 +13,21 @@ class Skor extends Model
 
     public $timestamps = false;
 
-    public function ksulan()
+    public function usulan()
     {
-        return $this->belongsTo(Usulan::class,'kegiatan_id');
+        return $this->belongsTo(Usulan::class,'usulan_id');
 
     }
 
     public function kriteria()
     {
-        return $this->belongsTo(Kriteria::class,'kegiatan_id');
+        return $this->belongsTo(Kriteria::class,'kriteria_id');
 
     }
 
     public function penilaian()
     {
-        return $this->belongsTo(Penilaian::class,'kegiatan_id');
+        return $this->belongsTo(Penilaian::class,'penilaian_id');
 
     }
 }

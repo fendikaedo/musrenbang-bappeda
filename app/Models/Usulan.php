@@ -31,5 +31,4 @@ class Usulan extends Model
     {
         return $this->belongsTo(Opd::class,'opd_id_akhir');
     }
-
 }

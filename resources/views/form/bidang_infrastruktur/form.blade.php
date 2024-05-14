@@ -2,7 +2,7 @@
 @section('judul', 'Bidang Infrastruktur')
 @section('form')
     <form action="{{ route('admin.penilaian.store') }}" method="POST"
-        class="needs-validation animate__animated animate__fadeIn" novalidate="" autocomplete="off">
+        class="needs-validation p-2 animate__animated animate__fadeIn" novalidate="" autocomplete="off">
 
         <!-- Step 1: Usulan 1 -->
         <div class="step step-1">

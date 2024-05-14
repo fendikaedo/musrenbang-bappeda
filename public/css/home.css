@@ -108,9 +108,16 @@ a {
 }
 
 .nav__toggle {
-  position: relative;
-  width: 32px;
-  height: 32px;
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    right: 3%;
+    top: 50%;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
 }
 
 .nav__burger,
@@ -367,6 +374,10 @@ a {
 .btn:active {
   box-shadow: none;
   transform: translateY(0);
+}
+
+footer{
+  background-color: var(--black-color);
 }
 
 @media (min-width: 992px) {

@@ -2,7 +2,7 @@
 @section('judul', 'Bidang Sosial Budaya')
 @section('form')
     <form action="{{ route('admin.penilaian.store') }}" method="POST"
-        class="needs-validation animate__animated animate__fadeIn" novalidate="" autocomplete="off">
+        class="needs-validation p-2 animate__animated animate__fadeIn" novalidate="" autocomplete="off">
         <div class="mb-3">
             @csrf
             <label class="mb-2 text-muted" for="usulan_id">Usulan</label>

@@ -34,7 +34,7 @@
         <nav class="nav container">
             <div class="nav__data">
                 <a href="#" class="nav__logo">
-                    <i class="ri-planet-line"></i> BAPPEDA LITBANG PACITAN
+                    BAPPEDA LITBANG PACITAN
                 </a>
                 <div class="nav__toggle" id="nav-toggle">
                     <i class="fa-solid fa-bars nav__burger"></i>
@@ -46,7 +46,7 @@
                 <ul class="nav__list">
                     <li><a href="#" class="nav__link">Home</a></li>
 
-                    <li><a href="#" class="nav__link">About</a></li>
+                    <li><a href="https://bappedalitbang.pacitankab.go.id/" target="_blank" class="nav__link">About</a></li>
 
                     <li><a href="#" class="nav__link">Contact</a></li>
 

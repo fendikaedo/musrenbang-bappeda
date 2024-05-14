@@ -22,7 +22,7 @@
         <div class="container h-100">
             <div class="row justify-content-sm-center h-100">
                 <div class="col-xxl-4 col-xl-5 col-lg-5 col-md-7 col-sm-9">
-                    <div class="card shadow-lg mt-5">
+                    <div class="card shadow-lg m-2 mt-5">
                         <div class="card-body p-5">
                             <div class="animate__animated animate__fadeInDown">
                                 <div class="text-center my-4">
@@ -86,7 +86,7 @@
                                             class="btn btn-primary btn-lg">Kembali</button>
                                     </a>
                                     <button type="submit" class="btn btn-lg btn-success ms-auto">
-                                        Selanjutnya
+                                        Masuk
                                     </button>
                                 </div>
                             </form>
