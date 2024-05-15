@@ -34,7 +34,7 @@
                             </div>
                             <h1 class="fs-4 card-title mb-4 text-center animate__animated animate__fadeIn">Data Penilai
                                 Vote</h1>
-                            <form action="{{ route('admin.penilaian.store') }}" method="POST"
+                            <form action="{{route('loginpenilai.store')}}" method="POST"
                                 class="needs-validation animate__animated animate__fadeIn" novalidate=""
                                 autocomplete="off">
                                 @csrf

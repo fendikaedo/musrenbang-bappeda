@@ -22,9 +22,9 @@ class LoginPenilaiController extends Controller
      */
     public function create()
     {
-        // return view('')->with([
-        //     'penilaian' => Penilaian::all(),
-        // ]);;
+        return view('penilai.login')->with([
+            'penilaian' => Penilaian::all(),
+        ]);;
     }
 
     /**
@@ -40,23 +40,21 @@ class LoginPenilaiController extends Controller
             'tanggal' => 'required',
             'kegiatan_id' => 'required',
         ]);
-        Penilaian::create($request->all());
-
-        return redirect()->route('penilai.menu_bidang')->with('success', 'Data penilaian berhasil disimpan!');
-        // if ($request) {
-        //     $user_penilai = new Penilaian();
-        //     $user_penilai->nama_penilai = $request->nama_penilai;
-        //     $user_penilai->alamat_penilai = $request->alamat_penilai;
-        //     $user_penilai->tlp_penilai = $request->tlp_penilai;
-        //     $user_penilai->email_penilai = $request->email_penilai;
-        //     $user_penilai->tanggal = $request->tanggal;
-        //     $user_penilai->kegiatan_id = $request->kegiatan_id;
-        //     if ($user_penilai->save()) {
-        //         return redirect()->route('admin.penilaian.create');
-        //     } else {
-        //         return back();
-        //     }
-        // }
+        if ($request) {
+            $penilai = new Penilaian();
+            $penilai->nama_penilai = $request->nama_penilai;
+            $penilai->alamat_penilai = $request->alamat_penilai;
+            $penilai->tlp_penilai = $request->tlp_penilai;
+            $penilai->email_penilai = $request->email_penilai;
+            $penilai->tanggal = $request->tanggal;
+            $penilai->kegiatan_id = $request->kegiatan_id;
+            if ($penilai->save()) {
+                return redirect()->route('menubidang.index');
+            } else {
+                return back();
+            }
+        }
+        // return redirect()->route('penilai.menu_bidang')->with('success', 'Data penilaian berhasil disimpan!');
     }
 
     /**

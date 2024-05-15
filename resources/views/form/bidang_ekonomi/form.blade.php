@@ -1,7 +1,7 @@
 @extends('layouts.formusulan')
 @section('judul', 'Bidang Ekonomi')
 @section('form')
-    <form action="{{ route('admin.skor.store') }}" method="POST" class="needs-validation p-2 animate__animated animate__fadeIn"
+    <form action="{{ route('formekonomi.store') }}" method="POST" class="needs-validation p-2 animate__animated animate__fadeIn"
         novalidate="" autocomplete="off">
         @csrf
         <div class="mb-3">

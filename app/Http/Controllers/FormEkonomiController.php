@@ -27,7 +27,12 @@ class FormEkonomiController extends Controller
      */
     public function create()
     {
-        return view('form.bidang_ekonomi.form');
+        return view('form.bidang_ekonomi.form')->with([
+            'usulan' => Usulan::all(),
+            'kriteria' => Kriteria::all(),
+            'penilaian' => Penilaian::all(),
+            'skor' => Skor::all(),
+        ]);
     }
 
     /**
@@ -39,15 +44,20 @@ class FormEkonomiController extends Controller
             'usulan_id' => 'required',
             'kriteria_id' => 'required',
             'skor' => 'required',
-            'penilaian' => 'required',
+            'penilaian_id' => 'required',
         ]);
-        Skor::create([
-            'usulan_id' => $request->usulan_id,
-            'kriteria_id' => $request->kriteria_id,
-            'skor' => $request->skor,
-            'penilaian_id' => $request->penilaian_id,
-        ]);
-        return redirect()->route('loginpenilai.index')->with('success', 'Data penilaian berhasil disimpan!');
+        if ($request) {
+            $skorEkonomi = new Skor();
+            $skorEkonomi->usulan_id = $request->usulan_id;
+            $skorEkonomi->kriteria_id = $request->kriteria_id;
+            $skorEkonomi->skor = $request->skor;
+            $skorEkonomi->penilaian_id = $request->penilaian_id;
+            if ($skorEkonomi->save()) {
+                return redirect()->route('menubidang.index');
+            } else {
+                return back();
+            }
+        }
     }
 
     /**
