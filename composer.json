@@ -9,6 +9,7 @@
         "encore/laravel-admin": "1.*",
         "guzzlehttp/guzzle": "^7.2",
         "laravel-admin-ext/config": "^1.1",
+        "laravel-admin-ext/latlong": "2.x",
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8"

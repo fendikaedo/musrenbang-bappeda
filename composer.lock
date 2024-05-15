@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ded8015d214a5a9e3017bc6c8b5b1160",
+    "content-hash": "011924936fc7e0f04f5434555de766da",
     "packages": [
         {
             "name": "brick/math",
@@ -1520,6 +1520,62 @@
                 "source": "https://github.com/laravel-admin-extensions/config/tree/v1.1"
             },
             "time": "2019-12-11T02:31:22+00:00"
+        },
+        {
+            "name": "laravel-admin-ext/latlong",
+            "version": "v2.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel-admin-extensions/latlong.git",
+                "reference": "01eeb930eea478dbfb4aeca274f238ee2d9dd477"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel-admin-extensions/latlong/zipball/01eeb930eea478dbfb4aeca274f238ee2d9dd477",
+                "reference": "01eeb930eea478dbfb4aeca274f238ee2d9dd477",
+                "shasum": ""
+            },
+            "require": {
+                "encore/laravel-admin": "~1.6",
+                "php": ">=7.0.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~6.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Encore\\Admin\\Latlong\\LatlongServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Encore\\Admin\\Latlong\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "z-song",
+                    "email": "zosong@126.com"
+                }
+            ],
+            "description": "Latitude & Longitude selector",
+            "homepage": "https://github.com/laravel-admin-ext/latlong",
+            "keywords": [
+                "extension",
+                "laravel-admin"
+            ],
+            "support": {
+                "issues": "https://github.com/laravel-admin-extensions/latlong/issues",
+                "source": "https://github.com/laravel-admin-extensions/latlong/tree/v2.0.2"
+            },
+            "time": "2021-12-07T02:02:37+00:00"
         },
         {
             "name": "laravel/framework",

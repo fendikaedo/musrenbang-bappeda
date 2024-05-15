@@ -34,7 +34,7 @@
                             </div>
                             <h1 class="fs-4 card-title mb-4 text-center animate__animated animate__fadeIn">Data Penilai
                                 Vote</h1>
-                            <form action="{{route('loginpenilai.store')}}" method="POST"
+                            <form action="{{ route('loginpenilai.store') }}" method="POST"
                                 class="needs-validation animate__animated animate__fadeIn" novalidate=""
                                 autocomplete="off">
                                 @csrf
@@ -70,20 +70,22 @@
 
                                 <div class="mb-5">
                                     <label class="mb-2 text-muted" for="kegiatan_id">Token Kegiatan</label>
-                                    <select class="form-select" name="kegiatan_id" id="kegiatan_id">
+                                    {{-- <select class="form-select" name="kegiatan_id" id="kegiatan_id">
                                         @foreach ($token_kegiatan as $token)
                                             <option value="" disabled selected>Pilih Kegiatan</option>
                                             <option value="{{ $token->id }}">{{ $token->nama }}</option>
                                         @endforeach
-                                    </select>
-                                    {{-- <input id="kegiatan_id" type="text" class="form-control" name="kegiatan_id"
-                                        value="" required autofocus> --}}
+                                    </select> --}}
+                                    @foreach ($token_kegiatan as $token)
+                                        <input id="kegiatan_id" type="text" class="form-control" name="kegiatan_id"
+                                            value="{{old($token->token)}}" required autofocus>
+                                    @endforeach
+
                                 </div>
 
                                 <div class="d-flex align-items-center">
                                     <a href="/">
-                                        <button type="button"
-                                            class="btn btn-primary btn-lg">Kembali</button>
+                                        <button type="button" class="btn btn-primary btn-lg">Kembali</button>
                                     </a>
                                     <button type="submit" class="btn btn-lg btn-success ms-auto">
                                         Masuk

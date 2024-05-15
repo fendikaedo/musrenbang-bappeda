@@ -47,7 +47,7 @@ class LoginPenilaiController extends Controller
             $penilai->tlp_penilai = $request->tlp_penilai;
             $penilai->email_penilai = $request->email_penilai;
             $penilai->tanggal = $request->tanggal;
-            $penilai->kegiatan_id = $request->kegiatan_id;
+            $penilai->kegiatan_id = $request->token;
             if ($penilai->save()) {
                 return redirect()->route('menubidang.index');
             } else {

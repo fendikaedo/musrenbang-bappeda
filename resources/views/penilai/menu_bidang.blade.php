@@ -75,11 +75,6 @@
                                         </a>
                                     </div>
                                 </div>
-                                <div class="mx-4 my-4 animate__animated animate__fadeInUp">
-                                    <a href="/loginpenilai">
-                                        <button type="button" class="btn btn-primary btn-lg">Kembali</button>
-                                    </a>
-                                </div>
                             </div>
                         </div>
                     </div>

@@ -183,7 +183,7 @@ class UsulanController extends AdminController
         $form->text('sub_kegiatan', __('Sub Kegiatan'));
         $form->switch('pilihan', __('Pilihan'));
         $form->number('tahun', __('Tahun'));
-
+        $form->latlong('latitude', 'longitude', 'Map');
         return $form;
     }
 }
