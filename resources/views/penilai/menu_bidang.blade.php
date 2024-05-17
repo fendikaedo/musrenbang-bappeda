@@ -48,33 +48,19 @@
                                 </div>
                             </div>
                             <div class="content">
-                                <div class="card border-0 shadow-lg mb-3 bg-warning bg-gradient m-3 animate__animated animate__fadeInLeft">
-                                    <div class="card-body p-5">
-                                        <h1 class="fs-4 card-title fw-bold mb-4 text-black">Bidang Infrastruktur</h1>
-                                        <a href="/forminfrastruktur">
-                                            <button type="button"
-                                                class="btn btn-success btn-sm px-4 gap-3"><b>Masuk</b></button>
-                                        </a>
+                                @for ($i = 0; $i < count($daftar_bidang); $i++)
+                                    <div
+                                        class="card border-0 shadow-lg mb-3 bg-warning bg-gradient m-3 animate__animated animate__fadeInLeft">
+                                        <div class="card-body p-5">
+                                            <h1 class="fs-4 card-title fw-bold mb-4 text-black">
+                                                {{ $daftar_bidang[$i]->nama }}</h1>
+                                            <a href="/bidang{{ strtolower($daftar_bidang[$i]->nama) }}">
+                                                <button type="button"
+                                                    class="btn btn-success btn-sm px-4 gap-3"><b>Masuk</b></button>
+                                            </a>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="card border-0 shadow-lg mb-3 bg-warning bg-gradient m-3 animate__animated animate__fadeInRight">
-                                    <div class="card-body p-5">
-                                        <h1 class="fs-4 card-title fw-bold mb-4 text-black">Bidang Ekonomi</h1>
-                                        <a href="/formekonomi">
-                                            <button type="button"
-                                                class="btn btn-success btn-sm px-4 gap-3"><b>Masuk</b></button>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="card border-0 shadow-lg mb-3 bg-warning bg-gradient m-3 animate__animated animate__fadeInLeft">
-                                    <div class="card-body p-5">
-                                        <h1 class="fs-4 card-title fw-bold mb-4 text-black">Bidang Sosial Budaya</h1>
-                                        <a href="/formsosbud">
-                                            <button type="button"
-                                                class="btn btn-success btn-sm px-4 gap-3"><b>Masuk</b></button>
-                                        </a>
-                                    </div>
-                                </div>
+                                @endfor
                             </div>
                         </div>
                     </div>

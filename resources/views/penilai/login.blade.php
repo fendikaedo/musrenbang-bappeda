@@ -70,16 +70,16 @@
 
                                 <div class="mb-5">
                                     <label class="mb-2 text-muted" for="kegiatan_id">Token Kegiatan</label>
-                                    {{-- <select class="form-select" name="kegiatan_id" id="kegiatan_id">
+                                    <select class="form-select" name="kegiatan_id" id="kegiatan_id">
                                         @foreach ($token_kegiatan as $token)
                                             <option value="" disabled selected>Pilih Kegiatan</option>
                                             <option value="{{ $token->id }}">{{ $token->nama }}</option>
                                         @endforeach
-                                    </select> --}}
-                                    @foreach ($token_kegiatan as $token)
+                                    </select>
+                                    {{-- @foreach ($token_kegiatan as $token)
                                         <input id="kegiatan_id" type="text" class="form-control" name="kegiatan_id"
                                             value="{{old($token->token)}}" required autofocus>
-                                    @endforeach
+                                    @endforeach --}}
 
                                 </div>
 

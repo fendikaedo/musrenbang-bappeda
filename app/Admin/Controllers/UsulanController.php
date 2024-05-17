@@ -3,6 +3,7 @@
 namespace App\Admin\Controllers;
 
 use App\Admin\Actions\Post\ImportPost;
+use App\Models\Bidang;
 use App\Models\Kabupaten;
 use App\Models\Kecamatan;
 use App\Models\Kelurahan;
@@ -142,7 +143,6 @@ class UsulanController extends AdminController
     protected function form()
     {
         $form = new Form(new Usulan());
-
         $kabupaten = Kabupaten::all()->pluck('nama', 'id');
         $kecamatan = Kecamatan::all()->pluck('nama', 'id');
         $kelurahan = Kelurahan::all()->pluck('nama', 'id');
@@ -184,6 +184,7 @@ class UsulanController extends AdminController
         $form->switch('pilihan', __('Pilihan'));
         $form->number('tahun', __('Tahun'));
         $form->latlong('latitude', 'longitude', 'Map');
+
         return $form;
     }
 }

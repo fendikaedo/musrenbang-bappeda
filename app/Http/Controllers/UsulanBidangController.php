@@ -3,19 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bidang;
+use App\Models\Usulan;
 use Illuminate\Http\Request;
 
-class MenuBidangController extends Controller
+class UsulanBidangController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
+        $usulan = Usulan::where('pilihan', true)->get();
         $daftar_bidang = Bidang::all()->reject(function ($bidang) {
             return $bidang->nama === 'BK';
         });
-        return view('penilai.menu_bidang',compact('daftar_bidang'));
+        return view('form.bidang_infrastruktur.usulan',compact('daftar_bidang','usulan'));
     }
 
     /**
@@ -47,7 +49,10 @@ class MenuBidangController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return view('form.bidang_infrastruktur.form')->with([
+            'usulan' => Usulan::all(),
+            'daftar_bidang' => Bidang::all(),
+        ]);
     }
 
     /**
