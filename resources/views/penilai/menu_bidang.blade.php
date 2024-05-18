@@ -48,13 +48,13 @@
                                 </div>
                             </div>
                             <div class="content">
-                                @for ($i = 0; $i < count($daftar_bidang); $i++)
+                                @for ($i = 0; $i < count($bidang); $i++)
                                     <div
                                         class="card border-0 shadow-lg mb-3 bg-warning bg-gradient m-3 animate__animated animate__fadeInLeft">
                                         <div class="card-body p-5">
                                             <h1 class="fs-4 card-title fw-bold mb-4 text-black">
-                                                {{ $daftar_bidang[$i]->nama }}</h1>
-                                            <a href="/bidang{{ strtolower($daftar_bidang[$i]->nama) }}">
+                                                {{ $bidang[$i]->nama }}</h1>
+                                            <a href="{{route('usulan.index',['bidang' => $bidang[$i]->nama])}}">
                                                 <button type="button"
                                                     class="btn btn-success btn-sm px-4 gap-3"><b>Masuk</b></button>
                                             </a>

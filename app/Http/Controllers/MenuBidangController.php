@@ -12,10 +12,10 @@ class MenuBidangController extends Controller
      */
     public function index()
     {
-        $daftar_bidang = Bidang::all()->reject(function ($bidang) {
+        $bidang = Bidang::all()->reject(function ($bidang) {
             return $bidang->nama === 'BK';
         });
-        return view('penilai.menu_bidang',compact('daftar_bidang'));
+        return view('penilai.menu_bidang',compact('bidang'));
     }
 
     /**

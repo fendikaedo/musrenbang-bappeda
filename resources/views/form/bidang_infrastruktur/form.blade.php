@@ -2,20 +2,21 @@
 @section('judul', 'Bidang Infrastruktur')
 @section('form')
     <form action="{{ route('bidanginfrastruktur.store') }}" method="POST"
-        class="needs-validation p-2 animate_animated animate_fadeIn" novalidate="" autocomplete="off">
+        class="needs-validation p-2 animate_animated animate_fadeIn" novalidate autocomplete="off">
         @csrf
 
         {{-- USULAN --}}
         <div class="card p-2 mb-3 border-0 bg-warning">
-                <p><b>{{$usulanId->usulan}}</b></p>
+            <input class="border-0" type="hidden" name="usulan_id" id="usulan_id" value="{{ $usulanId->id }}" readonly>
+            <p><b>{{ $usulanId->usulan }}</b></p>
         </div>
 
+
         {{-- KRITERIA --}}
-        @for ($i = 0; $i < count($kriteria); $i++)
+        @foreach ($kriteria as $index => $k)
             <div class="mb-2 mt-4">
-                {{-- <label class="mb-2" for="kriteria_id"><b>{{ $daftar_kriteria[$i]->id }}</b></label> --}}
-                <input type="text" class="border-0" style="width: 100%" name="kriteria_id"
-                    value="{{ $kriteria[$i]->id }}. {{ $kriteria[$i]->nama }}" readonly>
+                <input type="hidden" name="kriteria[{{ $index }}][id]" value="{{ $k->id }}">
+                <input type="text" class="border-0" style="width: 100%" value="{{ $k->id }}. {{ $k->nama }}" readonly>
             </div>
 
             {{-- SKOR --}}
@@ -23,21 +24,19 @@
                 @for ($j = 1; $j <= 10; $j++)
                     <div class="col">
                         <div class="form-check mb-1">
-                            <label class="form-check-label mb-2" for="skor">{{ $j }}</label>
-                            <input id="skor{{ $i }}_{{ $j }}" type="radio" class="form-check-input"
-                                name="skor{{ $i }}" value="{{ $j }}" required>
+                            <label class="form-check-label mb-2" for="skor{{ $index }}_{{ $j }}">{{ $j }}</label>
+                            <input id="skor{{ $index }}_{{ $j }}" type="radio" class="form-check-input"
+                                name="kriteria[{{ $index }}][skor]" value="{{ $j }}" required>
                         </div>
                     </div>
                 @endfor
             </div>
-        @endfor
-
+        @endforeach
 
         {{-- PENILAI --}}
-
         <div class="mb-3">
-            <label class="mb-2 text-muted" for="penilaiaan_id">Penilai </label>
-            <select class="form-select" name="penilaian_id" id="penilaian_id">
+            <label class="mb-2 text-muted" for="penilaian_id">Penilai </label>
+            <select class="form-select" name="penilaian_id" id="penilaian_id" required>
                 <option value="" disabled selected>Pilih Nama</option>
                 @foreach ($penilaian as $penilai)
                     <option value="{{ $penilai->id }}">{{ $penilai->nama_penilai }}</option>
@@ -46,14 +45,11 @@
         </div>
 
         {{-- BAWAH --}}
-
         <div class="d-flex align-items-center">
             <a href="/bidanginfrastruktur">
                 <button type="button" class="btn btn-primary btn-lg px-4 gap-3">Kembali</button>
             </a>
             <button type="submit" class="btn btn-lg btn-primary ms-auto next-step">Submit</button>
         </div>
-        </div>
     </form>
-
 @endsection

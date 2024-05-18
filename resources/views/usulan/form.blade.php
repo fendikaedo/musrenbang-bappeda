@@ -1,7 +1,7 @@
 @extends('layouts.formusulan')
-@section('judul', 'Bidang Sosial Budaya')
+@section('judul', 'Bidang Infrastruktur')
 @section('form')
-    <form action="{{ route('bidanginfrastruktur.store') }}" method="POST"
+    <form action="{{ route('usulan.store') }}" method="POST"
         class="needs-validation p-2 animate_animated animate_fadeIn" novalidate autocomplete="off">
         @csrf
 
@@ -46,7 +46,7 @@
 
         {{-- BAWAH --}}
         <div class="d-flex align-items-center">
-            <a href="/bidangsosbud">
+            <a href="/usulan">
                 <button type="button" class="btn btn-primary btn-lg px-4 gap-3">Kembali</button>
             </a>
             <button type="submit" class="btn btn-lg btn-primary ms-auto next-step">Submit</button>
