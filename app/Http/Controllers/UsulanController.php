@@ -22,9 +22,9 @@ class UsulanController extends Controller
         $usulan = DB::table('usulan')
             ->join('opd', 'usulan.opd_id_akhir', '=', 'opd.id')
             ->join('bidang', 'opd.bidang_id', '=', 'bidang.id')
-            ->where('bidang.nama',$bidang)
+            ->where('bidang.nama', $bidang)
             ->where('usulan.pilihan', true)
-            ->select('usulan.id','usulan.usulan')
+            ->select('usulan.id', 'usulan.usulan')
             ->get();
 
         return view('usulan.index', compact('bidang', 'usulan'));
@@ -37,9 +37,15 @@ class UsulanController extends Controller
     {
         $id = $request->query('id');
         $usulanId = Usulan::find($id);
-        $bidang = Bidang::all()->reject(function ($bidang) {
-            return $bidang->nama === 'BK';
-        });
+        $bidang = DB::table('bidang')
+                    ->join('opd', 'bidang.id', '=', 'opd.bidang_id')
+                    ->join('usulan', 'opd.id', '=', 'usulan.opd_id_akhir')
+                    ->where('usulan.id', $request->usulan_id)
+                    ->select('bidang.nama')
+                    ->first();
+        // $bidang = Bidang::all()->reject(function ($bidang) {
+        //     return $bidang->nama === 'BK';
+        // });
         return view('usulan.form')->with([
             // 'usulan' => $usulan,
             'bidang' => $bidang,
@@ -69,8 +75,19 @@ class UsulanController extends Controller
             $skor->penilaian_id = $request->penilaian_id;
             $skor->save();
         }
+        $usulan = Usulan::find($request->usulan_id);
+        $bidang = DB::table('bidang')
+                    ->join('opd', 'bidang.id', '=', 'opd.bidang_id')
+                    ->join('usulan', 'opd.id', '=', 'usulan.opd_id_akhir')
+                    ->where('usulan.id', $request->usulan_id)
+                    ->select('bidang.nama')
+                    ->first();
 
-        return redirect()->route('usulan.index',['nama']);
+        if (!$bidang) {
+            return redirect()->back()->withErrors(['usulan_id' => 'Bidang tidak ditemukan untuk usulan yang diberikan']);
+        }
+
+        return redirect()->route('usulan.index', ['bidang' => $bidang->nama]);
     }
 
     /**

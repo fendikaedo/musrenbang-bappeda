@@ -46,10 +46,10 @@
 
         {{-- BAWAH --}}
         <div class="d-flex align-items-center">
-            <a href="/usulan">
-                <button type="button" class="btn btn-primary btn-lg px-4 gap-3">Kembali</button>
-            </a>
-            <button type="submit" class="btn btn-lg btn-primary ms-auto next-step">Submit</button>
+            {{-- <a href="{{ route('usulan.index', ['bidang' => $bidang->nama]) }}">
+                <button type="button" id="btnKembali" class="btn btn-primary btn-lg px-4 gap-3">Kembali</button>
+            </a> --}}
+            <button type="submit" class="btn btn-lg btn-success ms-auto next-step">Submit</button>
         </div>
     </form>
 @endsection
