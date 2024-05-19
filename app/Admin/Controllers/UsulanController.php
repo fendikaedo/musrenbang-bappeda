@@ -10,11 +10,9 @@ use App\Models\Kelurahan;
 use App\Models\Opd;
 use App\Models\Usulan;
 use Encore\Admin\Controllers\AdminController;
-use Encore\Admin\Facades\Admin;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
-use Illuminate\Support\Facades\DB;
 
 class UsulanController extends AdminController
 {
@@ -33,10 +31,11 @@ class UsulanController extends AdminController
     protected function grid()
     {
         $grid = new Grid(new Usulan());
-        $tahun = config('tahun');
-        //auth roles bidang
-        $grid->model()->where('tahun', '=', $tahun);
-        $grid->model()->where('pilihan', '=', 0);
+        $tahun = config('tahun'); //Import config pada tahun
+        $grid->model()->where('tahun', '=', $tahun); //Data yang masuk merupakan tahun yang sama berada pada config
+        $grid->model()->where('pilihan', '=', 0); //Data yang masuk merupakan pilihan yang mempunyai value 0
+
+        //Fungsi Filter pada Grid
         $grid->filter(function ($filter) {
             $filter->disableIdFilter();
 
@@ -48,10 +47,13 @@ class UsulanController extends AdminController
             $filter->equal('kecamatan_id', 'Kecamatan')->select($kecamatan);
             $filter->equal('kelurahan_id', 'Kelurahan')->select($kelurahan);
         });
+
+        //Fungsi Import Data pada Grid
         $grid->tools(function ($tools) {
             $tools->append(new ImportPost());
         });
-        //$grid->model()->where('status','<>', 'dibatalkan');
+
+        $grid->disableCreateButton(); //Menonaktifkan button new
 
         //$grid->column('id', __('No'));
         //$grid->column('id_usulan', __('Id Usulan'));

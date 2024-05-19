@@ -31,4 +31,8 @@ class Usulan extends Model
     {
         return $this->belongsTo(Opd::class,'opd_id_akhir');
     }
+    public function skor()
+    {
+        return $this->belongsTo(Skor::class,'usulan_id');
+    }
 }

@@ -1,22 +1,26 @@
 @extends('layouts.formusulan')
 @section('judul', 'Bidang Infrastruktur')
 @section('form')
-    <form action="{{ route('usulan.store') }}" method="POST"
-        class="needs-validation p-2 animate_animated animate_fadeIn" novalidate autocomplete="off">
+    <form action="{{ route('usulan.store') }}" method="POST" class="needs-validation p-2 animate_animated animate_fadeIn"
+        novalidate autocomplete="off">
         @csrf
 
         {{-- USULAN --}}
-        <div class="card p-2 mb-3 border-0 bg-warning">
+        <div class="card p-2 mb-3 border-0 bg-warning bg-gradient text-center">
             <input class="border-0" type="hidden" name="usulan_id" id="usulan_id" value="{{ $usulanId->id }}" readonly>
-            <p><b>{{ $usulanId->usulan }}</b></p>
+            <b>{{ $usulanId->usulan }}</b>
         </div>
 
+        <div id="googleMap" style="width:100%;height:380px;"></div>
+        <input type="hidden" id="lat" name="lat" value="">
+        <input type="hidden" id="lng" name="lng" value="">
 
         {{-- KRITERIA --}}
         @foreach ($kriteria as $index => $k)
             <div class="mb-2 mt-4">
                 <input type="hidden" name="kriteria[{{ $index }}][id]" value="{{ $k->id }}">
-                <input type="text" class="border-0" style="width: 100%" value="{{ $k->id }}. {{ $k->nama }}" readonly>
+                <input type="text" class="border-0" style="width: 100%" value="{{ $k->id }}. {{ $k->nama }}"
+                    readonly>
             </div>
 
             {{-- SKOR --}}
@@ -24,9 +28,11 @@
                 @for ($j = 1; $j <= 10; $j++)
                     <div class="col">
                         <div class="form-check mb-1">
-                            <label class="form-check-label mb-2" for="skor{{ $index }}_{{ $j }}">{{ $j }}</label>
-                            <input id="skor{{ $index }}_{{ $j }}" type="radio" class="form-check-input"
-                                name="kriteria[{{ $index }}][skor]" value="{{ $j }}" required>
+                            <label class="form-check-label mb-2"
+                                for="skor{{ $index }}_{{ $j }}">{{ $j }}</label>
+                            <input id="skor{{ $index }}_{{ $j }}" type="radio"
+                                class="form-check-input" name="kriteria[{{ $index }}][skor]"
+                                value="{{ $j }}" required>
                         </div>
                     </div>
                 @endfor

@@ -12,7 +12,6 @@ use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
-use Illuminate\Support\Facades\DB;
 
 class SkoringUsulanController extends AdminController
 {
@@ -41,10 +40,13 @@ class SkoringUsulanController extends AdminController
 
             $daftar_bidang = Usulan::join('opd', 'usulan.opd_id_akhir', '=', 'opd.id')
                 ->join('bidang', 'opd.id', '=', 'bidang.id')
+                ->whereNotIn('bidang.nama', ['BK'])
                 ->pluck('bidang.nama', 'bidang.id');
 
-            $filter->equal('opd_id_akhir','Bidang')->select($daftar_bidang);
+            $filter->equal('opd.bidang_id', 'Bidang')->select($daftar_bidang);
         });
+        $grid->disableCreateButton(); //Menonaktifkan button new
+
 
 
         $grid->column('id_usulan', __('Id Usulan'));
@@ -54,7 +56,7 @@ class SkoringUsulanController extends AdminController
         $grid->column('kelurahan.nama', __('Kelurahan'));
         $grid->column('opd.nama', __('OPD Tujuan Akhir'));
 
-        $grid->column('opd_id_akhir','Bidang')->display(function ($opd_id_akhir) {
+        $grid->column('opd_id_akhir', 'Bidang')->display(function ($opd_id_akhir) {
             $opd = Opd::find($opd_id_akhir);
             if (is_null($opd)) {
                 return '';
@@ -63,8 +65,8 @@ class SkoringUsulanController extends AdminController
             }
         });
 
-        $grid->column('id','Skor')->display(function ($id) {
-            $skor = Skor::where('usulan_id','=',$id)->sum('skor');
+        $grid->column('id', 'Skor')->display(function ($id) {
+            $skor = Skor::where('usulan_id', '=', $id)->sum('skor');
             return $skor;
         })->sortable();
         return $grid;

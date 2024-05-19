@@ -7,13 +7,10 @@ use App\Models\Kecamatan;
 use App\Models\Kelurahan;
 use App\Models\Opd;
 use App\Models\Usulan;
-use App\Models\Bidang;
 use Encore\Admin\Controllers\AdminController;
-use Encore\Admin\Facades\Admin;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
-use Illuminate\Support\Facades\DB;
 
 class UsulanDiterimaController extends AdminController
 {
@@ -41,11 +38,13 @@ class UsulanDiterimaController extends AdminController
 
             $daftar_bidang = Usulan::join('opd', 'usulan.opd_id_akhir', '=', 'opd.id')
                 ->join('bidang', 'opd.id', '=', 'bidang.id')
+                ->whereNotIn('bidang.nama', ['BK'])
                 ->pluck('bidang.nama', 'bidang.id');
 
-            $filter->equal('opd_id_akhir', 'Bidang')->select($daftar_bidang);
+            $filter->equal('opd.bidang_id', 'Bidang')->select($daftar_bidang);
         });
         //$grid->model()->where('status','<>', 'dibatalkan');
+        $grid->disableCreateButton(); //Menonaktifkan button new
 
         //$grid->column('id', __('No'));
         $grid->column('id_usulan', __('Id Usulan'));

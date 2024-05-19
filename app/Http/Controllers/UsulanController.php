@@ -26,8 +26,9 @@ class UsulanController extends Controller
             ->where('usulan.pilihan', true)
             ->select('usulan.id', 'usulan.usulan')
             ->get();
+        $skor = Skor::with('usulan')->get();
 
-        return view('usulan.index', compact('bidang', 'usulan'));
+        return view('usulan.index', compact('bidang', 'usulan', 'skor'));
     }
 
     /**
@@ -38,14 +39,11 @@ class UsulanController extends Controller
         $id = $request->query('id');
         $usulanId = Usulan::find($id);
         $bidang = DB::table('bidang')
-                    ->join('opd', 'bidang.id', '=', 'opd.bidang_id')
-                    ->join('usulan', 'opd.id', '=', 'usulan.opd_id_akhir')
-                    ->where('usulan.id', $request->usulan_id)
-                    ->select('bidang.nama')
-                    ->first();
-        // $bidang = Bidang::all()->reject(function ($bidang) {
-        //     return $bidang->nama === 'BK';
-        // });
+            ->join('opd', 'bidang.id', '=', 'opd.bidang_id')
+            ->join('usulan', 'opd.id', '=', 'usulan.opd_id_akhir')
+            ->where('usulan.id', $request->usulan_id)
+            ->select('bidang.nama')
+            ->first();
         return view('usulan.form')->with([
             // 'usulan' => $usulan,
             'bidang' => $bidang,
@@ -77,11 +75,11 @@ class UsulanController extends Controller
         }
         $usulan = Usulan::find($request->usulan_id);
         $bidang = DB::table('bidang')
-                    ->join('opd', 'bidang.id', '=', 'opd.bidang_id')
-                    ->join('usulan', 'opd.id', '=', 'usulan.opd_id_akhir')
-                    ->where('usulan.id', $request->usulan_id)
-                    ->select('bidang.nama')
-                    ->first();
+            ->join('opd', 'bidang.id', '=', 'opd.bidang_id')
+            ->join('usulan', 'opd.id', '=', 'usulan.opd_id_akhir')
+            ->where('usulan.id', $request->usulan_id)
+            ->select('bidang.nama')
+            ->first();
 
         if (!$bidang) {
             return redirect()->back()->withErrors(['usulan_id' => 'Bidang tidak ditemukan untuk usulan yang diberikan']);
