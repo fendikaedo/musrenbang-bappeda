@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Kegiatan;
 use App\Models\Penilaian;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginPenilaiController extends Controller
 {
@@ -47,14 +48,13 @@ class LoginPenilaiController extends Controller
             $penilai->tlp_penilai = $request->tlp_penilai;
             $penilai->email_penilai = $request->email_penilai;
             $penilai->tanggal = $request->tanggal;
-            $penilai->kegiatan_id = $request->token;
+            $penilai->kegiatan_id = $request->kegiatan_id;
             if ($penilai->save()) {
-                return redirect()->route('menubidang.index');
+                return redirect()->route('menubidang.index',['penilai_id' => $penilai->id]);
             } else {
                 return back();
             }
         }
-        // return redirect()->route('penilai.menu_bidang')->with('success', 'Data penilaian berhasil disimpan!');
     }
 
     /**

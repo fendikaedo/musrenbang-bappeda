@@ -30,17 +30,17 @@
         <div class="container h-100">
             <div class="row justify-content-sm-center h-100">
                 <div class="col-xxl-6 col-xl-7 col-lg-7 col-md-9 col-sm-11">
-                    <div class="card shadow-lg mt-5 m-2">
+                    <div class="card shadow-lg mt-5">
                         <div class="card-body p-4">
                             <div class="animate__animated animate__fadeInDown">
                                 <div class="text-center my-4">
-                                    <img src="../../img/kab-pacitan.png" alt="logo" width="75">
+                                    <img src="{{asset('img/kab-pacitan.png')}}" alt="logo" width="75">
                                 </div>
                                 <div class="text-center my-4">
                                     <h1><b>E-MUSRENBANG</b></h1>
                                 </div>
                             </div>
-                            <h1 class="fs-4 card-title mb-4 text-center animate__animated animate__fadeIn">
+                            <h1 class="fs-4 card-title mb-4 text-center animate__animated animate__fadeInUp">
                                 @yield('judul')
                             </h1>
                             @yield('form')

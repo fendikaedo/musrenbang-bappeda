@@ -74,10 +74,7 @@ class SkorController extends AdminController
         $form->select('kriteria_id', __('Kriteria'))->options($daftar_kriteria);
         $form->number('skor', __('Skor'));
         $form->select('penilaian_id', __('Penilaian'))->options($daftar_penilai);
-
+        
         return $form;
     }
-    // public function store(){
-    //     return view('penilai.menu_bidang');
-    // }
 }

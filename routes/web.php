@@ -33,24 +33,10 @@ Route::get('/', function () {
 Route::resource('/loginpenilai', LoginPenilaiController::class);
 
 //Menu Bidang
-Route::resource('/menubidang', MenuBidangController::class);
+Route::resource('/menubidang', MenuBidangController::class)->except('index');
+Route::get('/{penilai_id}/menubidang', [MenuBidangController::class, 'index'])->name('menubidang.index');
 
-Route::get('/usulan/bidang/{bidang}',[UsulanController::class, 'index'])->name('usulan.index');
-
-Route::resource('/usulan',UsulanController::class)->except('index');
-
-
-// // Bidang Infrastruktur
-// Route::resource('/bidanginfrastruktur',InfrastrukturController::class);
-
-// //Bidang Ekonomi
-// Route::resource('/bidangekonomi',EkonomiController::class);
-
-// //Bidang Sosbud
-// Route::resource('/bidang',SosbudController::class);
-
-// // Layout Form
-// Route::get('/formusulan', [FormUsulanController::class, 'index']);
-// Route::resource('/usulaninfrastruktur', UsulanBidangController::class);
-
+Route::resource('/usulan',UsulanController::class)->except('index','create');
+Route::get('/{penilai_id}/usulan/bidang/{bidang}',[UsulanController::class, 'index'])->name('usulan.index');
+Route::get('/{penilai_id}/usulan/create/{id_usulan}', [UsulanController::class, 'create'])->name('usulan.create');
 

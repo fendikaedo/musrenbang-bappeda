@@ -47,17 +47,21 @@
                                     <h1><b>E-MUSRENBANG</b></h1>
                                 </div>
                             </div>
+                            <h1 class="fs-4 card-title mb-4 text-center animate__animated animate__fadeIn">
+                                Pilih Bidang
+                            </h1>
                             <div class="content">
                                 @for ($i = 0; $i < count($bidang); $i++)
                                     <div
-                                        class="card border-0 shadow-lg mb-3 bg-warning bg-gradient m-3 animate__animated animate__fadeInLeft">
-                                        <div class="card-body p-5">
-                                            <h1 class="fs-4 card-title fw-bold mb-4 text-black">
+                                        class="card border-2 border-dark shadow-lg mb-3 bg-warning m-3 animate__animated animate__fadeInLeft">
+                                        <div class="card-body p-5 text-center">
+                                            <h1 class="fs-2 card-title fw-bold mb-4 text-black">
                                                 {{ $bidang[$i]->nama }}</h1>
-                                            <a href="{{route('usulan.index',['bidang' => $bidang[$i]->nama])}}">
-                                                <button type="button"
-                                                    class="btn btn-success btn-sm px-4 gap-3"><b>Masuk</b></button>
-                                            </a>
+                                                <a
+                                                    href="{{ route('usulan.index', ['penilai_id' => $penilai->id,'bidang' => $bidang[$i]->nama]) }}">
+                                                    <button type="button"
+                                                        class="btn btn-primary border-dark border-2 btn-sm px-4 gap-3"><b>Masuk</b></button>
+                                                </a>
                                         </div>
                                     </div>
                                 @endfor

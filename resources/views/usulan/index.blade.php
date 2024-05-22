@@ -1,8 +1,8 @@
 @extends('layouts.usulan')
 @section('judul', 'Bidang ' . ucfirst($bidang))
 @section('list')
-    <div class="table-responsive-sm">
-        <table>
+    <div class="table-responsive-md table-bordered table-striped animate__animated animate__fadeInUp">
+        <table class="table table-striped table-border border-2 border-dark table-sm w-100">
             <thead class="bg-warning">
                 <tr class="text-center">
                     <th>No</th>
@@ -13,28 +13,35 @@
             </thead>
             <tbody>
                 @foreach ($usulan as $u)
-                    <tr>
-                        <td class="text-center">{{ $loop->iteration }}</td>
+                    <tr class="align-middle">
+                        <td class="text-center">{{ $loop->iteration }}.</td>
                         <td>{{ $u->usulan }}</td>
-                        <td class="text-center">0</td>
-                        <td class="text-center"><a href="{{ route('usulan.create', ['id' => $u->id]) }}">
-                                <button type="submit" class="btn btn-sm btn-primary">Skor</button>
-                            </a></td>
+                        <td class="text-center">
+                            @if ($u->total_skor)
+                                <b class="text-success">{{ $u->total_skor }}</b>
+                            @else
+                                <b>0</b>
+                            @endif
+                        </td>
+                        @if (!$u->total_skor)
+                            <td class="text-center"><a
+                                    href="{{ route('usulan.create', [
+                                        'penilai_id' => $penilai->id,
+                                        'id_usulan' => $u->id,
+                                    ]) }}"
+                                    class="btn btn-sm btn-primary">Skor
+                                </a>
+                            </td>
+                        @else
+                            <td class="text-center">
+                                <i class="fa-solid fa-check btn btn-sm btn-success"></i>
+                            </td>
+                        @endif
+
                     </tr>
                 @endforeach
             </tbody>
         </table>
+
     </div>
-    {{-- <div class="card p-2 mb-3">
-            <div class="row p-2 m-2 align-items-center">
-                <div class="col-10">
-                    <p>{{ $u->usulan }}</p>
-                </div>
-                <div class="col-auto">
-                    <a href="{{ route('usulan.create', ['id' => $u->id]) }}">
-                        <button type="submit" class="btn btn-sm btn-primary">Skor</button>
-                    </a>
-                </div>
-            </div>
-        </div> --}}
 @endsection
