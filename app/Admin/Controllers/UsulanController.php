@@ -53,7 +53,7 @@ class UsulanController extends AdminController
             $tools->append(new ImportPost());
         });
 
-        $grid->disableCreateButton(); //Menonaktifkan button new
+        // $grid->disableCreateButton(); //Menonaktifkan button new
 
         //$grid->column('id', __('No'));
         //$grid->column('id_usulan', __('Id Usulan'));

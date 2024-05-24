@@ -14,6 +14,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
+
+    {{-- Font Awesome Icons --}}
+    <script src="https://kit.fontawesome.com/17b39fa33f.js" crossorigin="anonymous"></script>
+
     {{-- Favicon --}}
     <link rel="website icon" type="png" href="{{ asset('../img/kab-pacitan.png') }}">
 
@@ -24,17 +28,26 @@
     <script src="http://maps.googleapis.com/maps/api/js"></script>
 
 </head>
+<style>
+    .card {
+        border-radius: 14px
+    }
+
+    .card-body {
+        border-radius: 14px
+    }
+</style>
 
 <body class="bg-primary">
     <section class="h-100">
         <div class="container h-100">
             <div class="row justify-content-sm-center h-100">
-                <div class="col-xxl-6 col-xl-7 col-lg-7 col-md-9 col-sm-11">
-                    <div class="card shadow-lg mt-5">
+                <div class="col-xxl-6 col-xl-7 col-lg-7 col-md-9 col-sm-11 mb-5 mt-5">
+                    <div class="card shadow-lg">
                         <div class="card-body p-4">
                             <div class="animate__animated animate__fadeInDown">
                                 <div class="text-center my-4">
-                                    <img src="{{asset('img/kab-pacitan.png')}}" alt="logo" width="75">
+                                    <img src="{{ asset('img/kab-pacitan.png') }}" alt="logo" width="75">
                                 </div>
                                 <div class="text-center my-4">
                                     <h1><b>E-MUSRENBANG</b></h1>
@@ -46,14 +59,6 @@
                             @yield('form')
 
                         </div>
-                        {{-- <div class="card-footer py-3 border-0">
-                            <div class="text-center">
-                                Don't have an account? <a href="register.html" class="text-dark">Create One</a>
-                            </div>
-                        </div> --}}
-                    </div>
-                    <div class="text-center mt-5 text-white">
-                        <h6>Copyright &copy; 2024 &mdash; BAPPEDA LITBANG</h6>
                     </div>
                 </div>
             </div>

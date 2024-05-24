@@ -15,15 +15,25 @@
 
     {{-- Animated CSS --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
 </head>
+<style>
+    .card {
+        border-radius: 14px
+    }
+
+    .card-body {
+        border-radius: 14px
+    }
+</style>
 
 <body class="bg-primary">
     <section class="h-100">
         <div class="container h-100">
             <div class="row justify-content-sm-center h-100">
-                <div class="col-xxl-4 col-xl-5 col-lg-5 col-md-7 col-sm-9">
-                    <div class="card shadow-lg m-2 mt-5">
-                        <div class="card-body p-5">
+                <div class="col-xxl-4 col-xl-5 col-lg-5 col-md-7 col-sm-9 mb-5 mt-5">
+                    <div class="card shadow-lg m-2">
+                        <div class="card-body mb-3 p-5">
                             <div class="animate__animated animate__fadeInDown">
                                 <div class="text-center my-4">
                                     <img src="../../img/kab-pacitan.png" alt="logo" width="75">
@@ -51,7 +61,7 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <label class="mb-2 text-muted" for="tlp_penilai">No Telp</label>
+                                    <label class="mb-2 text-muted" for="tlp_penilai">No. Telp</label>
                                     <input id="tlp_penilai" type="number" class="form-control" name="tlp_penilai"
                                         value="{{ old('tlp_penilai') }}" required autofocus>
                                 </div>
@@ -76,31 +86,18 @@
                                             <option value="{{ $token->id }}">{{ $token->nama }}</option>
                                         @endforeach
                                     </select>
-                                    {{-- @foreach ($token_kegiatan as $token)
-                                        <input id="kegiatan_id" type="text" class="form-control" name="kegiatan_id"
-                                            value="{{old($token->token)}}" required autofocus>
-                                    @endforeach --}}
-
                                 </div>
 
                                 <div class="d-flex align-items-center">
                                     <a href="/">
-                                        <button type="button" class="btn btn-primary btn-lg">Kembali</button>
+                                        <button type="button" class="btn btn-primary btn-lg fw-bold">Kembali</button>
                                     </a>
-                                    <button type="submit" class="btn btn-lg btn-success ms-auto">
+                                    <button type="submit" class="btn btn-lg btn-success ms-auto fw-bold">
                                         Masuk
                                     </button>
                                 </div>
                             </form>
                         </div>
-                        {{-- <div class="card-footer py-3 border-0">
-                            <div class="text-center">
-                                Don't have an account? <a href="register.html" class="text-dark">Create One</a>
-                            </div>
-                        </div> --}}
-                    </div>
-                    <div class="text-center mt-5 text-white">
-                        <h6>Copyright &copy; 2024 &mdash; BAPPEDA LITBANG</h6>
                     </div>
                 </div>
             </div>

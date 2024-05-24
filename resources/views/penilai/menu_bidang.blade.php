@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Menu Bidang</title>
+    <title>Menu Bidang Musrenbang</title>
 
     {{-- Bootstrap --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -36,8 +36,8 @@
     <section class="h-100">
         <div class="container h-100">
             <div class="row justify-content-sm-center h-100">
-                <div class="col-xxl-4 col-xl-5 col-lg-5 col-md-7 col-sm-9">
-                    <div class="card m-2 mt-5 shadow-lg">
+                <div class="col-xxl-4 col-xl-5 col-lg-5 col-md-7 col-sm-9 mb-5 mt-5">
+                    <div class="card m-2 shadow-lg">
                         <div class="card-body">
                             <div class="animate__animated animate__fadeInDown">
                                 <div class="text-center my-4">
@@ -48,29 +48,25 @@
                                 </div>
                             </div>
                             <h1 class="fs-4 card-title mb-4 text-center animate__animated animate__fadeIn">
-                                Pilih Bidang
+                                Menu Bidang
                             </h1>
                             <div class="content">
                                 @for ($i = 0; $i < count($bidang); $i++)
                                     <div
-                                        class="card border-2 border-dark shadow-lg mb-3 bg-warning m-3 animate__animated animate__fadeInLeft">
+                                        class="card border-2 border-dark shadow-lg mb-3 m-3 animate__animated animate__fadeInLeft">
                                         <div class="card-body p-5 text-center">
                                             <h1 class="fs-2 card-title fw-bold mb-4 text-black">
                                                 {{ $bidang[$i]->nama }}</h1>
-                                                <a
-                                                    href="{{ route('usulan.index', ['penilai_id' => $penilai->id,'bidang' => $bidang[$i]->nama]) }}">
-                                                    <button type="button"
-                                                        class="btn btn-primary border-dark border-2 btn-sm px-4 gap-3"><b>Masuk</b></button>
-                                                </a>
+                                            <a
+                                                href="{{ route('usulan.index', ['penilai_id' => $penilai->id, 'bidang' => $bidang[$i]->nama]) }}">
+                                                <button type="button"
+                                                    class="btn btn-primary border-dark border-2 btn-sm px-4 gap-3"><b>Masuk</b></button>
+                                            </a>
                                         </div>
                                     </div>
                                 @endfor
                             </div>
                         </div>
-                    </div>
-
-                    <div class="text-center mt-5 text-muted">
-                        <h6 class="text-white">Copyright &copy; 2024 &mdash; BAPPEDA LITBANG</h6>
                     </div>
                 </div>
             </div>
