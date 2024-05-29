@@ -2,7 +2,6 @@
 
 namespace App\Admin\Controllers;
 
-use App\Admin\Actions\Post\ImportPost;
 use App\Models\Bidang;
 use App\Models\Kabupaten;
 use App\Models\Kecamatan;
@@ -14,14 +13,14 @@ use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
 
-class UsulanController extends AdminController
+class EkonomiController extends AdminController
 {
     /**
      * Title for current resource.
      *
      * @var string
      */
-    protected $title = 'Usulan';
+    protected $title = 'Bidang Ekonomi';
 
     /**
      * Make a grid builder.
@@ -35,6 +34,10 @@ class UsulanController extends AdminController
         $grid->model()->where('tahun', '=', $tahun); //Data yang masuk merupakan tahun yang sama berada pada config
         $grid->model()->where('pilihan', '=', 0); //Data yang masuk merupakan pilihan yang mempunyai value 0
 
+        $grid->model()->whereHas('opd.bidang', function ($query) {
+            $query->where('nama', 'ekonomi');
+        });
+
         //Fungsi Filter pada Grid
         $grid->filter(function ($filter) {
             $filter->disableIdFilter();
@@ -44,22 +47,11 @@ class UsulanController extends AdminController
             $kelurahan = Usulan::join('kelurahan', 'usulan.kelurahan_id', '=', 'kelurahan.id')
                 ->pluck('kelurahan.nama', 'kelurahan.id');
 
-            $daftar_bidang = Usulan::join('opd', 'usulan.opd_id_akhir', '=', 'opd.id')
-                ->join('bidang', 'opd.id', '=', 'bidang.id')
-                ->whereNotIn('bidang.nama', ['BK'])
-                ->pluck('bidang.nama', 'bidang.id');
-
             $filter->equal('kecamatan_id', 'Kecamatan')->select($kecamatan);
             $filter->equal('kelurahan_id', 'Kelurahan')->select($kelurahan);
-            $filter->equal('opd.bidang_id', 'Bidang')->select($daftar_bidang);
         });
 
-        //Fungsi Import Data pada Grid
-        $grid->tools(function ($tools) {
-            $tools->append(new ImportPost());
-        });
-
-        // $grid->disableCreateButton(); //Menonaktifkan button new
+        $grid->disableCreateButton(); //Menonaktifkan button new
 
         //$grid->column('id', __('No'));
         //$grid->column('id_usulan', __('Id Usulan'));
@@ -89,11 +81,22 @@ class UsulanController extends AdminController
         //$grid->column('anggaran', __('Anggaran'));
         //$grid->column('jenis_belanja', __('Jenis Belanja'));
         //$grid->column('sub_kegiatan', __('Sub Kegiatan'));
-        $states = [
-            'on' => ['value' => 1, 'text' => 'Diterima', 'color' => 'success'],
-            'off' => ['value' => 0, 'text' => 'Tidak', 'color' => 'danger'],
-        ];
-        $grid->column('pilihan', __('Kabupaten'))->switch($states);
+        
+        // $states = [
+        //     'on' => ['value' => 1, 'text' => 'Diterima', 'color' => 'success'],
+        //     'off' => ['value' => 0, 'text' => 'Tidak', 'color' => 'danger'],
+        // ];
+        // $grid->column('pilihan', __('Kabupaten'))->switch($states);
+
+
+        $grid->column('opd_id_akhir', 'Bidang')->display(function ($opd_id_akhir) {
+            $opd = Opd::find($opd_id_akhir);
+            if (is_null($opd)) {
+                return '';
+            } else {
+                return $opd->bidang->nama;
+            }
+        });
         //$grid->column('tahun', __('Tahun'));
 
         return $grid;
@@ -155,15 +158,12 @@ class UsulanController extends AdminController
         $kecamatan = Kecamatan::all()->pluck('nama', 'id');
         $kelurahan = Kelurahan::all()->pluck('nama', 'id');
 
-        // $hasil_opd = Opd::all()->pluck('nama', 'id');
+        $hasil_opd = Opd::all()->pluck('nama', 'id');
 
-        // $pilihan_opd = [];
-        // foreach ($hasil_opd as $id => $nama) {
-        //     $pilihan_opd[$id] = $nama;
-        // }
-        $daftar_opd = Usulan::join('opd', 'usulan.opd_id_akhir', '=', 'opd.id')
-                ->join('bidang', 'opd.bidang_id', '=', 'bidang.id')
-                ->pluck('opd.nama', 'opd.id');
+        $pilihan_opd = [];
+        foreach ($hasil_opd as $id => $nama) {
+            $pilihan_opd[$id] = $nama;
+        }
 
         $form->text('id_usulan', __('Id Usulan'));
         $form->date('tanggal_usul', __('Tanggal Usul'))->default(date('Y-m-d'));
@@ -178,8 +178,8 @@ class UsulanController extends AdminController
         $form->decimal('latitude', __('Latitude'));
         $form->decimal('longitude', __('Longitude'));
         $form->text('usulan_ke', __('Usulan ke'));
-        $form->select('opd_id_awal', __('OPD Tujuan Awal'))->options($daftar_opd);
-        $form->select('opd_id_akhir', __('OPD Tujuan Akhir'))->options($daftar_opd);
+        $form->select('opd_id_awal', __('OPD Tujuan Awal'))->options($pilihan_opd);
+        $form->select('opd_id_akhir', __('OPD Tujuan Akhir'))->options($pilihan_opd);
         $form->select('status', __('Status'));
         $form->text('catatan', __('Catatan'));
         $form->text('rekomendasi_mitra', __('Rekomendasi Mitra'));

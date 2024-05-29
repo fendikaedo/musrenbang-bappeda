@@ -76,8 +76,8 @@
             <h1 class="display-5 fw-bold animate__animated animate__fadeIn">E-MUSRENBANG</h1>
             <h2 class="display-5 fw-bold animate__animated animate__fadeIn">Musyawarah Rencana Pembangunan</h2>
             <div class="col-lg-6 mx-auto animate__animated animate__fadeIn">
-                <p class="lead mb-4">Musrenbang adalah forum antarpelaku dalam rangka menyusun rencana pembangunan
-                    Nasional dan rencana pembangunan Daerah.</p>
+                <p class="lead mb-4">Aplikasi E-Musrenbang adalah forum antarpelaku dalam rangka menyusun rencana pembangunan
+                    Nasional dan rencana pembangunan Daerah yang menggunakan sistem voting melalui skor.</p>
                 <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
                     <a href="/loginpenilai">
                         <button type="button"

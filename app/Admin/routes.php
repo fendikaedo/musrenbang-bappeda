@@ -1,6 +1,7 @@
 <?php
 
 use App\Admin\Controllers\BidangController;
+use App\Admin\Controllers\EkonomiController;
 use App\Admin\Controllers\KecamatanController;
 use App\Admin\Controllers\OpdController;
 use App\Admin\Controllers\KabupatenController;
@@ -13,6 +14,8 @@ use App\Admin\Controllers\PenilaianController;
 use App\Admin\Controllers\KegiatanController;
 use App\Admin\Controllers\SkorController;
 use App\Admin\Controllers\UsulanDiterimaController;
+use App\Admin\Controllers\InfrastrukturController;
+use App\Admin\Controllers\SosbudController;
 use Illuminate\Routing\Router;
 
 Admin::favicon('');
@@ -40,4 +43,7 @@ Route::group([
     $router->resource('kegiatan', KegiatanController::class);
     $router->resource('skor', SkorController::class);
     $router->resource('usulanditerima', UsulanDiterimaController::class);
+    $router->resource('bidanginfrastruktur', InfrastrukturController::class);
+    $router->resource('bidangekonomi', EkonomiController::class);
+    $router->resource('bidangsosbud', SosbudController::class);
 });
