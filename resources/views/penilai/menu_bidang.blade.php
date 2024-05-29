@@ -21,6 +21,8 @@
     {{-- Favicon --}}
     <link rel="website icon" type="png" href="{{ asset('../img/kab-pacitan.png') }}">
 
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+
 </head>
 <style>
     .card {

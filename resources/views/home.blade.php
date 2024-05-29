@@ -25,7 +25,7 @@
     {{-- Favicon --}}
     <link rel="website icon" type="png" href="{{ asset('../img/kab-pacitan.png') }}">
 
-    <title>MUSRENBANG</title>
+    <title>E-Musrenbang</title>
 </head>
 
 <body>
@@ -70,7 +70,7 @@
 
     <!--=============== HERO ===============-->
     <main class="main">
-        <div class="px-2 text-center">
+        <div class="px-2 text-center text-white">
             <img class="d-block mx-auto mb-4 animate__animated animate__fadeInUp"
                 src="{{ asset('../img/kab-pacitan.png') }}" alt="" width="80" height="88">
             <h1 class="display-5 fw-bold animate__animated animate__fadeIn">E-MUSRENBANG</h1>

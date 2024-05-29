@@ -67,7 +67,6 @@
 
 </body>
 <script>
-    // fungsi initialize untuk mempersiapkan peta
     function initialize() {
         var propertiPeta = {
             center: new google.maps.LatLng(-8.186871002089708, 111.0885649428222),
