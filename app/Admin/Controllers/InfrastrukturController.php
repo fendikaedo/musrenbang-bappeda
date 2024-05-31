@@ -92,7 +92,7 @@ class InfrastrukturController extends AdminController
         $grid->column('id', 'Skor')->display(function ($id) {
             $skor = Skor::where('usulan_id', '=', $id)->sum('skor');
             return $skor;
-        })->sortable()->editable();
+        })->sortable();
 
         $grid->column('opd_id_akhir', 'Bidang')->display(function ($opd_id_akhir) {
             $opd = Opd::find($opd_id_akhir);

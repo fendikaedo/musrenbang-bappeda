@@ -12,6 +12,7 @@ use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
+use Illuminate\Support\Facades\DB;
 
 class SkoringUsulanController extends AdminController
 {
@@ -45,6 +46,12 @@ class SkoringUsulanController extends AdminController
 
             $filter->equal('opd.bidang_id', 'Bidang')->select($daftar_bidang);
         });
+
+        //Menghitung Skor Tertinggi
+        $grid->model()->select('usulan.*', DB::raw('SUM(skor.skor) as total_skor'))
+                  ->leftJoin('skor', 'usulan.id', '=', 'skor.usulan_id')
+                  ->groupBy('usulan.id');
+
         $grid->disableCreateButton(); //Menonaktifkan button new
 
 
@@ -64,11 +71,12 @@ class SkoringUsulanController extends AdminController
                 return $opd->bidang->nama;
             }
         });
+        $grid->column('total_skor', 'Skor')->sortable();
 
-        $grid->column('id', 'Skor')->display(function ($id) {
-            $skor = Skor::where('usulan_id', '=', $id)->sum('skor');
-            return $skor;
-        })->sortable();
+        // $grid->column('id', 'Skor')->display(function ($id) {
+        //     $skor = Skor::where('usulan_id', '=', $id)->sum('skor');
+        //     return $skor;
+        // })->sortable();
         return $grid;
     }
 
