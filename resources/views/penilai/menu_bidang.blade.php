@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="author" content="Fendika Edo Ferdinata">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Menu Bidang Musrenbang</title>
@@ -21,59 +22,45 @@
     {{-- Favicon --}}
     <link rel="website icon" type="png" href="{{ asset('../img/kab-pacitan.png') }}">
 
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 
 </head>
-<style>
-    .card {
-        border-radius: 14px
-    }
 
-    .card-body {
-        border-radius: 14px
-    }
-</style>
-
-<body class="bg-primary">
-    <section class="h-100">
-        <div class="container h-100">
-            <div class="row justify-content-sm-center h-100">
-                <div class="col-xxl-4 col-xl-5 col-lg-5 col-md-7 col-sm-9 mb-5 mt-5">
-                    <div class="card m-2 shadow-lg">
-                        <div class="card-body">
-                            <div class="animate__animated animate__fadeInDown">
-                                <div class="text-center my-4">
-                                    <img src="../../img/kab-pacitan.png" alt="logo" width="75">
-                                </div>
-                                <div class="text-center my-4 text-black">
-                                    <h1><b>E-MUSRENBANG</b></h1>
-                                </div>
-                            </div>
-                            <h1 class="fs-4 card-title mb-4 text-center animate__animated animate__fadeIn">
-                                Menu Bidang
-                            </h1>
-                            <div class="content">
-                                @for ($i = 0; $i < count($bidang); $i++)
-                                    <div
-                                        class="card border-2 border-dark shadow-lg mb-3 m-3 animate__animated animate__fadeInLeft">
-                                        <div class="card-body p-5 text-center">
-                                            <h1 class="fs-2 card-title fw-bold mb-4 text-black">
-                                                {{ $bidang[$i]->nama }}</h1>
-                                            <a
-                                                href="{{ route('usulan.index', ['penilai_id' => $penilai->id, 'bidang' => $bidang[$i]->nama]) }}">
-                                                <button type="button"
-                                                    class="btn btn-primary border-dark border-2 btn-sm px-4 gap-3"><b>Masuk</b></button>
-                                            </a>
-                                        </div>
-                                    </div>
-                                @endfor
+<body style="background-color: #2252e1">
+    <div class="container d-flex justify-content-center align-items-center min-vh-100">
+        <div class="row border rounded-5 p-3 bg-white shadow box-area mb-4 mt-4">
+            <div class="col-md-6 rounded-4 gap-2 p-3 d-flex justify-content-center align-items-center flex-column left-box animate__animated animate__fadeIn"
+                style="background-image: url({{ asset('img/Bappeda4.jpg') }}); background-size: cover">
+                <div class="featured-image mb-3">
+                    <img src="{{ asset('img/kab-pacitan.png') }}" class="img-fluid animate__animated animate__fadeInUp"
+                        style="width: 100px;">
+                </div>
+                <p class="text-white fs-2 mb-1 animate__animated animate__fadeInUp"
+                    style="font-family: 'Poppins'; font-weight: 600;">E-Musrenbang</p>
+            </div>
+            <div class="col-md-6 right-box mt-2 mb-2 animate__animated animate__fadeIn">
+                <div class="row">
+                    <div class="header-text mb-3 text-black">
+                        <h2 class="fw-bold">Bidang Musrenbang</h2>
+                        <small>Pilih bidang dibawah ini dan isi skor usulannya.</small>
+                    </div>
+                    @for ($i = 0; $i < count($bidang); $i++)
+                        <div class="col-md-0 mb-2 mt-2 text-center">
+                            <div class="card p-3 rounded-4 shadow-lg border-3 border-black">
+                                <h3 class="fs-3 fw-600 mb-2 text-black">
+                                    {{ $bidang[$i]->nama }}</h3>
+                                <a
+                                    href="{{ route('usulan.index', ['penilai_id' => $penilai->id, 'bidang' => $bidang[$i]->nama]) }}">
+                                    <button type="button"
+                                        class="btn btn-warning border-dark border-2 btn-sm px-4 gap-3"><b>Masuk</b></button>
+                                </a>
                             </div>
                         </div>
-                    </div>
+                    @endfor
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 </body>
 
 </html>

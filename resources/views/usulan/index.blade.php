@@ -37,11 +37,9 @@
                                 <i class="fa-solid fa-check btn btn-sm btn-success"></i>
                             </td>
                         @endif
-
                     </tr>
                 @endforeach
             </tbody>
         </table>
-
     </div>
 @endsection

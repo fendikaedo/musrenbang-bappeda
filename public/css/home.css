@@ -4,7 +4,7 @@
 
 /*=============== VARIABLES CSS ===============*/
 :root {
-  --header-height: 2.5rem;
+  --header-height: 2.8rem;
 
   /*========== Colors ==========*/
   /*Color mode HSL(hue, saturation, lightness)*/
@@ -136,12 +136,13 @@ a {
   opacity: 0;
 }
 
+
 /* Navigation for mobile devices */
 @media screen and (max-width: 1118px) {
   .nav__menu {
     position: absolute;
     left: 0;
-    top: 2.5rem;
+    top: 0;
     width: 100%;
     height: calc(100vh - 3.5rem);
     overflow: auto;

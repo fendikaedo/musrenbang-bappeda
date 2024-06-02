@@ -32,7 +32,7 @@ class KegiatanController extends AdminController
         $grid->column('tanggal', __('Tanggal'));
         $grid->column('token', __('Token'));
         $grid->column('token_expired', __('Token expired'));
-        
+
         return $grid;
     }
 
@@ -68,7 +68,7 @@ class KegiatanController extends AdminController
         $form->text('nama', __('Nama'));
         $form->text('tempat', __('Tempat'));
         $form->date('tanggal', __('Tanggal'))->default(date('Y-m-d'));
-        $form->text('token', __('Token'));
+        $form->text('token', __('Token'))->placeholder('Input 5 digit dengan kombinasi angka dan huruf');
         $form->datetime('token_expired', __('Token expired'))->default(date('Y-m-d H:i:s'));
 
         return $form;

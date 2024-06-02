@@ -20,8 +20,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 </head>
 <style>
-    .card {
-        border-radius: 14px
+    .rounded-5 {
+        border-radius: 30px
     }
 
     .card-body {
@@ -29,12 +29,12 @@
     }
 </style>
 
-<body class="bg-primary">
+<body style="background-color: #2252e1">
     <section class="h-100">
         <div class="container h-100">
             <div class="row justify-content-sm-center h-100">
                 <div class="col-xxl-6 col-xl-7 col-lg-7 col-md-9 col-sm-11 mb-5 mt-5">
-                    <div class="card shadow-lg m-2">
+                    <div class="card shadow-lg m-2 rounded-5">
                         <div class="card-body p-4">
                             <div class="animate__animated animate__fadeInDown">
                                 <div class="text-center my-4">
