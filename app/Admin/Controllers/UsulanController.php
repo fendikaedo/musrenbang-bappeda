@@ -59,9 +59,9 @@ class UsulanController extends AdminController
             $tools->append(new ImportPost());
         });
 
-        // $grid->disableCreateButton(); //Menonaktifkan button new
+        $grid->disableCreateButton(); //Menonaktifkan button new
 
-        //$grid->column('id', __('No'));
+        $grid->column('id', __('No'));
         //$grid->column('id_usulan', __('Id Usulan'));
         //$grid->column('tanggal_usul', __('Tanggal Usul'));
         //$grid->column('pengusul', __('Pengusul'));
@@ -72,8 +72,8 @@ class UsulanController extends AdminController
         //$grid->column('kabupaten.nama', __('Kabupaten'));
         $grid->column('kecamatan.nama', __('Kecamatan'));
         $grid->column('kelurahan.nama', __('Kelurahan'));
-        //$grid->column('latitude', __('Latitude'));
-        //$grid->column('longitude', __('Longitude'));
+        // $grid->column('latitude', __('Latitude'));
+        // $grid->column('longitude', __('Longitude'));
         //$grid->column('usulan_ke', __('Usulan ke'));
         //$grid->column('opd.nama', __('OPD Tujuan Awal'));
         $grid->column('opd.nama', __('OPD Tujuan Akhir'));

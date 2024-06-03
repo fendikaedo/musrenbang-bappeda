@@ -36,6 +36,8 @@ class SkorController extends AdminController
         $grid->column('skor', __('Skor'));
         $grid->column('penilaian.nama_penilai', __('Nama Penilai'));
 
+        $grid->disableCreateButton();
+
         return $grid;
     }
 
@@ -74,7 +76,7 @@ class SkorController extends AdminController
         $form->select('kriteria_id', __('Kriteria'))->options($daftar_kriteria);
         $form->number('skor', __('Skor'));
         $form->select('penilaian_id', __('Penilaian'))->options($daftar_penilai);
-        
+
         return $form;
     }
 }

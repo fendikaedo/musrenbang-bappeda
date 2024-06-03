@@ -81,12 +81,12 @@ class EkonomiController extends AdminController
         //$grid->column('anggaran', __('Anggaran'));
         //$grid->column('jenis_belanja', __('Jenis Belanja'));
         //$grid->column('sub_kegiatan', __('Sub Kegiatan'));
-        
-        // $states = [
-        //     'on' => ['value' => 1, 'text' => 'Diterima', 'color' => 'success'],
-        //     'off' => ['value' => 0, 'text' => 'Tidak', 'color' => 'danger'],
-        // ];
-        // $grid->column('pilihan', __('Kabupaten'))->switch($states);
+
+        $states = [
+            'on' => ['value' => 2, 'text' => 'Diterima', 'color' => 'success'],
+            'off' => ['value' => 0, 'text' => 'Tidak', 'color' => 'danger'],
+        ];
+        $grid->column('pilihan', __('Pilihan'))->switch($states);
 
 
         $grid->column('opd_id_akhir', 'Bidang')->display(function ($opd_id_akhir) {

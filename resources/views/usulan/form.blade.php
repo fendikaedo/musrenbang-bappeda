@@ -51,7 +51,7 @@
         {{-- PENILAI --}}
         <div class="mb-4 mt-4">
             <input type="hidden" name="penilaian_id" id="penilaian_id" value="{{ $penilai->id }}">
-            <p class="text-bold text-center fst-italic">Terima kasih kepada Bpk/Ibu {{ $penilai->nama_penilai }} yang sudah
+            <p class="text-bold text-center fst-italic fw-bold">Terima kasih kepada Bpk/Ibu {{ $penilai->nama_penilai }} yang sudah
                 mengisi skor usulan kegiatan musrenbang.</p>
         </div>
 

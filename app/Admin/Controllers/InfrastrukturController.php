@@ -83,16 +83,16 @@ class InfrastrukturController extends AdminController
         //$grid->column('jenis_belanja', __('Jenis Belanja'));
         //$grid->column('sub_kegiatan', __('Sub Kegiatan'));
 
-        // $states = [
-        //     'on' => ['value' => 1, 'text' => 'Diterima', 'color' => 'success'],
-        //     'off' => ['value' => 0, 'text' => 'Tidak', 'color' => 'danger'],
-        // ];
-        // $grid->column('pilihan', __('Kabupaten'))->switch($states);
+        $states = [
+            'on' => ['value' => 2, 'text' => 'Diterima', 'color' => 'success'],
+            'off' => ['value' => 0, 'text' => 'Tidak', 'color' => 'danger'],
+        ];
+        $grid->column('pilihan', __('Pilihan'))->switch($states);
 
-        $grid->column('id', 'Skor')->display(function ($id) {
-            $skor = Skor::where('usulan_id', '=', $id)->sum('skor');
-            return $skor;
-        })->sortable();
+        // $grid->column('id', 'Skor')->display(function ($id) {
+        //     $skor = Skor::where('usulan_id', '=', $id)->sum('skor');
+        //     return $skor;
+        // })->sortable();
 
         $grid->column('opd_id_akhir', 'Bidang')->display(function ($opd_id_akhir) {
             $opd = Opd::find($opd_id_akhir);

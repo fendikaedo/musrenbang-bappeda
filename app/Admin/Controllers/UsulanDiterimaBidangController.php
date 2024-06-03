@@ -11,15 +11,16 @@ use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
+use Illuminate\Support\Facades\DB;
 
-class UsulanDiterimaController extends AdminController
+class UsulanDiterimaBidangController extends AdminController
 {
     /**
      * Title for current resource.
      *
      * @var string
      */
-    protected $title = 'Usulan Diterima';
+    protected $title = 'Usulan Diterima / Bidang';
 
     /**
      * Make a grid builder.
@@ -32,7 +33,8 @@ class UsulanDiterimaController extends AdminController
         $tahun = config('tahun');
         //auth roles bidang
         $grid->model()->where('tahun', '=', $tahun);
-        $grid->model()->where('pilihan', '=', 1);
+        $grid->model()->where('pilihan', '=', 2);
+
         $grid->filter(function ($filter) {
             $filter->disableIdFilter();
 
@@ -43,7 +45,12 @@ class UsulanDiterimaController extends AdminController
 
             $filter->equal('opd.bidang_id', 'Bidang')->select($daftar_bidang);
         });
-        //$grid->model()->where('status','<>', 'dibatalkan');
+
+        //Menghitung Skor Tertinggi
+        $grid->model()->select('usulan.*', DB::raw('SUM(skor.skor) as total_skor'))
+            ->leftJoin('skor', 'usulan.id', '=', 'skor.usulan_id')
+            ->groupBy('usulan.id');
+
         $grid->disableCreateButton(); //Menonaktifkan button new
 
         //$grid->column('id', __('No'));
@@ -73,11 +80,13 @@ class UsulanDiterimaController extends AdminController
         //$grid->column('satuan', __('Satuan'));
         //$grid->column('anggaran', __('Anggaran'));
         //$grid->column('jenis_belanja', __('Jenis Belanja'));
+        $grid->column('total_skor', 'Skor')->sortable()->editable();
+
         $states = [
             'on' => ['value' => 1, 'text' => 'Diterima', 'color' => 'success'],
             'off' => ['value' => 0, 'text' => 'Tidak', 'color' => 'danger'],
         ];
-        $grid->column('pilihan', __('Kabupaten'))->switch($states);
+        $grid->column('pilihan', __('Pilihan'))->switch($states);
         //$grid->column('tahun', __('Tahun'));
 
         return $grid;
