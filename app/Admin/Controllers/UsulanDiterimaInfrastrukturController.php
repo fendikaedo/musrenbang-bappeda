@@ -13,14 +13,14 @@ use Encore\Admin\Grid;
 use Encore\Admin\Show;
 use Illuminate\Support\Facades\DB;
 
-class UsulanDiterimaBidangController extends AdminController
+class UsulanDiterimaInfrastrukturController extends AdminController
 {
     /**
      * Title for current resource.
      *
      * @var string
      */
-    protected $title = 'Usulan Diterima / Bidang';
+    protected $title = 'Usulan Diterima / Bidang Infrastruktur';
 
     /**
      * Make a grid builder.
@@ -34,6 +34,9 @@ class UsulanDiterimaBidangController extends AdminController
         //auth roles bidang
         $grid->model()->where('tahun', '=', $tahun);
         $grid->model()->where('pilihan', '=', 2);
+        $grid->model()->whereHas('opd.bidang', function ($query) {
+            $query->where('nama', 'infrastruktur');
+        });
 
         $grid->filter(function ($filter) {
             $filter->disableIdFilter();
@@ -47,9 +50,9 @@ class UsulanDiterimaBidangController extends AdminController
         });
 
         //Menghitung Skor Tertinggi
-        $grid->model()->select('usulan.*', DB::raw('SUM(skor.skor) as total_skor'))
-            ->leftJoin('skor', 'usulan.id', '=', 'skor.usulan_id')
-            ->groupBy('usulan.id');
+        // $grid->model()->select('usulan.*', DB::raw('SUM(skor.skor) as total_skor'))
+        //     ->leftJoin('skor', 'usulan.id', '=', 'skor.usulan_id')
+        //     ->groupBy('usulan.id');
 
         $grid->disableCreateButton(); //Menonaktifkan button new
 
@@ -80,10 +83,10 @@ class UsulanDiterimaBidangController extends AdminController
         //$grid->column('satuan', __('Satuan'));
         //$grid->column('anggaran', __('Anggaran'));
         //$grid->column('jenis_belanja', __('Jenis Belanja'));
-        $grid->column('total_skor', 'Skor')->sortable()->editable();
+        $grid->column('skor_bidang',__('Skor Bidang'))->sortable()->editable();
 
         $states = [
-            'on' => ['value' => 1, 'text' => 'Diterima', 'color' => 'success'],
+            'on' => ['value' => 2, 'text' => 'Diterima', 'color' => 'success'],
             'off' => ['value' => 0, 'text' => 'Tidak', 'color' => 'danger'],
         ];
         $grid->column('pilihan', __('Pilihan'))->switch($states);
@@ -180,6 +183,7 @@ class UsulanDiterimaBidangController extends AdminController
         $form->textarea('anggaran', __('Anggaran'));
         $form->text('jenis_belanja', __('Jenis Belanja'));
         $form->text('sub_kegiatan', __('Sub Kegiatan'));
+        $form->number('skor_bidang','Skor Bidang');
         $form->switch('pilihan', __('Pilihan'));
         $form->number('tahun', __('Tahun'));
 

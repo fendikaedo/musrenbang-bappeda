@@ -2,26 +2,24 @@
 
 namespace App\Admin\Controllers;
 
-use App\Admin\Actions\Post\ImportPost;
-use App\Models\Bidang;
 use App\Models\Kabupaten;
 use App\Models\Kecamatan;
 use App\Models\Kelurahan;
-use App\Models\Opd;
 use App\Models\Usulan;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
+use Illuminate\Support\Facades\DB;
 
-class UsulanController extends AdminController
+class UsulanDiterimaSosbudController extends AdminController
 {
     /**
      * Title for current resource.
      *
      * @var string
      */
-    protected $title = 'Usulan';
+    protected $title = 'Usulan Diterima / Bidang Sosial Budaya';
 
     /**
      * Make a grid builder.
@@ -31,38 +29,34 @@ class UsulanController extends AdminController
     protected function grid()
     {
         $grid = new Grid(new Usulan());
-        $tahun = config('tahun'); //Import config pada tahun
-        $grid->model()->where('tahun', '=', $tahun); //Data yang masuk merupakan tahun yang sama berada pada config
-        $grid->model()->where('pilihan', '=', 0); //Data yang masuk merupakan pilihan yang mempunyai value 0
+        $tahun = config('tahun');
+        //auth roles bidang
+        $grid->model()->where('tahun', '=', $tahun);
+        $grid->model()->where('pilihan', '=', 2);
+        $grid->model()->whereHas('opd.bidang', function ($query) {
+            $query->where('nama', 'sosial budaya');
+        });
 
-        //Fungsi Filter pada Grid
         $grid->filter(function ($filter) {
             $filter->disableIdFilter();
-
-            $kecamatan = Kecamatan::all()->pluck('nama', 'id');
-
-            $kelurahan = Usulan::join('kelurahan', 'usulan.kelurahan_id', '=', 'kelurahan.id')
-                ->pluck('kelurahan.nama', 'kelurahan.id');
 
             $daftar_bidang = Usulan::join('opd', 'usulan.opd_id_akhir', '=', 'opd.id')
                 ->join('bidang', 'opd.id', '=', 'bidang.id')
                 ->whereNotIn('bidang.nama', ['BK'])
                 ->pluck('bidang.nama', 'bidang.id');
 
-            $filter->equal('kecamatan_id', 'Kecamatan')->select($kecamatan);
-            $filter->equal('kelurahan_id', 'Kelurahan')->select($kelurahan);
             $filter->equal('opd.bidang_id', 'Bidang')->select($daftar_bidang);
         });
 
-        //Fungsi Import Data pada Grid
-        $grid->tools(function ($tools) {
-            $tools->append(new ImportPost());
-        });
+        //Menghitung Skor Tertinggi
+        // $grid->model()->select('usulan.*', DB::raw('SUM(skor.skor) as total_skor'))
+        //     ->leftJoin('skor', 'usulan.id', '=', 'skor.usulan_id')
+        //     ->groupBy('usulan.id');
 
         $grid->disableCreateButton(); //Menonaktifkan button new
 
-        $grid->column('id', __('No'));
-        //$grid->column('id_usulan', __('Id Usulan'));
+        //$grid->column('id', __('No'));
+        $grid->column('id_usulan', __('Id Usulan'));
         //$grid->column('tanggal_usul', __('Tanggal Usul'));
         //$grid->column('pengusul', __('Pengusul'));
         //$grid->column('profil', __('Profil'));
@@ -72,8 +66,8 @@ class UsulanController extends AdminController
         //$grid->column('kabupaten.nama', __('Kabupaten'));
         $grid->column('kecamatan.nama', __('Kecamatan'));
         $grid->column('kelurahan.nama', __('Kelurahan'));
-        // $grid->column('latitude', __('Latitude'));
-        // $grid->column('longitude', __('Longitude'));
+        //$grid->column('latitude', __('Latitude'));
+        //$grid->column('longitude', __('Longitude'));
         //$grid->column('usulan_ke', __('Usulan ke'));
         //$grid->column('opd.nama', __('OPD Tujuan Awal'));
         $grid->column('opd.nama', __('OPD Tujuan Akhir'));
@@ -88,12 +82,13 @@ class UsulanController extends AdminController
         //$grid->column('satuan', __('Satuan'));
         //$grid->column('anggaran', __('Anggaran'));
         //$grid->column('jenis_belanja', __('Jenis Belanja'));
-        //$grid->column('sub_kegiatan', __('Sub Kegiatan'));
+        $grid->column('skor_bidang',__('Skor Bidang'))->sortable()->editable();
+
         $states = [
-            'on' => ['value' => 1, 'text' => 'Diterima', 'color' => 'success'],
+            'on' => ['value' => 2, 'text' => 'Diterima', 'color' => 'success'],
             'off' => ['value' => 0, 'text' => 'Tidak', 'color' => 'danger'],
         ];
-        $grid->column('pilihan', __('Kabupaten'))->switch($states);
+        $grid->column('pilihan', __('Pilihan'))->switch($states);
         //$grid->column('tahun', __('Tahun'));
 
         return $grid;
@@ -151,6 +146,7 @@ class UsulanController extends AdminController
     protected function form()
     {
         $form = new Form(new Usulan());
+
         $kabupaten = Kabupaten::all()->pluck('nama', 'id');
         $kecamatan = Kecamatan::all()->pluck('nama', 'id');
         $kelurahan = Kelurahan::all()->pluck('nama', 'id');
@@ -186,9 +182,9 @@ class UsulanController extends AdminController
         $form->textarea('anggaran', __('Anggaran'));
         $form->text('jenis_belanja', __('Jenis Belanja'));
         $form->text('sub_kegiatan', __('Sub Kegiatan'));
+        $form->number('skor_bidang','Skor Bidang');
         $form->switch('pilihan', __('Pilihan'));
         $form->number('tahun', __('Tahun'));
-        $form->latlong('latitude', 'longitude', 'Map');
 
         return $form;
     }

@@ -16,7 +16,9 @@ use App\Admin\Controllers\SkorController;
 use App\Admin\Controllers\UsulanDiterimaController;
 use App\Admin\Controllers\InfrastrukturController;
 use App\Admin\Controllers\SosbudController;
-use App\Admin\Controllers\UsulanDiterimaBidangController;
+use App\Admin\Controllers\UsulanDiterimaEkonomiController;
+use App\Admin\Controllers\UsulanDiterimaInfrastrukturController;
+use App\Admin\Controllers\UsulanDiterimaSosbudController;
 use Illuminate\Routing\Router;
 
 Admin::favicon('');
@@ -47,6 +49,10 @@ Route::group([
     $router->resource('bidanginfrastruktur', InfrastrukturController::class);
     $router->resource('bidangekonomi', EkonomiController::class);
     $router->resource('bidangsosbud', SosbudController::class);
-    $router->resource('usulanditerimabidang', UsulanDiterimaBidangController::class);
+    $router->resource('usulanditerimainfrastruktur', UsulanDiterimaInfrastrukturController::class);
+    $router->resource('usulanditerimaekonomi', UsulanDiterimaEkonomiController::class);
+    $router->resource('usulanditerimasosbud', UsulanDiterimaSosbudController::class);
+
+
 
 });

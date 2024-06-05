@@ -15,14 +15,29 @@
             @endif
         </div>
 
-        <div id="googleMap" style="width:100%;height:380px;"></div>
-        <input type="hidden" id="lat" name="lat" value="">
-        <input type="hidden" id="lng" name="lng" value="">
+        <div class="mb-3 mt-3">
+            @if ($gambarUsulan)
+                <img src="{{ asset('uploads/' . $gambarUsulan) }}" width="100%" height="380px">
+            @else
+                <p class="text-center">Gambar tempat tidak tersedia</p>
+            @endif
+        </div>
+        {{-- <iframe
+            src="https://www.google.com/maps/embed?pb=!4v1717577528656!6m8!1m7!1s-iYEzu_Ytcud2xelwjmU7Q!2m2!1d-8.186866552724913!2d111.0885907352992!3f3.8641639420169422!4f-9.19966457054403!5f0.7820865974627469"
+            width="100%" height="380px" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe> --}}
+        <div class="mb-3 mt-3 text-center">
+            @if ($linkGoogleMaps)
+                <a href="{{ $linkGoogleMaps }}" target="_blank">Lihat pada Google Maps</a>
+            @else
+                <p>Link tidak tersedia</p>
+            @endif
+        </div>
 
         {{-- Catatan --}}
         <div class="m-2 fst-italic text-muted">
-            <p>Catatan : <br> 1. Setiap kriteria memiliki skor 1-10. <br>2. Nilai skor rendah ditentukan dari angka kurang
-                dari 5 dan untuk skor tinggi ditentukan dari angka lebih dari 5.</p>
+            <p>Catatan : <br> 1. Setiap kriteria memiliki skor 1-10. <br>2. Nilai skor 1 merupakan kondisi skor paling
+                rendah dan untuk Nilai skor 10 merupakan kondisi skor paling tinggi.</p>
         </div>
 
         {{-- KRITERIA --}}
@@ -51,7 +66,8 @@
         {{-- PENILAI --}}
         <div class="mb-4 mt-4">
             <input type="hidden" name="penilaian_id" id="penilaian_id" value="{{ $penilai->id }}">
-            <p class="text-bold text-center fst-italic fw-bold">Terima kasih kepada Bpk/Ibu {{ $penilai->nama_penilai }} yang sudah
+            <p class="text-bold text-center fst-italic fw-bold">Terima kasih kepada Bpk/Ibu {{ $penilai->nama_penilai }}
+                yang sudah
                 mengisi skor usulan kegiatan musrenbang.</p>
         </div>
 

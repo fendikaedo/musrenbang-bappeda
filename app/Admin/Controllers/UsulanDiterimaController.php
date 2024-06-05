@@ -57,8 +57,8 @@ class UsulanDiterimaController extends AdminController
         //$grid->column('kabupaten.nama', __('Kabupaten'));
         $grid->column('kecamatan.nama', __('Kecamatan'));
         $grid->column('kelurahan.nama', __('Kelurahan'));
-        //$grid->column('latitude', __('Latitude'));
-        //$grid->column('longitude', __('Longitude'));
+        $grid->column('latitude', __('Latitude'));
+        $grid->column('longitude', __('Longitude'));
         //$grid->column('usulan_ke', __('Usulan ke'));
         //$grid->column('opd.nama', __('OPD Tujuan Awal'));
         $grid->column('opd.nama', __('OPD Tujuan Akhir'));
@@ -78,6 +78,8 @@ class UsulanDiterimaController extends AdminController
             'off' => ['value' => 0, 'text' => 'Tidak', 'color' => 'danger'],
         ];
         $grid->column('pilihan', __('Kabupaten'))->switch($states);
+        $grid->column('gambar',__('Gambar'));
+        $grid->column('link_gambar',__('Google Maps'))->link();
         //$grid->column('tahun', __('Tahun'));
 
         return $grid;
@@ -171,6 +173,8 @@ class UsulanDiterimaController extends AdminController
         $form->textarea('anggaran', __('Anggaran'));
         $form->text('jenis_belanja', __('Jenis Belanja'));
         $form->text('sub_kegiatan', __('Sub Kegiatan'));
+        $form->image('gambar',__('Gambar'))->removable();
+        $form->text('link_gambar',__('Link Google Maps'));
         $form->switch('pilihan', __('Pilihan'));
         $form->number('tahun', __('Tahun'));
 

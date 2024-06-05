@@ -47,12 +47,16 @@ class UsulanController extends Controller
     public function create(Request $request, $penilai_id, $id_usulan)
     {
         $usulan = Usulan::findOrFail($id_usulan);
+        $gambarUsulan = $usulan->gambar;
+        $linkGoogleMaps = $usulan->link_gambar;
 
         // Ambil nama bidang dari parameter metode index()
         $bidang = $usulan->opd->bidang->nama;
 
         return view('usulan.form')->with([
             'bidang' => $bidang,
+            'linkGoogleMaps' => $linkGoogleMaps,
+            'gambarUsulan' => $gambarUsulan,
             'id_usulan' => $usulan,
             'kriteria' => Kriteria::all(),
             'penilai' => Penilaian::find($penilai_id),

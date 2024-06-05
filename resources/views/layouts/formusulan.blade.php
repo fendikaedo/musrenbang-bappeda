@@ -24,8 +24,6 @@
     {{-- Animated CSS --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
-    {{-- API Google Maps --}}
-    <script src="http://maps.googleapis.com/maps/api/js"></script>
 
 </head>
 <style>
@@ -66,24 +64,5 @@
     </section>
 
 </body>
-<script>
-    function initialize() {
-        var propertiPeta = {
-            center: new google.maps.LatLng(-8.186871002089708, 111.0885649428222),
-            zoom: 18,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-
-        var peta = new google.maps.Map(document.getElementById("googleMap"), propertiPeta);
-        var marker = new google.maps.Marker({
-            position: new google.maps.LatLng(-8.186871002089708, 111.0885649428222),
-            map: peta,
-            animation: google.maps.Animation.BOUNCE
-        });
-    }
-
-    // event jendela di-load
-    google.maps.event.addDomListener(window, 'load', initialize);
-</script>
 
 </html>
