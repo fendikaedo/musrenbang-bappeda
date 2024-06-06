@@ -79,7 +79,6 @@ class UsulanDiterimaController extends AdminController
         ];
         $grid->column('pilihan', __('Kabupaten'))->switch($states);
         $grid->column('gambar',__('Gambar'));
-        $grid->column('link_gambar',__('Google Maps'))->link();
         //$grid->column('tahun', __('Tahun'));
 
         return $grid;
@@ -174,7 +173,6 @@ class UsulanDiterimaController extends AdminController
         $form->text('jenis_belanja', __('Jenis Belanja'));
         $form->text('sub_kegiatan', __('Sub Kegiatan'));
         $form->image('gambar',__('Gambar'))->removable();
-        $form->text('link_gambar',__('Link Google Maps'));
         $form->switch('pilihan', __('Pilihan'));
         $form->number('tahun', __('Tahun'));
 

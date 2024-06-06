@@ -30,7 +30,7 @@
             <!--------------------------- Left Box ----------------------------->
 
             <div class="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box animate__animated animate__fadeIn"
-                style="background-image: url({{ asset('img/Bappeda4.jpg') }}); background-size: cover">
+                style="background-image: url({{ asset('img/Bappeda5.jpg') }}); background-size: cover">
 
                 <div class="featured-image mb-3">
                     <img src="{{ asset('img/kab-pacitan.png') }}" class="img-fluid animate__animated animate__fadeInUp"

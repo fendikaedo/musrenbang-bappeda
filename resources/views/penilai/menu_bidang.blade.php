@@ -22,7 +22,7 @@
     {{-- Favicon --}}
     <link rel="website icon" type="png" href="{{ asset('../img/kab-pacitan.png') }}">
 
-    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/menu.css') }}">
 
 </head>
 
@@ -30,7 +30,7 @@
     <div class="container d-flex justify-content-center align-items-center min-vh-100">
         <div class="row border rounded-5 p-3 bg-white shadow box-area mb-4 mt-4">
             <div class="col-md-6 rounded-4 gap-2 p-3 d-flex justify-content-center align-items-center flex-column left-box animate__animated animate__fadeIn"
-                style="background-image: url({{ asset('img/Bappeda4.jpg') }}); background-size: cover">
+                style="background-image: url({{ asset('img/Bappeda5.jpg') }}); background-size: cover">
                 <div class="featured-image mb-3">
                     <img src="{{ asset('img/kab-pacitan.png') }}" class="img-fluid animate__animated animate__fadeInUp"
                         style="width: 100px;">

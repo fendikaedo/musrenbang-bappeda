@@ -24,6 +24,7 @@
     {{-- Animated CSS --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
+    <link rel="stylesheet" href="{{ asset('css/form.css') }}">
 
 </head>
 <style>
@@ -40,18 +41,18 @@
     <section class="h-100">
         <div class="container h-100">
             <div class="row justify-content-sm-center h-100">
-                <div class="col-xxl-6 col-xl-7 col-lg-7 col-md-9 col-sm-11 mb-5 mt-5">
+                <div class="col-md-9 col-sm-11 mb-4 mt-4">
                     <div class="card shadow-lg rounded-5">
                         <div class="card-body p-4">
-                            <div class="animate__animated animate__fadeInDown">
+                            <div class="rounded-4 p-4 animate__animated animate__fadeInDown" style="background-image: url({{ asset('img/Bappeda3.jpg') }}); background-size: cover;">
                                 <div class="text-center my-4">
-                                    <img src="{{ asset('img/kab-pacitan.png') }}" alt="logo" width="75">
+                                    <img src="{{asset('img/kab-pacitan.png')}}" alt="logo" width="75">
                                 </div>
-                                <div class="text-center my-4">
+                                <div class="text-center text-white my-4">
                                     <h1><b>E-MUSRENBANG</b></h1>
                                 </div>
                             </div>
-                            <h1 class="fs-4 card-title mb-4 text-center animate__animated animate__fadeInUp">
+                            <h1 class="fs-4 card-title mt-4 mb-4 text-center animate__animated animate__fadeInUp">
                                 @yield('judul')
                             </h1>
                             @yield('form')

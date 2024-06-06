@@ -48,14 +48,16 @@ class UsulanController extends Controller
     {
         $usulan = Usulan::findOrFail($id_usulan);
         $gambarUsulan = $usulan->gambar;
-        $linkGoogleMaps = $usulan->link_gambar;
+        $latitude = $usulan->latitude;
+        $longitude = $usulan->longitude;
 
         // Ambil nama bidang dari parameter metode index()
         $bidang = $usulan->opd->bidang->nama;
 
         return view('usulan.form')->with([
             'bidang' => $bidang,
-            'linkGoogleMaps' => $linkGoogleMaps,
+            'latitude' => $latitude,
+            'longitude' => $longitude,
             'gambarUsulan' => $gambarUsulan,
             'id_usulan' => $usulan,
             'kriteria' => Kriteria::all(),

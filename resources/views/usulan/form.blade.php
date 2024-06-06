@@ -1,8 +1,8 @@
 @extends('layouts.formusulan')
-@section('judul', 'Bidang Infrastruktur')
+@section('judul', 'Bidang ' . ucfirst($bidang))
 @section('form')
     <form action="{{ route('usulan.store', ['penilai_id' => $penilai->id]) }}" method="POST"
-        class="needs-validation p-3 animate_animated animate_fadeInUp" novalidate autocomplete="off">
+        class="needs-validation p-2 animate_animated animate_fadeInUp" novalidate autocomplete="off">
         @csrf
 
         {{-- USULAN --}}
@@ -17,22 +17,24 @@
 
         <div class="mb-3 mt-3">
             @if ($gambarUsulan)
-                <img src="{{ asset('uploads/' . $gambarUsulan) }}" width="100%" height="380px">
+                <img src="{{ asset('uploads/' . $gambarUsulan) }}" width="100%" height="420px">
             @else
                 <p class="text-center">Gambar tempat tidak tersedia</p>
             @endif
         </div>
-        {{-- <iframe
-            src="https://www.google.com/maps/embed?pb=!4v1717577528656!6m8!1m7!1s-iYEzu_Ytcud2xelwjmU7Q!2m2!1d-8.186866552724913!2d111.0885907352992!3f3.8641639420169422!4f-9.19966457054403!5f0.7820865974627469"
-            width="100%" height="380px" style="border:0;" allowfullscreen="" loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"></iframe> --}}
         <div class="mb-3 mt-3 text-center">
-            @if ($linkGoogleMaps)
-                <a href="{{ $linkGoogleMaps }}" target="_blank">Lihat pada Google Maps</a>
+            @if ($latitude && $longitude)
+                <a href="https://www.google.com/maps/dir//{{ $latitude }},{{ $longitude }}"
+                    class="btn btn-md btn-primary" target="_blank">
+                    <i class="fa-solid fa-map-location-dot" style="color: #ffffff;"></i>
+                    Titik Koordinat Google Maps</a>
             @else
-                <p>Link tidak tersedia</p>
+                <div class="btn btn-md btn-primary">
+                    Titik Koordinat tidak tersedia
+                </div>
             @endif
         </div>
+
 
         {{-- Catatan --}}
         <div class="m-2 fst-italic text-muted">
@@ -74,9 +76,13 @@
         {{-- BAWAH --}}
         <div class="d-flex align-items-center">
             <a href="{{ route('usulan.index', ['penilai_id' => $penilai->id, 'bidang' => $bidang]) }}">
-                <button type="button" id="btnKembali" class="btn btn-primary btn-md px-4 gap-3 fw-bold">Kembali</button>
+                <button type="button" id="btnKembali" class="btn btn-primary btn-md px-4 gap-3 fw-bold">
+                    <i class="fa-solid fa-circle-left"></i>
+                    Kembali</button>
             </a>
-            <button type="submit" class="btn btn-md btn-success ms-auto next-step fw-bold">Simpan</button>
+            <button type="submit" class="btn btn-md btn-success ms-auto next-step fw-bold">
+                <i class="fa-regular fa-floppy-disk"></i>
+                Simpan</button>
         </div>
     </form>
 @endsection

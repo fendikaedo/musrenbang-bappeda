@@ -1,6 +1,6 @@
 @extends('layouts.usulan')
 @section('judul', 'Bidang ' . ucfirst($bidang))
-@section('list')
+@section('content')
     <div class="table-responsive-md table-bordered table-striped animate__animated animate__fadeInUp">
         <table class="table table-striped table-border border-2 border-dark table-sm w-100">
             <thead class="bg-warning">
@@ -43,3 +43,4 @@
         </table>
     </div>
 @endsection
+
