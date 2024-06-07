@@ -35,8 +35,10 @@
                     <img src="{{ asset('img/kab-pacitan.png') }}" class="img-fluid animate__animated animate__fadeInUp"
                         style="width: 100px;">
                 </div>
-                <p class="text-white fs-2 mb-1 animate__animated animate__fadeInUp"
-                    style="font-family: 'Poppins'; font-weight: 600;">E-Musrenbang</p>
+                <h1 class="text-white fs-2 mb-1 animate__animated animate__fadeInUp"><b>E-MUSRENBANG</b></h1>
+
+                {{-- <p class="text-white fs-2 mb-1 animate__animated animate__fadeInUp"
+                    style="font-family: 'Poppins'; font-weight: 600;">E-Musrenbang</p> --}}
             </div>
             <div class="col-md-6 right-box mt-2 mb-2 animate__animated animate__fadeIn">
                 <div class="row">

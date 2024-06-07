@@ -78,7 +78,7 @@ class UsulanDiterimaController extends AdminController
             'off' => ['value' => 0, 'text' => 'Tidak', 'color' => 'danger'],
         ];
         $grid->column('pilihan', __('Kabupaten'))->switch($states);
-        $grid->column('gambar',__('Gambar'));
+        $grid->column('gambar',__('Gambar'))->image();
         //$grid->column('tahun', __('Tahun'));
 
         return $grid;
@@ -122,6 +122,7 @@ class UsulanDiterimaController extends AdminController
         $show->field('anggaran', __('Anggaran'));
         $show->field('jenis_belanja', __('Jenis Belanja'));
         $show->field('sub_kegiatan', __('Sub Kegiatan'));
+        $show->field('gambar', __('Gambar'))->image();
         $show->field('pilihan', __('Pilihan'));
         $show->field('tahun', __('Tahun'));
 

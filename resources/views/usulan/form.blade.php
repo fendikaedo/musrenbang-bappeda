@@ -17,7 +17,7 @@
 
         <div class="mb-3 mt-3">
             @if ($gambarUsulan)
-                <img src="{{ asset('uploads/' . $gambarUsulan) }}" width="100%" height="420px">
+                <img src="{{ asset('uploads/' . $gambarUsulan) }}" class="image-usulan" width="100%" height="420px">
             @else
                 <p class="text-center">Gambar tempat tidak tersedia</p>
             @endif

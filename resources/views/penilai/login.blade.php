@@ -12,6 +12,9 @@
     {{-- Favicon --}}
     <link rel="website icon" type="png" href="{{ asset('../img/kab-pacitan.png') }}">
 
+    {{-- Font Awesome Icons --}}
+    <script src="https://kit.fontawesome.com/17b39fa33f.js" crossorigin="anonymous"></script>
+
     {{-- Animated CSS --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
@@ -36,8 +39,10 @@
                     <img src="{{ asset('img/kab-pacitan.png') }}" class="img-fluid animate__animated animate__fadeInUp"
                         style="width: 100px;">
                 </div>
-                <p class="text-white fs-2 mb-1 animate__animated animate__fadeInUp"
-                    style="font-family: 'Poppins'; font-weight: 600;">E-Musrenbang</p>
+                <h1 class="text-white fs-2 mb-1 animate__animated animate__fadeInUp"><b>E-MUSRENBANG</b></h1>
+
+                {{-- <p class="text-white fs-2 mb-1 animate__animated animate__fadeInUp"
+                    style="font-family: 'Poppins'; font-weight: 600;">E-Musrenbang</p> --}}
             </div>
 
             <!-------------------- ------ Right Box ---------------------------->
@@ -55,29 +60,29 @@
                         <div class="mb-3">
                             <label for="nama_penilai" class="form-label fs-6">Nama Lengkap</label>
                             <input id="nama_penilai" type="text" class="form-control form-control-lg bg-light fs-6"
-                                name="nama_penilai" value="{{ old('nama_penilai') }}" placeholder="Masukkan nama lengkap"
-                                required autofocus>
+                                name="nama_penilai" value="{{ old('nama_penilai') }}"
+                                placeholder="Masukkan nama lengkap" required autofocus>
                         </div>
 
                         <div class="mb-3">
                             <label for="alamat_penilai" class="form-label fs-6">Alamat</label>
                             <input id="alamat_penilai" type="text" class="form-control form-control-lg bg-light fs-6"
-                                name="alamat_penilai" value="{{ old('alamat_penilai') }}" placeholder="Masukkan alamat" required
-                                autofocus>
+                                name="alamat_penilai" value="{{ old('alamat_penilai') }}" placeholder="Masukkan alamat"
+                                required autofocus>
                         </div>
 
                         <div class="mb-3">
                             <label for="tlp_penilai" class="form-label fs-6">No. Telp</label>
                             <input id="tlp_penilai" type="number" class="form-control form-control-lg bg-light fs-6"
-                                name="tlp_penilai" value="{{ old('tlp_penilai') }}" placeholder="Masukkan No. Telp" required
-                                autofocus>
+                                name="tlp_penilai" value="{{ old('tlp_penilai') }}" placeholder="Masukkan No. Telp"
+                                required autofocus>
                         </div>
 
                         <div class="mb-3">
                             <label for="email_penilai" class="form-label fs-6">Email</label>
                             <input id="email_penilai" type="email" class="form-control form-control-lg bg-light fs-6"
-                                name="email_penilai" value="{{ old('email_penilai') }}" placeholder="Masukkan email" required
-                                autofocus>
+                                name="email_penilai" value="{{ old('email_penilai') }}"
+                                placeholder="*Email tidak wajib di isi" autofocus>
                         </div>
 
                         <div class="mb-3">
@@ -98,10 +103,13 @@
 
                         <div class="d-flex align-items-center">
                             <a href="/">
-                                <button type="button" class="btn btn-primary btn-lg fw-bold fs-6">Kembali</button>
+                                <button type="button" class="btn btn-primary btn-lg fw-bold fs-6">
+                                    <i class="fa-solid fa-circle-left"></i>
+                                    Kembali</button>
                             </a>
                             <button type="submit" class="btn btn-lg btn-success ms-auto fw-bold fs-6">
                                 Masuk
+                                <i class="fa-solid fa-circle-right"></i>
                             </button>
                         </div>
                     </form>

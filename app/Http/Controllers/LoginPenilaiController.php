@@ -37,7 +37,7 @@ class LoginPenilaiController extends Controller
             'nama_penilai' => 'required',
             'alamat_penilai' => 'required',
             'tlp_penilai' => 'required',
-            'email_penilai' => 'required',
+            'email_penilai' => '',
             'tanggal' => 'required',
             'kegiatan_id' => 'required',
         ]);
