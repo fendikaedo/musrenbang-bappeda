@@ -14,7 +14,7 @@ class MenuBidangController extends Controller
     public function index($penilai_id)
     {
         $bidang = Bidang::all()->reject(function ($bidang) {
-            return $bidang->nama === 'BK';
+            return $bidang->nama === 'Badan Keuangan';
         });
         $penilai = Penilaian::find($penilai_id);
         // Jika penilaian tidak ditemukan, kembalikan 404 atau redirect dengan pesan error

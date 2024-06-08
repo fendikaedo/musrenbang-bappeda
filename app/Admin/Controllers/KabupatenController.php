@@ -25,9 +25,9 @@ class KabupatenController extends AdminController
     protected function grid()
     {
         $grid = new Grid(new Kabupaten());
-        $grid->column('id',__('Id'));
+        $grid->column('id',__('No'));
         $grid->column('nama',__('Nama'));
-        
+
 
 
         return $grid;
@@ -42,7 +42,7 @@ class KabupatenController extends AdminController
     protected function detail($id)
     {
         $show = new Show(Kabupaten::findOrFail($id));
-        
+
         $show->field('id',__('Id'));
         $show->field('nama',__('Nama'));
 

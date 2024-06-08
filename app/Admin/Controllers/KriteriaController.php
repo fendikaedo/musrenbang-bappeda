@@ -26,7 +26,7 @@ class KriteriaController extends AdminController
     {
         $grid = new Grid(new Kriteria());
 
-        $grid->column('id',__('Id'));
+        $grid->column('id',__('No'));
         $grid->column('nama',__('Nama'));
         $grid->column('tahun',__('Tahun'));
 

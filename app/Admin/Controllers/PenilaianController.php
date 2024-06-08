@@ -30,7 +30,7 @@ class PenilaianController extends AdminController
     {
         $grid = new Grid(new Penilaian());
 
-        $grid->column('id', __('Id'));
+        $grid->column('id', __('No'));
         $grid->column('nama_penilai', __('Nama'));
         $grid->column('alamat_penilai', __('Alamat'));
         $grid->column('tlp_penilai', __('Telepon'));

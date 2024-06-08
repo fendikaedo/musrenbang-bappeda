@@ -36,7 +36,7 @@ class KelurahanController extends AdminController
             $filter->equal('kecamatan.id', 'Kecamatan')->select($nama_kecamatan);
         });
 
-        $grid->column('id', __('Id'));
+        $grid->column('id', __('No'));
         $grid->column('nama', __('Nama'));
         $grid->column('kecamatan.nama', __('Kecamatan'));
 

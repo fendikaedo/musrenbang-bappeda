@@ -27,7 +27,7 @@ class KecamatanController extends AdminController
     {
         $grid = new Grid(new Kecamatan());
 
-        $grid->column('id', __('Id'));
+        $grid->column('id', __('No'));
         $grid->column('nama', __('Nama'));
         $grid->column('kabupaten.nama', __('Kabupaten'));
 

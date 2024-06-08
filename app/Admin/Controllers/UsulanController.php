@@ -61,8 +61,8 @@ class UsulanController extends AdminController
 
         $grid->disableCreateButton(); //Menonaktifkan button new
 
-        $grid->column('id', __('No'));
-        //$grid->column('id_usulan', __('Id Usulan'));
+        // $grid->column('id', __('No'));
+        $grid->column('id_usulan', __('Id Usulan'));
         //$grid->column('tanggal_usul', __('Tanggal Usul'));
         //$grid->column('pengusul', __('Pengusul'));
         //$grid->column('profil', __('Profil'));

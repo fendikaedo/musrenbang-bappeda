@@ -26,7 +26,7 @@ class KegiatanController extends AdminController
     {
         $grid = new Grid(new Kegiatan());
 
-        $grid->column('id', __('Id'));
+        $grid->column('id', __('No'));
         $grid->column('nama', __('Nama'));
         $grid->column('tempat', __('Tempat'));
         $grid->column('tanggal', __('Tanggal'));

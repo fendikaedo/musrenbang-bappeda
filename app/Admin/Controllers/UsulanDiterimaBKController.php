@@ -5,21 +5,21 @@ namespace App\Admin\Controllers;
 use App\Models\Kabupaten;
 use App\Models\Kecamatan;
 use App\Models\Kelurahan;
-use App\Models\Opd;
 use App\Models\Usulan;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
+use Illuminate\Support\Facades\DB;
 
-class UsulanDiterimaController extends AdminController
+class UsulanDiterimaBKController extends AdminController
 {
     /**
      * Title for current resource.
      *
      * @var string
      */
-    protected $title = 'Usulan Diterima';
+    protected $title = 'Usulan Diterima / Bidang BK';
 
     /**
      * Make a grid builder.
@@ -32,7 +32,11 @@ class UsulanDiterimaController extends AdminController
         $tahun = config('tahun');
         //auth roles bidang
         $grid->model()->where('tahun', '=', $tahun);
-        $grid->model()->where('pilihan', '=', 1);
+        $grid->model()->where('pilihan', '=', 2);
+        $grid->model()->whereHas('opd.bidang', function ($query) {
+            $query->where('nama', 'ekonomi');
+        });
+
         $grid->filter(function ($filter) {
             $filter->disableIdFilter();
 
@@ -43,7 +47,12 @@ class UsulanDiterimaController extends AdminController
 
             $filter->equal('opd.bidang_id', 'Bidang')->select($daftar_bidang);
         });
-        //$grid->model()->where('status','<>', 'dibatalkan');
+
+        //Menghitung Skor Tertinggi
+        // $grid->model()->select('usulan.*', DB::raw('SUM(skor.skor) as total_skor'))
+        //     ->leftJoin('skor', 'usulan.id', '=', 'skor.usulan_id')
+        //     ->groupBy('usulan.id');
+
         $grid->disableCreateButton(); //Menonaktifkan button new
 
         //$grid->column('id', __('No'));
@@ -57,8 +66,8 @@ class UsulanDiterimaController extends AdminController
         //$grid->column('kabupaten.nama', __('Kabupaten'));
         $grid->column('kecamatan.nama', __('Kecamatan'));
         $grid->column('kelurahan.nama', __('Kelurahan'));
-        // $grid->column('latitude', __('Latitude'));
-        // $grid->column('longitude', __('Longitude'));
+        //$grid->column('latitude', __('Latitude'));
+        //$grid->column('longitude', __('Longitude'));
         //$grid->column('usulan_ke', __('Usulan ke'));
         //$grid->column('opd.nama', __('OPD Tujuan Awal'));
         $grid->column('opd.nama', __('OPD Tujuan Akhir'));
@@ -73,12 +82,13 @@ class UsulanDiterimaController extends AdminController
         //$grid->column('satuan', __('Satuan'));
         //$grid->column('anggaran', __('Anggaran'));
         //$grid->column('jenis_belanja', __('Jenis Belanja'));
+        $grid->column('skor_bidang',__('Skor Bidang'))->sortable()->editable();
+
         $states = [
-            'on' => ['value' => 1, 'text' => 'Diterima', 'color' => 'success'],
+            'on' => ['value' => 2, 'text' => 'Diterima', 'color' => 'success'],
             'off' => ['value' => 0, 'text' => 'Tidak', 'color' => 'danger'],
         ];
-        $grid->column('pilihan', __('Kabupaten'))->switch($states);
-        $grid->column('gambar',__('Gambar'))->image();
+        $grid->column('pilihan', __('Pilihan'))->switch($states);
         //$grid->column('tahun', __('Tahun'));
 
         return $grid;
@@ -122,7 +132,6 @@ class UsulanDiterimaController extends AdminController
         $show->field('anggaran', __('Anggaran'));
         $show->field('jenis_belanja', __('Jenis Belanja'));
         $show->field('sub_kegiatan', __('Sub Kegiatan'));
-        $show->field('gambar', __('Gambar'))->image();
         $show->field('pilihan', __('Pilihan'));
         $show->field('tahun', __('Tahun'));
 
@@ -173,7 +182,7 @@ class UsulanDiterimaController extends AdminController
         $form->textarea('anggaran', __('Anggaran'));
         $form->text('jenis_belanja', __('Jenis Belanja'));
         $form->text('sub_kegiatan', __('Sub Kegiatan'));
-        $form->image('gambar',__('Gambar'))->removable();
+        $form->number('skor_bidang','Skor Bidang');
         $form->switch('pilihan', __('Pilihan'));
         $form->number('tahun', __('Tahun'));
 
