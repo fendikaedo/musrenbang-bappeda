@@ -11,6 +11,9 @@ class Usulan extends Model
 
     protected $table = 'usulan';
 
+    protected $fillable = [ 'id_usulan', 'tanggal_usul', 'pengusul', 'profil', 'usulan', 'masalah', 'alamat_lokasi', 'kabupaten', 'kecamatan', 'kelurahan', 'usulan_ke', 'opd_tujuan_awal', 'opd_tujuan_akhir', 'status', 'catatan', 'rekomendasi_mitra', 'rekomendasi_kelurahan_desa', 'rekomendasi_kecamatan', 'rekomendasi_skpd', 'rekomendasi_tapd', 'volume', 'satuan', 'anggaran', 'jenis_belanja', 'sub_kegiatan'];
+
+
     public $timestamps = false;
 
     public function kabupaten()
