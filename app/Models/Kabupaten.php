@@ -10,6 +10,12 @@ class Kabupaten extends Model
     use HasFactory;
 
     protected $table = 'kabupaten';
+    protected $fillable = ['id','nama'];
 
     public $timestamps = false;
+
+    public function usulan()
+    {
+        return $this->hashMany(Usulan::class);
+    }
 }

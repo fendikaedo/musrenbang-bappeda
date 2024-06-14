@@ -30,7 +30,6 @@ class UsulanDiterimaController extends AdminController
     {
         $grid = new Grid(new Usulan());
         $tahun = config('tahun');
-        //auth roles bidang
         $grid->model()->where('tahun', '=', $tahun);
         $grid->model()->where('pilihan', '=', 1);
         $grid->filter(function ($filter) {

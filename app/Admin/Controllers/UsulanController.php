@@ -69,13 +69,13 @@ class UsulanController extends AdminController
         $grid->column('usulan', __('Usulan'));
         $grid->column('masalah', __('Masalah'));
         $grid->column('alamat', __('Alamat'));
-        //$grid->column('kabupaten.nama', __('Kabupaten'));
+        $grid->column('kabupaten.nama', __('Kabupaten'));
         $grid->column('kecamatan.nama', __('Kecamatan'));
         $grid->column('kelurahan.nama', __('Kelurahan'));
         // $grid->column('latitude', __('Latitude'));
         // $grid->column('longitude', __('Longitude'));
         //$grid->column('usulan_ke', __('Usulan ke'));
-        //$grid->column('opd.nama', __('OPD Tujuan Awal'));
+        $grid->column('opd.nama', __('OPD Tujuan Awal'));
         $grid->column('opd.nama', __('OPD Tujuan Akhir'));
         //$grid->column('status', __('Status'));
         //$grid->column('catatan', __('Catatan'));

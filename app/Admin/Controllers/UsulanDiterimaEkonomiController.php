@@ -30,7 +30,6 @@ class UsulanDiterimaEkonomiController extends AdminController
     {
         $grid = new Grid(new Usulan());
         $tahun = config('tahun');
-        //auth roles bidang
         $grid->model()->where('tahun', '=', $tahun);
         $grid->model()->where('pilihan', '=', 2);
         $grid->model()->whereHas('opd.bidang', function ($query) {

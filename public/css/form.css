@@ -2,14 +2,12 @@
 
 body{
     font-family: 'Poppins', sans-serif;
-    background: #ececec;
     margin: 0;
     top: 0;
     left: 0;
 }
 
 /*------------ Login container ------------*/
-
 .box-area{
     width: 930px;
 }
