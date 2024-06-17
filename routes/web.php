@@ -1,6 +1,7 @@
 <?php
 
 use App\Admin\Controllers\UsulanController as ControllersUsulanController;
+use App\Http\Controllers\Chart\BarController;
 use App\Http\Controllers\EkonomiController;
 use App\Http\Controllers\FormInfrastrukturController;
 use App\Http\Controllers\FormEkonomiController;

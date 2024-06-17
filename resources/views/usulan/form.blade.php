@@ -39,7 +39,7 @@
         {{-- Catatan --}}
         <div class="m-2 fst-italic text-muted">
             <p>Catatan : <br> 1. Setiap kriteria memiliki skor 1-10. <br>2. Nilai skor 1 merupakan kondisi skor paling
-                rendah dan untuk Nilai skor 10 merupakan kondisi skor paling tinggi.</p>
+                rendah.<br>3. Nilai skor 10 merupakan kondisi skor paling tinggi</p>
         </div>
 
         {{-- KRITERIA --}}

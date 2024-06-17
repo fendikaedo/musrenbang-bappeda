@@ -8,6 +8,7 @@ use App\Models\Kelurahan;
 use App\Models\Opd;
 use App\Models\Usulan;
 use Encore\Admin\Form\Field\Id;
+use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Concerns\ToModel;
 
 class UsulanImport implements ToModel
@@ -43,22 +44,14 @@ class UsulanImport implements ToModel
         $kelurahan = Kelurahan::where('nama', $row[10])->first();
         $kelurahanId = $kelurahan ? $kelurahan->id : null;
 
-        //LATITUDE AND LONGITUDE
-        // $alamat = $row[7];
-        // // Pisahkan alamat berdasarkan koma
-        // $data = explode(',', $alamat);
-        // $latDouble = null;
-        // $longDouble = null;
-        // if (count($data) >= 2) {
-        //     $lat = trim($data[0]); // Ambil latitude dari elemen pertama
-        //     $long = trim($data[1]); // Ambil longitude dari elemen kedua
+         //LATITUDE & LONGITUDE
+         $alamat = $row[7];
+         $latitude = $this->extractLatitude($alamat);
+         $longitude = $this->extractLongitude($alamat);
 
-        //     $latDouble = doubleval($lat);
-        //     $longDouble = doubleval($long);
-
-        //     $latitude = round($latDouble,17);
-        //     $longitude = round($longDouble,17);
-        // }
+          // KONVERSI DARI STRING KE TIPE DATA DOUBLE
+        $latitude = $latitude ? (double)number_format((float)$latitude, 17, '.', '') : null;
+        $longitude = $longitude ? (double)number_format((float)$longitude, 17, '.', '') : null;
 
         //OPD TUJUAN AWAL
         $opd_awal = Opd::where('nama', $row[12])->first();
@@ -90,8 +83,8 @@ class UsulanImport implements ToModel
             'kabupaten_id' => $kabupatenId,
             'kecamatan_id' => $kecamatanId,
             'kelurahan_id' => $kelurahanId,
-            // 'latitude' => $latitude,
-            // 'longitude' => $longitude,
+            'latitude' => $latitude,
+            'longitude' => $longitude,
             'usulan_ke' => $row[11],
             'opd_id_awal' => $opd_awal_id,
             'opd_id_akhir' => $opd_akhir_id,
@@ -109,9 +102,25 @@ class UsulanImport implements ToModel
             'sub_kegiatan' => $row[25],
             'pilihan' => $row[26] = 0,
             'tahun' => $row[27] = $tahunInteger,
-            // 'skor_bidang' => $row[28],
-            // 'gambar' => $row[29],
 
         ]);
+    }
+    private function extractLatitude($alamat)
+    {
+        if (preg_match('/-?8\.\d+,/', $alamat, $matches)) {
+            return rtrim($matches[0], ',');
+        }
+        if (preg_match('/-?7\.\d+,/', $alamat, $matches)) {
+            return rtrim($matches[0], ',');
+        }
+        return null;
+    }
+
+    private function extractLongitude($alamat)
+    {
+        if (preg_match('/1[1-2]\d\.\d+,/', $alamat, $matches)) {
+            return rtrim($matches[0], ',');
+        }
+        return null;
     }
 }

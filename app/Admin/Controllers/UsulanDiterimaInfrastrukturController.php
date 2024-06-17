@@ -88,7 +88,7 @@ class UsulanDiterimaInfrastrukturController extends AdminController
             'on' => ['value' => 2, 'text' => 'Diterima', 'color' => 'success'],
             'off' => ['value' => 0, 'text' => 'Tidak', 'color' => 'danger'],
         ];
-        $grid->column('pilihan', __('Pilihan'))->switch($states);
+        $grid->column('pilihan', __('Approved'))->switch($states);
         //$grid->column('tahun', __('Tahun'));
 
         return $grid;
