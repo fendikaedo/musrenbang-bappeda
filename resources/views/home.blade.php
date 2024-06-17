@@ -34,7 +34,7 @@
         <nav class="nav container">
             <div class="nav__data">
                 <a href="#" class="nav__logo">
-                    BAPPEDA LITBANG PACITAN
+                    <span>BAPPEDA LITBANG PACITAN</span>
                 </a>
                 <div class="nav__toggle" id="nav-toggle">
                     <i class="fa-solid fa-bars nav__burger"></i>
@@ -50,8 +50,10 @@
 
                     <li><a href="#" class="nav__link">Contact</a></li>
 
-                    <li class="dropdown__item">
-                        <a href="/admin" class="nav__link">
+                    <li><a href="/admin" class="nav__link">Admin</a></li>
+
+                    {{-- <li class="dropdown__item">
+                        <a href="/admin" class="nav__link btn btn-danger btn-sm">
                             Admin <i class="ri-arrow-down-s-line dropdown__arrow"></i>
                         </a>
 
@@ -61,8 +63,8 @@
                                     <i class="ri-pie-chart-line"></i> Login
                                 </a>
                             </li>
-                        </ul> --}}
-                    </li>
+                        </ul>
+                    </li> --}}
                 </ul>
             </div>
         </nav>
@@ -90,9 +92,9 @@
     </main>
 
     <!--=============== FOOTER ===============-->
-    <footer class="bg-body-tertiary text-center text-lg-start">
+    <footer class="text-center text-lg-start">
         <!-- Copyright -->
-        <div class="text-center p-3 bg-dark text-white">
+        <div class="text-center p-3 text-white">
             © 2024 BAPPEDA LITBANG Kab. Pacitan
         </div>
         <!-- Copyright -->

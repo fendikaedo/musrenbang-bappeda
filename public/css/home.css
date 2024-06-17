@@ -1,10 +1,11 @@
 /*=============== GOOGLE FONTS ===============*/
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import 'animate.css';
 
 /*=============== VARIABLES CSS ===============*/
 :root {
-  --header-height: 2.8rem;
+  --header-height: 2.5rem;
 
   /*========== Colors ==========*/
   /*Color mode HSL(hue, saturation, lightness)*/
@@ -70,6 +71,7 @@ a {
   top: 0;
   left: 0;
   width: 100%;
+  font-family: "Poppins",sans-serif;
   background-color: var(--black-color);
   box-shadow: 0 2px 16px hsla(220, 32%, 8%, .3);
   z-index: var(--z-fixed);
@@ -97,14 +99,14 @@ a {
   display: inline-flex;
   align-items: center;
   column-gap: .25rem;
-  font-weight: var(--font-semi-bold);
+  font-weight: 600;
   /* Color highlighting when pressed on mobile devices */
   /*-webkit-tap-highlight-color: transparent;*/
 }
 
-.nav__logo i {
+.nav__logo a {
   font-weight: initial;
-  font-size: 1.25rem;
+  font-size: 2.0rem;
 }
 
 .nav__toggle {
