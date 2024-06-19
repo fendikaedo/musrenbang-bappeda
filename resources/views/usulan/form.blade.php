@@ -29,7 +29,7 @@
                     <i class="fa-solid fa-map-location-dot" style="color: #ffffff;"></i>
                     Titik Koordinat Google Maps</a>
             @else
-                <div class="btn btn-md btn-primary">
+                <div class="btn btn-md btn-secondary">
                     Titik Koordinat tidak tersedia
                 </div>
             @endif
