@@ -77,7 +77,9 @@ class UsulanDiterimaController extends AdminController
             'off' => ['value' => 0, 'text' => 'Tidak', 'color' => 'danger'],
         ];
         $grid->column('pilihan', __('Approved'))->switch($states);
-        $grid->column('gambar',__('Gambar'))->image();
+        $grid->column('gambar1',__('Gambar 1'))->image();
+        $grid->column('gambar2',__('Gambar 2'))->image();
+        $grid->column('gambar3',__('Gambar 3'))->image();
         //$grid->column('tahun', __('Tahun'));
 
         return $grid;
@@ -121,7 +123,9 @@ class UsulanDiterimaController extends AdminController
         $show->field('anggaran', __('Anggaran'));
         $show->field('jenis_belanja', __('Jenis Belanja'));
         $show->field('sub_kegiatan', __('Sub Kegiatan'));
-        $show->field('gambar', __('Gambar'))->image();
+        $show->field('gambar1', __('Gambar 1'))->image();
+        $show->field('gambar2', __('Gambar 2'))->image();
+        $show->field('gambar3', __('Gambar 3'))->image();
         $show->field('pilihan', __('Pilihan'));
         $show->field('tahun', __('Tahun'));
 
@@ -172,7 +176,9 @@ class UsulanDiterimaController extends AdminController
         $form->textarea('anggaran', __('Anggaran'));
         $form->text('jenis_belanja', __('Jenis Belanja'));
         $form->text('sub_kegiatan', __('Sub Kegiatan'));
-        $form->image('gambar',__('Gambar'))->removable();
+        $form->image('gambar1',__('Gambar 1'))->removable();
+        $form->image('gambar2',__('Gambar 2'))->removable();
+        $form->image('gambar3',__('Gambar 3'))->removable();
         $form->switch('pilihan', __('Pilihan'));
         $form->number('tahun', __('Tahun'));
 

@@ -46,7 +46,8 @@
                 <ul class="nav__list">
                     <li><a href="#" class="nav__link">Home</a></li>
 
-                    <li><a href="https://bappedalitbang.pacitankab.go.id/" target="_blank" class="nav__link">About</a></li>
+                    <li><a href="https://bappedalitbang.pacitankab.go.id/" target="_blank" class="nav__link">About</a>
+                    </li>
 
                     <li><a href="#" class="nav__link">Contact</a></li>
 
@@ -78,12 +79,18 @@
             <h1 class="display-5 fw-bold animate__animated animate__fadeIn">E-MUSRENBANG</h1>
             <h2 class="display-5 fw-bold animate__animated animate__fadeIn">Musyawarah Rencana Pembangunan</h2>
             <div class="col-lg-6 mx-auto animate__animated animate__fadeIn">
-                <p class="lead mb-4 fs-6">Aplikasi E-Musrenbang adalah forum antarpelaku dalam rangka menyusun rencana pembangunan
+                <p class="lead mb-4 fs-6">Aplikasi E-Musrenbang adalah forum antarpelaku dalam rangka menyusun rencana
+                    pembangunan
                     Nasional dan rencana pembangunan Daerah yang menggunakan sistem voting melalui skor.</p>
-                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                <div class="gap-3 d-sm-flex justify-content-sm-center">
+                    <button type="button"
+                        class="btn btn-book btn-lg px-4 gap-3 animate__animated animate__fadeInUp" id="downloadBook">
+                        <i class="fa-solid fa-download"></i>
+                        <span>Manual Book</span>
+                    </button>
                     <a href="/loginpenilai">
                         <button type="button"
-                            class="btn btn-primary btn-lg px-4 gap-3 animate__animated animate__fadeInUp">Start
+                            class="btn btn-start btn-lg px-4 gap-3 animate__animated animate__fadeInUp">Start
                             Vote</button>
                     </a>
                 </div>
@@ -100,24 +107,27 @@
         <!-- Copyright -->
     </footer>
 
+    <script src="{{ asset('js/home.js') }}"></script>
+
 </body>
-
 <script>
-    /*=============== SHOW MENU ===============*/
-    const showMenu = (toggleId, navId) => {
-        const toggle = document.getElementById(toggleId),
-            nav = document.getElementById(navId)
+    /*=============== BUTTON DOWNLOAD ===============*/
+ document.getElementById("downloadBook").addEventListener("click", function() {
+    // URL file PDF yang ingin didownload
+    var pdfUrl = ''; //asset file path pdf pada public
 
-        toggle.addEventListener('click', () => {
-            // Add show-menu class to nav menu
-            nav.classList.toggle('show-menu')
+    // Membuat elemen link
+    var link = document.createElement('a');
+    link.href = pdfUrl;
 
-            // Add show-icon to show and hide the menu icon
-            toggle.classList.toggle('show-icon')
-        })
-    }
+    // Set atribut download untuk memicu download
+    link.download = 'Manual Book E-Musrenbang.pdf';
 
-    showMenu('nav-toggle', 'nav-menu')
+    // Memicu klik pada link
+    link.click();
+
+    // Menghapus link dari dokumen
+    document.body.removeChild(link);
+});
 </script>
-
 </html>

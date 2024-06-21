@@ -47,7 +47,9 @@ class UsulanController extends Controller
     public function create(Request $request, $penilai_id, $id_usulan)
     {
         $usulan = Usulan::findOrFail($id_usulan);
-        $gambarUsulan = $usulan->gambar;
+        $gambarUsulan1 = $usulan->gambar1;
+        $gambarUsulan2 = $usulan->gambar2;
+        $gambarUsulan3 = $usulan->gambar3;
         $latitude = $usulan->latitude;
         $longitude = $usulan->longitude;
 
@@ -58,7 +60,9 @@ class UsulanController extends Controller
             'bidang' => $bidang,
             'latitude' => $latitude,
             'longitude' => $longitude,
-            'gambarUsulan' => $gambarUsulan,
+            'gambarUsulan1' => $gambarUsulan1,
+            'gambarUsulan2' => $gambarUsulan2,
+            'gambarUsulan3' => $gambarUsulan3,
             'id_usulan' => $usulan,
             'kriteria' => Kriteria::all(),
             'penilai' => Penilaian::find($penilai_id),

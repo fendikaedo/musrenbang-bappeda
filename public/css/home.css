@@ -364,19 +364,33 @@ a {
 }
 
 /* CSS */
-.btn{
+.btn-book{
     font-weight: bold;
+    background-color: rgb(0, 117, 0);
+    color: #fff;
+}
+.btn-start{
+    font-weight: bold;
+    background-color: #0003c2;
+    color: #fff;
 }
 .btn:disabled {
   pointer-events: none;
 }
 
-.btn:hover {
-  color: #fff;
-  background-color: #0003c2;
+.btn-start:hover {
+  color: #000;
+  background-color: #fff;
   box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
   transform: translateY(-2px);
 }
+
+.btn-book:hover {
+    color: #000;
+    background-color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+    transform: translateY(-2px);
+  }
 
 .btn:active {
   box-shadow: none;
@@ -393,4 +407,9 @@ footer{
     }
 }
 
+@media screen and (max-width: 380px) {
+    .btn-book{
+        margin-bottom: 8px;
+    }
+  }
 
