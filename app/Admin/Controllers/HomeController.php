@@ -27,10 +27,10 @@ class HomeController extends Controller
         $jumlah_opd = Opd::count();
         $jumlah_usulan = Usulan::count();
 
-        $infoKecamatan = new InfoBox('Jumlah Kecamatan', 'kecamatan', 'yellow', '/admin/kecamatan', $jumlah_kecamatan);
-        $infoKelurahan = new InfoBox('Jumlah Kelurahan/Desa', 'kelurahan', 'green', '/admin/kelurahan', $jumlah_kelurahan);
-        $infoOpd = new InfoBox('Jumlah OPD', 'opd', 'red', '/admin/opd', $jumlah_opd);
-        $infoUsulan = new InfoBox('Jumlah Usulan', 'usulan', 'aqua', '/admin/usulan', $jumlah_usulan);
+        $infoKecamatan = new InfoBox('Jumlah Kecamatan', 'map', 'yellow', '/admin/kecamatan', $jumlah_kecamatan);
+        $infoKelurahan = new InfoBox('Jumlah Kelurahan/Desa', 'map', 'green', '/admin/kelurahan', $jumlah_kelurahan);
+        $infoOpd = new InfoBox('Jumlah OPD', 'database', 'red', '/admin/opd', $jumlah_opd);
+        $infoUsulan = new InfoBox('Jumlah Usulan', 'file', 'aqua', '/admin/usulan', $jumlah_usulan);
 
 
         //BAR CHART JUMLAH USULAN SETIAP KECAMATAN

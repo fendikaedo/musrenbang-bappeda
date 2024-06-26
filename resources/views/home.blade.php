@@ -114,14 +114,14 @@
     /*=============== BUTTON DOWNLOAD ===============*/
  document.getElementById("downloadBook").addEventListener("click", function() {
     // URL file PDF yang ingin didownload
-    var pdfUrl = ''; //asset file path pdf pada public
+    var pdfUrl = '{{ asset('pdf/Buku Panduan E-Musrenbang.pdf') }}'; //asset file path pdf pada public
 
     // Membuat elemen link
     var link = document.createElement('a');
     link.href = pdfUrl;
 
     // Set atribut download untuk memicu download
-    link.download = 'Manual Book E-Musrenbang.pdf';
+    link.download = 'Buku Panduan E-Musrenbang.pdf';
 
     // Memicu klik pada link
     link.click();
