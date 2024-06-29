@@ -11,7 +11,7 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class ImportPost extends Action
 {
-    public $name = 'import data';
+    public $name = 'IMPORT DATA';
 
     protected $selector = '.import-post';
 

@@ -137,6 +137,7 @@ class UsulanController extends AdminController
         $show->field('anggaran', __('Anggaran'));
         $show->field('jenis_belanja', __('Jenis Belanja'));
         $show->field('sub_kegiatan', __('Sub Kegiatan'));
+        $show->field('Map')->latlong('latitude', 'longitude', $height = 300, $zoom = 16);
         $show->field('pilihan', __('Pilihan'));
         $show->field('tahun', __('Tahun'));
 
