@@ -9,7 +9,7 @@ class Skor extends Model
 {
     use HasFactory;
 
-    protected $table = 'Skor';
+    protected $table = 'skor';
 
     public $timestamps = false;
 

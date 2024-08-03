@@ -54,8 +54,6 @@ class SkoringUsulanController extends AdminController
 
         $grid->disableCreateButton(); //Menonaktifkan button new
 
-
-
         $grid->column('id_usulan', __('Id Usulan'));
         $grid->column('usulan', __('Usulan'));
         $grid->column('masalah', __('Masalah'));

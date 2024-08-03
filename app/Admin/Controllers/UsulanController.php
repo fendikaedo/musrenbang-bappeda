@@ -51,7 +51,7 @@ class UsulanController extends AdminController
 
             $filter->equal('kecamatan_id', 'Kecamatan')->select($kecamatan);
             $filter->equal('kelurahan_id', 'Kelurahan')->select($kelurahan);
-            $filter->equal('opd.bidang_id', 'Bidang')->select($daftar_bidang);
+            $filter->equal('opd.bidang_id','Bidang')->select($daftar_bidang);
         });
 
         //Fungsi Import Data pada Grid
